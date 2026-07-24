@@ -3,7 +3,7 @@
    Energía alta, muy joven. El hover invierte el bloque.  */
 
 :root{
-  --bg:#000; --ink:#fff; --dim:#8c8c8c;
+  --bg:#000; --ink:#fff; --dim:#a3a3a3;
   --acid:#d4ff00; --surface:#0d0d0d; --line:#242424;
   --f-display:"Anton",sans-serif; --f-body:"Inter",sans-serif; --f-mono:"JetBrains Mono",monospace;
   --max:760px;
@@ -95,3 +95,46 @@ footer a:hover{color:var(--acid)}
   font-family:var(--f-mono);font-size:14px;line-height:1.5;color:var(--ink);margin:20px 0;white-space:pre-wrap}
 code{font-family:var(--f-mono);font-size:.88em;background:var(--surface);border:1px solid var(--line);padding:2px 6px;color:var(--acid)}
 pre code{background:none;border:0;padding:0}
+
+/* ── secciones nuevas (auditoría de conversión) ─────── */
+.hero-ctas{margin-top:32px;display:flex;gap:10px;flex-wrap:wrap;
+  animation:up .7s .35s cubic-bezier(.2,.8,.2,1) both}
+.hero-ctas .btn{border-color:var(--acid);color:var(--acid)}
+.hero-ctas .btn:hover{background:var(--acid);color:#000}
+.hero-ctas .btn.solid{background:var(--acid);color:#000}
+.hero-ctas .btn.solid:hover{background:#fff;border-color:#fff}
+
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+
+.pain,.step{background:var(--surface);border:2px solid var(--line);padding:22px 20px}
+.pain-num,.step-num{display:block;font-family:var(--f-display);font-size:40px;color:var(--acid);line-height:1;margin-bottom:12px}
+.pain h3,.step h3{font-size:17px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.pain p,.step p{font-size:14px;color:var(--dim)}
+
+.solution{margin-top:14px;background:var(--acid);color:#000;padding:26px 24px}
+.solution p{font-size:18px;max-width:60ch}
+.solution strong{font-weight:700}
+.solution .accent{display:block;margin-top:6px;font-weight:600}
+
+/* tarjeta de recurso con captura directa */
+.res{background:var(--surface);border:2px solid var(--line);padding:24px;margin-bottom:12px;
+  transition:border-color .18s ease}
+.res:hover{border-color:var(--acid)}
+.res h3{font-size:20px;font-weight:600;margin-bottom:8px}
+.res>p{font-size:15px;color:var(--dim);max-width:62ch}
+.res .tag{display:inline-block;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;
+  letter-spacing:.16em;color:var(--acid);border:1px solid var(--acid);padding:3px 8px;margin-bottom:12px}
+.gate-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.gate-form input[type=email]{flex:1 1 240px;background:#000;border:2px solid var(--line);color:var(--ink);
+  font-family:var(--f-body);font-size:16px;padding:14px 16px;outline:0}
+.gate-form input[type=email]:focus{border-color:var(--acid)}
+.gate-form input[type=email]::placeholder{color:#5c5c5c}
+.gate-form .btn{cursor:pointer;border-color:var(--acid)}
+.fine{margin-top:12px;font-family:var(--f-mono);font-size:11px;color:var(--dim)}
+
+.foot-links{display:flex;gap:18px;flex-wrap:wrap}
+
+/* entradas al hacer scroll */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}

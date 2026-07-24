@@ -95,3 +95,41 @@ footer a:hover{background:var(--red);color:var(--bg)}
   padding:20px;overflow-x:auto;font-family:var(--f-mono);font-size:14px;line-height:1.5;margin:22px 0;white-space:pre-wrap}
 code{font-family:var(--f-mono);font-size:.88em;background:var(--ink);color:var(--bg);padding:2px 6px}
 pre code{background:none;padding:0;color:inherit}
+
+/* ── secciones nuevas (auditoría de conversión) ─────── */
+.hero-ctas{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+
+.pain,.step{background:var(--surface);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:22px 20px}
+.pain-num,.step-num{display:inline-block;font-family:var(--f-display);font-size:20px;line-height:1;
+  background:var(--red);color:#fff;padding:8px 12px;margin-bottom:14px}
+.pain h3,.step h3{font-size:17px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.pain p,.step p{font-size:14px;color:var(--dim)}
+
+.solution{margin-top:18px;background:var(--ink);color:var(--bg);border:3px solid var(--ink);
+  box-shadow:9px 9px 0 var(--red);padding:28px 26px}
+.solution p{font-size:18px;max-width:60ch;color:var(--bg)}
+.solution strong{font-weight:700}
+.solution .accent{display:block;margin-top:6px;color:#ff8a80;font-weight:600}
+
+/* tarjeta de recurso con captura directa */
+.res{background:var(--surface);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+  padding:24px;margin-bottom:18px}
+.res h3{font-size:20px;font-weight:600;margin-bottom:8px}
+.res>p{font-size:15px;color:var(--dim);max-width:62ch}
+.res .tag{display:inline-block;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;
+  letter-spacing:.14em;background:var(--ink);color:var(--bg);padding:4px 9px;margin-bottom:12px}
+.gate-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.gate-form input[type=email]{flex:1 1 240px;background:var(--bg);border:3px solid var(--ink);color:var(--ink);
+  font-family:var(--f-body);font-size:16px;padding:13px 16px;outline:0}
+.gate-form input[type=email]:focus{border-color:var(--red)}
+.gate-form .btn{cursor:pointer}
+.fine{margin-top:12px;font-family:var(--f-mono);font-size:11px;color:var(--dim)}
+
+.foot-links{display:flex;gap:18px;flex-wrap:wrap}
+
+/* entradas al hacer scroll */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
