@@ -33,17 +33,12 @@
     <h2>Deja tu email y te lo desbloqueo</h2>
     <p>Acceso inmediato al recurso completo. Cuando publique algo nuevo, te llega primero. Sin spam y te puedes borrar cuando quieras.</p>
 
-    <form action="https://formsubmit.co/oriol.fored@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="Lead recurso: contexto">
-      <input type="hidden" name="_next" value="https://uriforcada-boss.github.io/r/contexto/gracias.html">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="text" name="_honey" style="display:none">
-      <input type="hidden" name="recurso" value="contexto">
-      <input type="email" name="email" placeholder="tu@email.com" required>
-      <button class="btn solid" type="submit">Acceder al recurso</button>
-    </form>
+    <form class="gate-form ml-form" data-recurso="contexto" data-next="https://uriforcada-boss.github.io/r/contexto/gracias.html">
+        <input type="email" name="email" placeholder="tu@email.com" required>
+        <button class="btn solid" type="submit">Acceder al recurso</button>
+      </form>
 
-    <p class="fine">1 email · acceso inmediato · baja cuando quieras</p>
+    <p class="fine">Acceso inmediato · confirma el correo para recibir los siguientes · baja cuando quieras</p>
   </div>
 </div>
 
@@ -53,6 +48,8 @@
     <a href="../../">uriforcada-boss.github.io</a>
   </div>
 </footer>
+
+<script src="../../assets/subscribe.js"></script>
 
 </body>
 </html>
