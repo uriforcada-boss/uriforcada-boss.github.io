@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galería — 4 direcciones para la web</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#15161a;color:#f2f3f5;font-family:Inter,sans-serif;padding:36px 28px 80px}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:#9aa0ac;font-size:15px;max-width:80ch;margin-bottom:28px;line-height:1.6}
+  .sub b{color:#f2f3f5}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:26px}
+
+  .item{background:#1d1f25;border:1px solid #2c2f38;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .bar{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #2c2f38}
+  .num{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:500;
+       background:#f2f3f5;color:#15161a;width:36px;height:36px;border-radius:8px;
+       display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .name{font-weight:600;font-size:17px;letter-spacing:-.01em}
+  .desc{color:#9aa0ac;font-size:13px;margin-top:2px;line-height:1.45}
+  .open{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:12px;text-decoration:none;
+        color:#15161a;background:#8ee6a0;padding:9px 14px;border-radius:7px;white-space:nowrap;font-weight:500}
+  .open:hover{background:#fff}
+
+  /* el iframe se renderiza a 1100px y se escala: se ve la página REAL, no un mockup */
+  .frame{position:relative;height:520px;overflow:hidden;background:#000}
+  .frame iframe{width:1100px;height:1300px;border:0;transform:scale(.56);transform-origin:top left;
+                position:absolute;top:0;left:0}
+  .veil{position:absolute;inset:0;cursor:pointer}
+</style>
+</head>
+<body>
+
+<h1>Cuatro direcciones para tu web</h1>
+<p class="sub">Es la <b>misma página</b> con cuatro pieles distintas, renderizadas de verdad en el navegador — no son dibujos. Míralas aquí en pequeño y abre a pantalla completa las que te llamen: <b>el movimiento (hover, entradas) solo se aprecia abriéndolas</b>. Luego dime un número y la aplico a todo el sitio.</p>
+
+<div class="grid">
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">1</div>
+      <div>
+        <div class="name">Ácido</div>
+        <div class="desc">Negro absoluto y amarillo eléctrico. Tipografía bestia. Al pasar por encima, el bloque se invierte entero.</div>
+      </div>
+      <a class="open" href="d1.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="d1.html" scrolling="no"></iframe><a class="veil" href="d1.html" target="_blank"></a></div>
+  </div>
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">2</div>
+      <div>
+        <div class="name">Papel</div>
+        <div class="desc">Crema cálido, tinta y naranja quemado, con serif de autor. La vibra del perfil que te gustó, en tu idioma.</div>
+      </div>
+      <a class="open" href="d2.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="d2.html" scrolling="no"></iframe><a class="veil" href="d2.html" target="_blank"></a></div>
+  </div>
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">3</div>
+      <div>
+        <div class="name">Nocturno</div>
+        <div class="desc">Azul noche con un fondo que respira y acento coral. La más dinámica: todo entra en cascada y se eleva.</div>
+      </div>
+      <a class="open" href="d3.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="d3.html" scrolling="no"></iframe><a class="veil" href="d3.html" target="_blank"></a></div>
+  </div>
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">4</div>
+      <div>
+        <div class="name">Bloque</div>
+        <div class="desc">Papel blanco, tinta negra y un rojo que grita. Bordes gruesos y sombra dura: al tocarlo, se hunde.</div>
+      </div>
+      <a class="open" href="d4.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="d4.html" scrolling="no"></iframe><a class="veil" href="d4.html" target="_blank"></a></div>
+  </div>
+
+</div>
+
+</body>
+</html>

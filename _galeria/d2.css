@@ -1,0 +1,72 @@
+/* ── DIRECCIÓN 2 · PAPEL ──────────────────────────────
+   Crema cálido, tinta y naranja quemado. Serif de autor.
+   La vibra del perfil que te gustó, pero en tu idioma.   */
+
+:root{
+  --bg:#f2ece1; --ink:#1c1714; --dim:#6b6157;
+  --burnt:#c2410c; --surface:#faf6ee; --line:#ddd2c0;
+  --f-display:"Instrument Serif",Georgia,serif; --f-body:"Inter",sans-serif; --f-mono:"JetBrains Mono",monospace;
+  --max:720px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:32px 32px;background-position:-1px -1px;
+}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 0%,rgba(194,65,12,.10),transparent 55%)}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative}
+
+.display{font-family:var(--f-display);font-weight:400;line-height:1.02;letter-spacing:-.02em}
+.label{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--burnt)}
+
+.hero{padding:80px 0 48px}
+.hero .label{display:block;margin-bottom:20px}
+.brandbar{height:2px;width:72px;background:var(--burnt);margin-bottom:26px}
+.hero h1{font-size:clamp(52px,10vw,92px);margin-bottom:22px;animation:fade .8s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .accent{color:var(--burnt);font-style:italic}
+.hero p{font-size:19px;max-width:52ch;color:var(--dim);animation:fade .8s .15s cubic-bezier(.2,.8,.2,1) both}
+.hero p strong{color:var(--ink);font-weight:600}
+@keyframes fade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+section{padding:40px 0}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px}
+.section-head h2{font-family:var(--f-display);font-weight:400;font-size:36px;letter-spacing:-.01em}
+.section-head h2::before{content:"/ ";color:var(--burnt)}
+.section-head .hint{font-family:var(--f-mono);font-size:11px;color:var(--dim);text-align:right}
+
+.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:3px;
+  padding:22px 26px;margin-bottom:12px;text-decoration:none;color:var(--ink);
+  box-shadow:0 1px 0 rgba(0,0,0,.04);
+  transition:transform .2s cubic-bezier(.2,.8,.2,1),box-shadow .2s ease,border-color .2s ease}
+a.card:hover{transform:translateY(-3px);box-shadow:0 12px 28px -14px rgba(28,23,20,.35);border-color:var(--burnt)}
+a.card:hover .arrow{transform:translateX(5px)}
+.card .card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card h3{font-size:19px;font-weight:600}
+.card .arrow{font-family:var(--f-mono);color:var(--burnt);flex-shrink:0;transition:transform .2s ease}
+.card p{margin-top:7px;font-size:15px;color:var(--dim)}
+.card .tag{display:inline-block;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--burnt);background:rgba(194,65,12,.09);padding:4px 9px;border-radius:2px;margin-bottom:12px}
+
+.biz{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--burnt);border-radius:3px;padding:34px 30px}
+.biz h3{font-family:var(--f-display);font-weight:400;font-size:34px;margin-bottom:12px}
+.biz p{color:var(--dim);font-size:16px;max-width:56ch}
+.cta-row{margin-top:24px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;text-decoration:none;
+  padding:14px 22px;border:1px solid var(--burnt);color:var(--burnt);border-radius:2px;transition:.18s ease}
+.btn:hover{background:var(--burnt);color:#fff}
+.btn.solid{background:var(--burnt);color:#fff}
+.btn.solid:hover{background:var(--ink);border-color:var(--ink)}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding:30px 0 48px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:12px;color:var(--dim)}
+footer a{color:var(--dim);text-decoration:none}
+footer a:hover{color:var(--burnt)}
+
+@media(max-width:520px){
+  .section-head{flex-direction:column;gap:4px}
+  .section-head .hint{text-align:left}
+  .btn{text-align:center}
+}

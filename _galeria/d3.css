@@ -1,0 +1,80 @@
+/* ── DIRECCIÓN 3 · NOCTURNO ───────────────────────────
+   Azul noche con fondo que respira, acento coral.
+   La más dinámica: todo entra en cascada y se eleva.    */
+
+:root{
+  --bg:#080b16; --ink:#eef1f8; --dim:#8b93a8;
+  --coral:#ff5c72; --amber:#ffb35c; --surface:#101526; --line:#1e2740;
+  --f-display:"Space Grotesk",sans-serif; --f-body:"Inter",sans-serif; --f-mono:"JetBrains Mono",monospace;
+  --max:740px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+/* el fondo respira: dos halos que se desplazan muy despacio */
+body::before{content:"";position:fixed;inset:-25%;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 22% 18%,rgba(255,92,114,.16),transparent 42%),
+             radial-gradient(circle at 78% 72%,rgba(255,179,92,.12),transparent 45%);
+  animation:drift 22s ease-in-out infinite alternate}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(3%,-4%,0) scale(1.12)}}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+.display{font-family:var(--f-display);font-weight:700;line-height:1;letter-spacing:-.035em}
+.label{font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--coral)}
+
+.hero{padding:84px 0 52px}
+.hero .label{display:block;margin-bottom:18px;animation:rise .7s both}
+.brandbar{height:4px;width:88px;border-radius:99px;margin-bottom:26px;
+  background:linear-gradient(90deg,var(--coral),var(--amber));animation:rise .7s .05s both}
+.hero h1{font-size:clamp(54px,11vw,104px);margin-bottom:24px;animation:rise .7s .12s both}
+.hero h1 .accent{background:linear-gradient(100deg,var(--coral),var(--amber));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{font-size:19px;max-width:52ch;color:var(--dim);animation:rise .7s .22s both}
+.hero p strong{color:var(--ink);font-weight:600}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+section{padding:42px 0}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px}
+.section-head h2{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:-.03em}
+.section-head .hint{font-family:var(--f-mono);font-size:11px;color:var(--dim);text-align:right}
+
+.card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:22px 24px;margin-bottom:12px;text-decoration:none;color:var(--ink);position:relative;overflow:hidden;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .25s ease,box-shadow .25s ease}
+/* barra de acento que crece desde la izquierda al pasar por encima */
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:linear-gradient(180deg,var(--coral),var(--amber));transform:scaleY(0);transform-origin:top;
+  transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+a.card:hover{transform:translateY(-4px);border-color:#33405f;box-shadow:0 18px 40px -22px rgba(255,92,114,.55)}
+a.card:hover::before{transform:scaleY(1)}
+a.card:hover .arrow{transform:translateX(6px)}
+.card .card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card h3{font-size:18px;font-weight:600;letter-spacing:-.01em}
+.card .arrow{font-family:var(--f-mono);color:var(--coral);flex-shrink:0;transition:transform .25s ease}
+.card p{margin-top:7px;font-size:15px;color:var(--dim)}
+.card .tag{display:inline-block;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;
+  color:var(--coral);background:rgba(255,92,114,.12);border-radius:99px;padding:4px 11px;margin-bottom:12px}
+
+.biz{background:linear-gradient(140deg,#141a2e,#0d1120);border:1px solid var(--line);border-radius:18px;padding:36px 30px;position:relative;overflow:hidden}
+.biz::after{content:"";position:absolute;top:-60%;right:-25%;width:70%;height:200%;
+  background:radial-gradient(circle,rgba(255,179,92,.14),transparent 62%)}
+.biz h3{font-family:var(--f-display);font-weight:700;font-size:30px;letter-spacing:-.03em;margin-bottom:12px;position:relative}
+.biz p{color:var(--dim);font-size:16px;max-width:56ch;position:relative}
+.cta-row{margin-top:26px;display:flex;gap:10px;flex-wrap:wrap;position:relative}
+.btn{display:inline-block;font-family:var(--f-body);font-weight:600;font-size:15px;text-decoration:none;
+  padding:14px 24px;border-radius:99px;border:1px solid var(--line);color:var(--ink);transition:.2s ease}
+.btn:hover{border-color:var(--coral);color:var(--coral);transform:translateY(-2px)}
+.btn.solid{background:linear-gradient(100deg,var(--coral),var(--amber));border-color:transparent;color:#12080c}
+.btn.solid:hover{filter:brightness(1.1);color:#12080c;transform:translateY(-2px)}
+
+footer{border-top:1px solid var(--line);margin-top:40px;padding:30px 0 48px;position:relative;z-index:1}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:12px;color:var(--dim)}
+footer a{color:var(--dim);text-decoration:none}
+footer a:hover{color:var(--coral)}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media(max-width:520px){
+  .section-head{flex-direction:column;gap:4px}
+  .section-head .hint{text-align:left}
+  .btn{text-align:center}
+}
