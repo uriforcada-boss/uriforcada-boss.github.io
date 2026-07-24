@@ -133,3 +133,8 @@ pre code{background:none;padding:0;color:inherit}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* el boton iguala la altura del campo */
+.gate-form{align-items:stretch}
+.gate-form .btn{display:flex;align-items:center;justify-content:center;box-shadow:none}
+.gate-form .btn:hover{transform:none;background:var(--red);color:#fff;border-color:var(--ink)}
