@@ -1,0 +1,130 @@
+/* ── MIX 2 · TINTA Y ÁCIDO ────────────────────────────
+   Manda la 4: papel, tinta negra, bordes gruesos y sombra dura.
+   Le cambia el rojo por el amarillo de la 1 — que solo aparece
+   dentro de los bloques negros, donde de verdad brilla.        */
+
+:root{
+  --bg:#f4f3ee; --ink:#0f0f0f; --dim:#5c5c5c;
+  --acid:#d4ff00; --surface:#fff; --line:#0f0f0f;
+  --f-display:"Archivo Black",sans-serif; --f-body:"Inter",sans-serif; --f-mono:"JetBrains Mono",monospace;
+  --max:760px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+.display{font-family:var(--f-display);text-transform:uppercase;line-height:.92;letter-spacing:-.03em}
+.label{display:inline-block;font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.14em;
+  background:var(--ink);color:var(--acid);padding:5px 10px}
+
+.hero{padding:76px 0 48px}
+.hero .label{margin-bottom:20px}
+.brandbar{height:20px;width:100%;background:var(--ink);border:3px solid var(--ink);
+  box-shadow:6px 6px 0 var(--acid);margin-bottom:32px}
+.hero h1{font-size:clamp(52px,11vw,104px);margin-bottom:24px}
+.hero h1 .accent{color:var(--acid);background:var(--ink);padding:0 .12em;display:inline-block;
+  box-shadow:6px 6px 0 #b8db00}
+.hero p{font-size:19px;max-width:52ch;color:var(--dim)}
+.hero p strong{color:var(--ink);font-weight:600;box-shadow:inset 0 -.5em 0 rgba(212,255,0,.5)}
+
+.hero-ctas{margin-top:32px;display:flex;gap:12px;flex-wrap:wrap}
+
+section{padding:40px 0}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:24px}
+.section-head h2{font-family:var(--f-display);text-transform:uppercase;font-size:28px;letter-spacing:-.02em}
+.section-head .hint{font-family:var(--f-mono);font-size:11px;color:var(--dim);text-align:right}
+
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}
+.pain,.step{background:var(--surface);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:22px 20px}
+.pain-num,.step-num{display:inline-block;font-family:var(--f-display);font-size:20px;line-height:1;
+  background:var(--ink);color:var(--acid);padding:8px 12px;margin-bottom:14px}
+.pain h3,.step h3{font-size:17px;font-weight:600;margin-bottom:8px;line-height:1.3}
+.pain p,.step p{font-size:14px;color:var(--dim)}
+
+/* el bloque negro es donde vive el amarillo */
+.solution{margin-top:18px;background:var(--ink);color:var(--bg);border:3px solid var(--ink);
+  box-shadow:9px 9px 0 var(--acid);padding:28px 26px}
+.solution p{font-size:18px;max-width:60ch;color:#e8e8e4}
+.solution strong{color:#fff}
+.solution .accent{display:block;margin-top:6px;color:var(--acid);font-weight:700}
+
+.res{background:var(--surface);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);padding:24px;margin-bottom:20px}
+.res h3{font-size:20px;font-weight:600;margin-bottom:8px}
+.res>p{font-size:15px;color:var(--dim);max-width:62ch}
+.res .tag{display:inline-block;font-family:var(--f-mono);font-size:10px;text-transform:uppercase;letter-spacing:.14em;
+  background:var(--ink);color:var(--acid);padding:4px 9px;margin-bottom:12px}
+.gate-form{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px;align-items:stretch}
+.gate-form input[type=email]{flex:1 1 240px;background:var(--bg);border:3px solid var(--ink);color:var(--ink);
+  font-family:var(--f-body);font-size:16px;padding:13px 16px;outline:0}
+.gate-form input[type=email]:focus{border-color:#8a9e00}
+.gate-form .btn{cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:none}
+.gate-form .btn:hover{transform:none;background:var(--acid);color:#000}
+.fine{margin-top:12px;font-family:var(--f-mono);font-size:11px;color:var(--dim)}
+
+.card{display:block;background:var(--surface);border:3px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+  padding:20px 22px;margin-bottom:16px;text-decoration:none;color:var(--ink);
+  transition:transform .14s ease,box-shadow .14s ease,background .14s ease}
+a.card:hover{transform:translate(6px,6px);box-shadow:0 0 0 var(--ink);background:var(--ink);color:var(--acid)}
+a.card:hover p{color:#c9c9c4}
+a.card:hover .arrow{color:var(--acid)}
+.card .card-top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.card h3{font-size:19px;font-weight:600}
+.card .arrow{font-family:var(--f-mono);font-size:20px;flex-shrink:0;transition:color .14s ease}
+.card p{margin-top:7px;font-size:15px;color:var(--dim);transition:color .14s ease}
+
+.biz{background:var(--ink);color:#fff;border:3px solid var(--ink);box-shadow:9px 9px 0 var(--acid);padding:36px 30px}
+.biz h3{font-family:var(--f-display);text-transform:uppercase;font-size:32px;line-height:.96;margin-bottom:14px;color:var(--acid)}
+.biz p{font-size:16px;max-width:56ch;color:#d5d5d0}
+.cta-row{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.biz .btn{background:var(--bg);color:var(--ink);border-color:var(--bg);box-shadow:4px 4px 0 var(--acid)}
+.biz .btn.solid{background:var(--acid);color:#000;border-color:var(--acid)}
+
+.btn{display:inline-block;font-family:var(--f-mono);font-size:13px;text-transform:uppercase;letter-spacing:.08em;
+  text-decoration:none;padding:14px 22px;border:3px solid var(--ink);color:var(--ink);background:var(--bg);
+  box-shadow:4px 4px 0 var(--ink);transition:transform .14s ease,box-shadow .14s ease}
+.btn:hover{transform:translate(4px,4px);box-shadow:0 0 0 var(--ink)}
+.btn.solid{background:var(--ink);color:var(--acid)}
+
+footer{border-top:3px solid var(--line);margin-top:44px;padding:28px 0 48px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  font-family:var(--f-mono);font-size:12px;color:var(--dim)}
+footer a{color:var(--ink);text-decoration:none;border-bottom:3px solid var(--acid)}
+footer a:hover{background:var(--acid)}
+.foot-links{display:flex;gap:18px;flex-wrap:wrap}
+
+/* páginas de recurso */
+.resource-hero{padding:60px 0 26px}
+.resource-hero .label{margin-bottom:16px;text-decoration:none}
+.resource-hero h1{font-size:clamp(48px,10vw,96px);margin:8px 0 16px}
+.resource-hero .sub{font-size:18px;color:var(--dim);max-width:52ch}
+.teaser p{color:var(--dim);margin-bottom:14px;max-width:60ch}
+.teaser p:first-child{color:var(--ink)}
+.gate{margin:36px 0 60px;background:var(--surface);border:3px solid var(--ink);
+  box-shadow:9px 9px 0 var(--acid);padding:32px 28px}
+.gate h2{font-family:var(--f-display);text-transform:uppercase;font-size:28px;line-height:.98;margin-bottom:10px}
+.gate>p{color:var(--dim);font-size:15px;margin-bottom:20px;max-width:52ch}
+.gate form{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
+.gate input[type=email]{flex:1 1 240px;background:var(--bg);border:3px solid var(--ink);color:var(--ink);
+  font-family:var(--f-body);font-size:16px;padding:13px 16px;outline:0}
+.gate .fine{margin-top:14px}
+.recurso h2{font-family:var(--f-display);text-transform:uppercase;font-size:26px;margin:38px 0 12px}
+.recurso p,.recurso li{color:var(--dim);margin-bottom:14px;max-width:62ch}
+.recurso p strong,.recurso li strong{color:var(--ink)}
+.recurso ol,.recurso ul{padding-left:22px;margin-bottom:14px}
+.recurso a{color:#6b7f00;font-weight:600}
+/* el código en bloque negro con el ácido de acento */
+.recurso pre{background:#0f0f0f;color:#f4f3ee;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--acid);
+  padding:20px;overflow-x:auto;font-family:var(--f-mono);font-size:14px;line-height:1.5;margin:22px 0;white-space:pre-wrap}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--ink);color:var(--acid);padding:2px 6px}
+pre code{background:none;padding:0;color:inherit}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+@media(max-width:520px){
+  .section-head{flex-direction:column;gap:4px}
+  .section-head .hint{text-align:left}
+  .btn{text-align:center}
+  .recurso pre{font-size:11.5px}
+}

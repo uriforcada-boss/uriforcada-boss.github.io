@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tres formas de mezclar la 1 y la 4</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#15161a;color:#f2f3f5;font-family:Inter,sans-serif;padding:36px 28px 80px}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:#9aa0ac;font-size:15px;max-width:92ch;margin-bottom:26px;line-height:1.65}
+  .sub b{color:#f2f3f5}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));gap:24px}
+  .item{background:#1d1f25;border:1px solid #2c2f38;border-radius:12px;overflow:hidden}
+  .bar{display:flex;align-items:flex-start;gap:12px;padding:14px 18px;border-bottom:1px solid #2c2f38}
+  .num{font-family:"JetBrains Mono",monospace;font-size:15px;font-weight:500;background:#f2f3f5;color:#15161a;
+       padding:8px 11px;border-radius:8px;flex-shrink:0}
+  .name{font-weight:600;font-size:16px}
+  .desc{color:#9aa0ac;font-size:13px;margin-top:3px;line-height:1.5}
+  .who{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:11px;color:#8ee6a0;
+       border:1px solid #33553d;padding:2px 7px;border-radius:5px;margin-top:7px}
+  .open{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:12px;text-decoration:none;color:#15161a;
+        background:#8ee6a0;padding:9px 14px;border-radius:7px;white-space:nowrap;font-weight:500;flex-shrink:0}
+  .open:hover{background:#fff}
+  .frame{position:relative;height:660px;overflow:hidden;background:#000}
+  .frame iframe{width:1100px;height:3400px;border:0;transform-origin:top left;position:absolute;top:0;left:0}
+  .veil{position:absolute;inset:0;cursor:pointer}
+  .links{padding:10px 18px;border-top:1px solid #2c2f38;display:flex;gap:14px;flex-wrap:wrap}
+  .links a{font-family:"JetBrains Mono",monospace;font-size:11px;color:#c5cad3;text-decoration:none}
+  .links a:hover{color:#8ee6a0}
+  .note{margin-top:26px;padding:18px 20px;border-left:3px solid #8ee6a0;background:#1b1d22;
+        color:#c5cad3;font-size:14px;line-height:1.7;max-width:100ch;border-radius:0 8px 8px 0}
+  .note b{color:#fff}
+</style>
+</head>
+<body>
+
+<h1>Tres formas de mezclar la 1 y la 4</h1>
+<p class="sub">«Mix» puede querer decir tres cosas distintas, así que están las tres. La pregunta que las separa es <b>qué manda</b>: el color de la 1, la contundencia de la 4, o cada una en su terreno. Ábrelas para ver el movimiento — en las miniaturas los bloques salen a medio aparecer.</p>
+
+<div class="grid">
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">A</div>
+      <div>
+        <div class="name">Ácido con cuerpo</div>
+        <div class="desc">Negro y amarillo de la 1, con los bordes gruesos y la sombra dura de la 4. Al pulsar, las cosas se hunden.</div>
+        <span class="who">manda la 1</span>
+      </div>
+      <a class="open" href="m1.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="m1.html" scrolling="no"></iframe><a class="veil" href="m1.html" target="_blank"></a></div>
+    <div class="links"><a href="m1r.html" target="_blank">→ página de recurso</a><a href="privacidad-m1.html" target="_blank">→ privacidad</a></div>
+  </div>
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">B</div>
+      <div>
+        <div class="name">Tinta y ácido</div>
+        <div class="desc">El papel y la tinta de la 4, pero el rojo se cambia por el amarillo. Solo aparece dentro de los bloques negros, que es donde brilla.</div>
+        <span class="who">manda la 4</span>
+      </div>
+      <a class="open" href="m2.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="m2.html" scrolling="no"></iframe><a class="veil" href="m2.html" target="_blank"></a></div>
+    <div class="links"><a href="m2r.html" target="_blank">→ página de recurso</a><a href="privacidad-m2.html" target="_blank">→ privacidad</a></div>
+  </div>
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">C</div>
+      <div>
+        <div class="name">Cada una en su zona</div>
+        <div class="desc">Papel donde vendes, negro donde se lee y se copia. Los recursos cambian de mundo a mitad de página, y las páginas de recurso son negras enteras.</div>
+        <span class="who">las dos, repartidas</span>
+      </div>
+      <a class="open" href="m3.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="m3.html" scrolling="no"></iframe><a class="veil" href="m3.html" target="_blank"></a></div>
+    <div class="links"><a href="m3r.html" target="_blank">→ página de recurso</a><a href="privacidad-m3.html" target="_blank">→ privacidad</a></div>
+  </div>
+
+</div>
+
+<p class="note"><b>Si te sirve de guía:</b> la <b>A</b> es la más gamberra y la que menos se parece a nada del sector. La <b>B</b> es la más fácil de leer de las tres y la que mejor aguanta un texto largo. La <b>C</b> es la más lista de concepto — el fondo te avisa de si estás leyendo o comprando — pero es también la que más puede cansar si alguien sube y baja mucho. <br><br>Y siguen en pie las dos originales: <a href="d1.html" target="_blank" style="color:#8ee6a0">1 · Ácido</a> y <a href="d4.html" target="_blank" style="color:#8ee6a0">4 · Bloque</a>.</p>
+
+<script>
+  function fit(){
+    document.querySelectorAll('.frame').forEach(function(f){
+      f.querySelector('iframe').style.transform = 'scale(' + (f.clientWidth/1100) + ')';
+    });
+  }
+  window.addEventListener('resize', fit); fit();
+</script>
+
+</body>
+</html>
