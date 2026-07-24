@@ -37,8 +37,13 @@ sin baja, y la política de privacidad sí promete baja.
   `data-recurso="<slug>"` y `data-next="<URL absoluta de gracias.html>"`.
 - Dónde cae: grupo **Recursos**, con el campo personalizado `recurso` = el slug.
   Así se sabe qué recurso trajo a cada persona sin montar un formulario por recurso.
-- **Doble opt-in activado**: entran como *no confirmados* y MailerLite les manda
-  el correo de confirmación. La persona ve su recurso al instante igualmente.
+- **Doble opt-in APAGADO** (decisión de Oriol, 24-jul): el email de confirmación
+  de MailerLite no se puede editar en plan gratis y salía en inglés hablando de
+  "newsletter". En su lugar, la automatización **«Bienvenida — Recursos»** manda
+  un email propio (asunto «Ya estás dentro — tus 3 recursos, en un sitio») con
+  los enlaces directos a los 3 `gracias.html` al entrar en el grupo Recursos.
+  El consentimiento queda probado con la IP y hora que registra MailerLite,
+  y todos los correos llevan baja en el pie.
 - El endpoint responde `access-control-allow-origin: *`, así que el script lee
   `{"success":true}` y solo redirige si el alta entró de verdad. Si falla, sale
   un aviso con enlace al recurso — nadie se queda atrapado y no se pierde ningún

@@ -5,8 +5,9 @@
    llevamos a la persona a la página del recurso.
 
    Flujo: deja el email → se manda a MailerLite → va a gracias.html
-   (recurso al instante) → MailerLite le manda el correo de
-   confirmación para entrar en la lista (double opt-in activado).
+   (recurso al instante) → MailerLite le manda el email de bienvenida
+   con los 3 recursos (automatización «Bienvenida — Recursos»).
+   Sin double opt-in: entra directo en la lista, con baja en cada correo.
 
    Su endpoint responde con `access-control-allow-origin: *`, así que
    SÍ podemos leer la respuesta ({"success":true}). Nada de enviar a
