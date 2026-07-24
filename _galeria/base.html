@@ -194,13 +194,15 @@
       return;
     }
     var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en, i){
+      var n = 0;
+      entries.forEach(function(en){
         if (en.isIntersecting){
-          setTimeout(function(){ en.target.classList.add('in'); }, i * 90);
+          // escalonado corto: da ritmo sin dejar la pantalla vacía
+          setTimeout(function(){ en.target.classList.add('in'); }, (n++) * 60);
           io.unobserve(en.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.01, rootMargin: '0px 0px 120px 0px' });
     els.forEach(function(e){ io.observe(e); });
   })();
 </script>
