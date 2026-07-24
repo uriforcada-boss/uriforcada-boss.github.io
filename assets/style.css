@@ -322,4 +322,10 @@ footer a:hover { color: var(--accent); }
   .section-head .hint { text-align: left; }
   .gate form { flex-direction: column; }
   .btn { text-align: center; }
+
+  /* los bloques copiables se leen en el móvil sin partirse:
+     a 11.5px caben las ~66 columnas con las que están escritos */
+  .wrap { padding: 0 18px; }
+  .recurso pre { font-size: 11.5px; padding: 16px 14px; }
+  code { white-space: normal; }
 }
