@@ -67,3 +67,31 @@ footer a:hover{background:var(--red);color:var(--bg)}
   .section-head .hint{text-align:left}
   .btn{text-align:center}
 }
+
+/* ── páginas de recurso ─────────────────────────────── */
+.resource-hero{padding:60px 0 26px}
+.resource-hero .label{text-decoration:none;margin-bottom:16px}
+.resource-hero h1{font-size:clamp(48px,10vw,96px);margin:8px 0 16px}
+.resource-hero .sub{font-size:18px;color:var(--dim);max-width:52ch}
+.teaser p{color:var(--dim);margin-bottom:14px;max-width:60ch}
+.teaser p:first-child{color:var(--ink)}
+.gate{margin:36px 0 60px;background:var(--surface);border:3px solid var(--ink);
+  box-shadow:9px 9px 0 var(--ink);padding:32px 28px}
+.gate h2{font-family:var(--f-display);text-transform:uppercase;font-size:28px;line-height:.98;margin-bottom:10px}
+.gate>p{color:var(--dim);font-size:15px;margin-bottom:20px;max-width:52ch}
+.gate form{display:flex;gap:10px;flex-wrap:wrap}
+.gate input[type=email]{flex:1 1 240px;background:var(--bg);border:3px solid var(--ink);color:var(--ink);
+  font-family:var(--f-body);font-size:16px;padding:13px 16px;outline:0}
+.gate input[type=email]:focus{border-color:var(--red)}
+.gate .fine{margin-top:14px;font-family:var(--f-mono);font-size:11px;color:var(--dim)}
+.recurso h2{font-family:var(--f-display);text-transform:uppercase;font-size:26px;margin:38px 0 12px}
+.recurso p,.recurso li{color:var(--dim);margin-bottom:14px;max-width:62ch}
+.recurso p strong,.recurso li strong{color:var(--ink)}
+.recurso ol,.recurso ul{padding-left:22px;margin-bottom:14px}
+.recurso a{color:var(--red)}
+/* el bloque de código se invierte a oscuro: es la única forma de que el código
+   se lea bien en una página clara, pero parte la pagina en dos registros */
+.recurso pre{background:#0f0f0f;color:#f4f3ee;border:3px solid var(--ink);box-shadow:6px 6px 0 var(--red);
+  padding:20px;overflow-x:auto;font-family:var(--f-mono);font-size:14px;line-height:1.5;margin:22px 0;white-space:pre-wrap}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--ink);color:var(--bg);padding:2px 6px}
+pre code{background:none;padding:0;color:inherit}

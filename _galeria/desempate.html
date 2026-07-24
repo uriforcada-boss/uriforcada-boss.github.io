@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desempate — 1 Ácido vs 4 Bloque</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#15161a;color:#f2f3f5;font-family:Inter,sans-serif;padding:36px 28px 80px}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:#9aa0ac;font-size:15px;max-width:86ch;margin-bottom:26px;line-height:1.65}
+  .sub b{color:#f2f3f5}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:26px}
+  .item{background:#1d1f25;border:1px solid #2c2f38;border-radius:12px;overflow:hidden}
+  .bar{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #2c2f38}
+  .num{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:500;background:#f2f3f5;color:#15161a;
+       width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .name{font-weight:600;font-size:17px}
+  .desc{color:#9aa0ac;font-size:13px;margin-top:2px}
+  .open{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:12px;text-decoration:none;color:#15161a;
+        background:#8ee6a0;padding:9px 14px;border-radius:7px;white-space:nowrap;font-weight:500}
+  .open:hover{background:#fff}
+  .frame{position:relative;height:760px;overflow:hidden;background:#000}
+  .frame iframe{width:1100px;height:2400px;border:0;transform-origin:top left;position:absolute;top:0;left:0}
+  .veil{position:absolute;inset:0;cursor:pointer}
+  .note{margin-top:26px;padding:18px 20px;border-left:3px solid #8ee6a0;background:#1b1d22;
+        color:#c5cad3;font-size:14px;line-height:1.65;max-width:100ch;border-radius:0 8px 8px 0}
+  .note b{color:#fff}
+</style>
+</head>
+<body>
+
+<h1>Desempate: la página donde de verdad se decide</h1>
+<p class="sub">Esta no es la portada: es una <b>página de recurso</b>, que es donde la gente pasa el rato leyendo y copiando. Fíjate en <b>el bloque de código</b> — ahí está la diferencia real entre las dos.</p>
+
+<div class="grid">
+  <div class="item">
+    <div class="bar">
+      <div class="num">1</div>
+      <div>
+        <div class="name">Ácido</div>
+        <div class="desc">El código vive en su medio natural: claro sobre oscuro, como en cualquier editor.</div>
+      </div>
+      <a class="open" href="d1r.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="d1r.html" scrolling="no"></iframe><a class="veil" href="d1r.html" target="_blank"></a></div>
+  </div>
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">4</div>
+      <div>
+        <div class="name">Bloque</div>
+        <div class="desc">Página clara, pero el código obliga a meter un rectángulo oscuro en medio.</div>
+      </div>
+      <a class="open" href="d4r.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="d4r.html" scrolling="no"></iframe><a class="veil" href="d4r.html" target="_blank"></a></div>
+  </div>
+</div>
+
+<p class="note"><b>Lo que estás mirando:</b> tus recursos son, en el fondo, bloques de código y prompts para copiar. En la <b>1</b> la página entera es oscura y el código no desentona con nada. En la <b>4</b> la página es de papel, así que el código tiene que invertirse a oscuro y cada bloque parte la lectura en dos registros. No es un fallo del diseño — es lo que pasa siempre que pones código sobre papel. <b>La 4 tiene más personalidad y se recuerda más; la 1 se lee mejor para lo que tú publicas.</b></p>
+
+<script>
+  function fit(){
+    document.querySelectorAll('.frame').forEach(function(f){
+      f.querySelector('iframe').style.transform = 'scale(' + (f.clientWidth/1100) + ')';
+    });
+  }
+  window.addEventListener('resize', fit); fit();
+</script>
+
+</body>
+</html>
