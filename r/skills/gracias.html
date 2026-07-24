@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills — recurso completo · Oriol Forcada</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+  .recurso h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 26px; margin: 36px 0 12px; }
+  .recurso p, .recurso li { color: var(--c-text-dim); margin-bottom: 14px; max-width: 62ch; }
+  .recurso p strong, .recurso li strong { color: var(--c-text); }
+  .recurso ol, .recurso ul { padding-left: 22px; margin-bottom: 14px; }
+  .recurso a { color: var(--accent); }
+  .recurso pre {
+    background: var(--c-surface);
+    border: 1px solid var(--c-nebula);
+    border-left: 6px solid var(--accent);
+    padding: 20px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--c-text);
+    margin: 20px 0;
+    white-space: pre-wrap;
+  }
+</style>
+</head>
+<body>
+
+<header class="resource-hero">
+  <div class="wrap">
+    <span class="label">✓ Desbloqueado</span>
+    <h1 class="display">Skills</h1>
+    <p class="sub">La plantilla para convertir a Claude en un departamento con rol, criterio y límites — y llamarlo escribiendo una barra.</p>
+  </div>
+</header>
+
+<div class="wrap recurso" style="padding-bottom:24px">
+
+  <p><strong>Esto es lo que enseño en el post.</strong> Yo tenía los prompts buenos guardados en notas y no los usaba nunca: abrir la nota, copiar, pegar y adaptar era más trabajo que escribirlo a pelo. Convertirlos en skills fue lo que hizo que por fin se usaran.</p>
+
+  <h2>Qué vas a usar</h2>
+  <ul>
+    <li><strong>Claude Code</strong> — la versión de terminal. Las skills viven en una carpeta suya y las carga solas. <a href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code</a></li>
+    <li><strong>Un editor de texto</strong> — cualquiera. Una skill es un archivo <code>.md</code>, nada más.</li>
+  </ul>
+
+  <h2>Paso 1 — Crea el archivo en su sitio</h2>
+  <p>Las skills globales (disponibles en todos tus proyectos) van en una carpeta por skill, dentro de <code>~/.claude/skills/</code>:</p>
+  <pre>~/.claude/skills/
+  ventas/
+    SKILL.md
+  contenido/
+    SKILL.md</pre>
+  <p>El nombre de la carpeta es el comando: la carpeta <code>ventas</code> se invoca con <code>/ventas</code>.</p>
+
+  <h2>Paso 2 — Entiende las tres partes (aquí está el truco)</h2>
+  <p>Una skill que funciona no es un prompt largo. Son tres cosas separadas, y la que casi todo el mundo se salta es la tercera:</p>
+  <ul>
+    <li><strong>Rol</strong> — quién es y qué NO le toca a él.</li>
+    <li><strong>Conocimiento</strong> — qué archivos debe leer siempre antes de responder. Aquí es donde la skill se conecta con tus notas reales y deja de dar respuestas genéricas.</li>
+    <li><strong>Límites</strong> — lo que tiene prohibido hacer. Sin esto, la skill improvisa justo el día que no quieres.</li>
+  </ul>
+
+  <h2>Paso 3 — La plantilla</h2>
+  <p>Pega esto en tu <code>SKILL.md</code> y sustituye lo de dentro de los corchetes:</p>
+  <pre>---
+name: [nombre-en-minusculas]
+description: [Qué hace y CUÁNDO usarla. Escribe aquí las frases
+  literales que dirías al pedirlo: "escríbeme el post de hoy",
+  "prepara la propuesta". Claude usa esto para saber cuándo
+  activarla sola. Añade también cuándo NO usarla y cuál es la
+  skill correcta en ese caso.]
+---
+
+# [Nombre] — [el rol en una línea]
+
+Eres el departamento de [X]. Tu trabajo es [resultado concreto].
+No haces [lo que le toca a otra skill] — eso es /[otra-skill].
+
+Petición: $ARGUMENTS
+
+## La regla que ordena todo
+
+[Una sola frase que resuelva el 80% de las decisiones. Si te
+sobran reglas, es que esta no está bien escrita.]
+
+## Contexto que lees SIEMPRE antes de responder
+
+1. [ruta/al/archivo.md] → [qué sacas de ahí]
+2. [ruta/al/archivo.md] → [qué sacas de ahí]
+
+Si un archivo contradice a otro, gana [el que mande].
+
+## Cómo trabajas
+
+1. [Paso concreto]
+2. [Paso concreto]
+3. [Paso concreto]
+
+## Límites duros (no negociables)
+
+1. PROHIBIDO inventar datos. Todo dato debe ser rastreable a
+   un archivo real. Si no hay dato, se dice que no lo hay.
+2. [Tu límite: temas vetados, tono prohibido, lo que nunca
+   se promete, lo que nunca se publica sin revisar.]
+3. Tú no publicas ni envías nada. Dejas el resultado listo
+   y la última decisión es mía.
+
+## Qué entregas
+
+[Formato exacto del output: dónde lo guardas, cómo se llama
+el archivo, y qué le dices por pantalla — corto.]</pre>
+
+  <h2>Por qué funciona</h2>
+  <p>Porque separa el criterio del encargo. El criterio (rol, fuentes, límites) se escribe una vez y deja de degradarse; tú solo aportas el encargo del día. Es la diferencia entre explicarle a un becario cómo se hacen las cosas cada mañana y tener a alguien que ya sabe.</p>
+  <p>Empieza por una sola: la tarea que más repites esta semana. Cuando esa funcione, clona el archivo y cambia el rol.</p>
+
+  <div class="biz" style="margin-top:40px">
+    <h3>¿Lo quieres montado en tu negocio?</h3>
+    <p>Instalo este tipo de sistemas con alcance y precio cerrados desde el primer día. Escríbeme y lo vemos.</p>
+    <div class="cta-row">
+      <a class="btn solid" href="https://www.linkedin.com/in/oriol-forcada-edo-03b0192a1/" target="_blank" rel="noopener">Escríbeme por LinkedIn</a>
+      <a class="btn" href="mailto:oriol.fored@gmail.com?subject=Sistema%20skills">Email</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Recurso de @uriforcada</span>
+    <a href="../../">← Ver todos los recursos</a>
+  </div>
+</footer>
+
+</body>
+</html>
