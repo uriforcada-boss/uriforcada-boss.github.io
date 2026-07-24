@@ -275,6 +275,24 @@ a.card:hover {
   color: var(--c-text-dim);
 }
 
+/* código en línea (dentro del cuerpo de un recurso) */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--c-surface);
+  border: 1px solid var(--c-nebula);
+  padding: 2px 6px;
+  color: var(--c-text);
+  white-space: nowrap;
+}
+
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  white-space: pre-wrap;
+}
+
 /* ---------- footer ---------- */
 
 footer {
