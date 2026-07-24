@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ══════════════════════════════════════════════════════════════
+     PÁGINA DEL RECURSO COMPLETO (destino tras dejar el email).
+     URL no listada: solo se llega desde el formulario o el email.
+
+     ESQUELETO CALCADO del recurso real de Bertorello
+     (~/Downloads/cerebro-claude-obsidian.md, analizado 24-jul):
+       1. Promesa restatada + "esto es lo que muestro en el post"
+       2. El problema en 2 líneas, en 1ª persona
+       3. "Qué vas a usar" (2-3 herramientas con link, todas gratis)
+       4. Pasos numerados (3-5, cortos)
+       5. EL bloque copiable (prompt/comando exacto) — el corazón
+       6. "Por qué funciona" (2 líneas)
+       7. CTA suave al servicio (1 línea, sin precio, sin prometer tiempo)
+     La vara: ~350 palabras. Se lee en 2 minutos y se aplica hoy.
+     ══════════════════════════════════════════════════════════════ -->
+<title>{{TITULO}} — recurso completo · Oriol Forcada</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+<style>
+  .recurso h2 { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 26px; margin: 36px 0 12px; }
+  .recurso p, .recurso li { color: var(--c-text-dim); margin-bottom: 14px; max-width: 62ch; }
+  .recurso p strong, .recurso li strong { color: var(--c-text); }
+  .recurso ol, .recurso ul { padding-left: 22px; margin-bottom: 14px; }
+  .recurso a { color: var(--accent); }
+  .recurso pre {
+    background: var(--c-surface);
+    border: 1px solid var(--c-nebula);
+    border-left: 6px solid var(--accent);
+    padding: 20px;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--c-text);
+    margin: 20px 0;
+    white-space: pre-wrap;
+  }
+</style>
+</head>
+<body>
+
+<header class="resource-hero">
+  <div class="wrap">
+    <span class="label">✓ Desbloqueado</span>
+    <h1 class="display">{{PALABRA}}</h1>
+    <p class="sub">{{PROMESA — la misma del post, restatada en una línea}}</p>
+  </div>
+</header>
+
+<div class="wrap recurso" style="padding-bottom:24px">
+
+  <p><strong>Esto es lo que enseño en el post.</strong> {{PROBLEMA — qué me pasaba, en 1ª persona y dos líneas. La solución es simple y gratis; aquí está paso a paso.}}</p>
+
+  <h2>Qué vas a usar</h2>
+  <ul>
+    <li><strong>{{HERRAMIENTA_1}}</strong> — {{qué es en una línea}}. <a href="{{URL_1}}">{{URL_1}}</a></li>
+    <li><strong>{{HERRAMIENTA_2}}</strong> — {{qué es en una línea}}. <a href="{{URL_2}}">{{URL_2}}</a></li>
+  </ul>
+
+  <h2>Paso 1 — {{ACCIÓN}}</h2>
+  <p>{{Instrucción corta y concreta.}}</p>
+
+  <h2>Paso 2 — {{ACCIÓN}}</h2>
+  <p>{{Instrucción corta y concreta.}}</p>
+
+  <h2>Paso 3 — {{EL PROMPT / EL COMANDO}}</h2>
+  <p>{{Una línea de contexto y el bloque exacto para copiar:}}</p>
+  <pre>{{EL_BLOQUE_COPIABLE — el corazón del recurso. Exacto, probado, sin recortar.}}</pre>
+
+  <h2>Por qué funciona</h2>
+  <p>{{Dos líneas máximo. Sin jerga.}}</p>
+
+  <div class="biz" style="margin-top:40px">
+    <h3>¿Lo quieres montado en tu negocio?</h3>
+    <p>Instalo este tipo de sistemas con alcance y precio cerrados. Escríbeme y lo vemos.</p>
+    <div class="cta-row">
+      <a class="btn solid" href="https://www.linkedin.com/in/uriforcada" target="_blank" rel="noopener">Escríbeme por LinkedIn</a>
+      <a class="btn" href="mailto:oriol.fored@gmail.com?subject=Sistema%20{{SLUG}}">Email</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Recurso de @uriforcada</span>
+    <a href="../../">← Ver todos los recursos</a>
+  </div>
+</footer>
+
+</body>
+</html>

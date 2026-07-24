@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ══════════════════════════════════════════════════════════════
+     PLANTILLA DE RECURSO /r/<slug>/
+     Para estrenar un recurso:
+       1. cp -r r/_plantilla r/<slug>
+       2. Sustituir todos los {{PLACEHOLDER}} (aquí y en gracias.html)
+       3. Descomentar la tarjeta del recurso en el index.html del hub
+     Regla: slug = la PALABRA CLAVE del post, en minúsculas.
+     ══════════════════════════════════════════════════════════════ -->
+<title>{{TITULO}} · Oriol Forcada</title>
+<meta name="description" content="{{SUBTITULO}}">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+
+<header class="resource-hero">
+  <div class="wrap">
+    <a href="../../" class="label" style="text-decoration:none">← uriforcada</a>
+    <h1 class="display">{{PALABRA}}</h1>
+    <p class="sub">{{SUBTITULO}}</p>
+  </div>
+</header>
+
+<section class="teaser">
+  <div class="wrap">
+    <!-- 2-3 párrafos: el problema y qué resuelve el recurso.
+         El primer párrafo va en color texto (engancha), el resto en dim.
+         NO pegar aquí el recurso entero: esto es el escaparate. -->
+    <p>{{PARRAFO_GANCHO — la historia del post: qué me pasaba y qué construí}}</p>
+    <p>{{PARRAFO_QUE_INCLUYE — qué te llevas exactamente: los prompts, el setup, los pasos}}</p>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="gate">
+    <h2>Deja tu email y te lo desbloqueo</h2>
+    <p>Acceso inmediato al recurso completo. Cuando publique algo nuevo, te llega primero. Sin spam y te puedes borrar cuando quieras.</p>
+
+    <!-- ══ FORMULARIO ══
+         Opción A (activa): FormSubmit — gratis, sin cuenta.
+         El PRIMER envío dispara un email de confirmación a oriol.fored@gmail.com;
+         al confirmarlo, queda activo para siempre (y FormSubmit da un alias
+         aleatorio para no exponer el Gmail: sustituir en action= cuando llegue).
+         Opción B (futuro): pegar aquí el embed de MailerLite/Brevo y borrar esto.
+         La redirección _next debe ser la URL ABSOLUTA de gracias.html. -->
+    <form action="https://formsubmit.co/oriol.fored@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="Lead recurso: {{SLUG}}">
+      <input type="hidden" name="_next" value="https://uriforcada-boss.github.io/r/{{SLUG}}/gracias.html">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none">
+      <input type="hidden" name="recurso" value="{{SLUG}}">
+      <input type="email" name="email" placeholder="tu@email.com" required>
+      <button class="btn solid" type="submit">Acceder al recurso</button>
+    </form>
+
+    <p class="fine">1 email · acceso inmediato · baja cuando quieras</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Oriol Forcada</span>
+    <a href="../../">uriforcada-boss.github.io</a>
+  </div>
+</footer>
+
+</body>
+</html>

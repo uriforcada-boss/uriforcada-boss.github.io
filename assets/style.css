@@ -1,0 +1,307 @@
+/* ============================================================
+   Marca Oriol Forcada — vertiente ② PARA LOS DEMÁS
+   Dueño de las reglas: Identidad visual — Mapa de marca.md
+   Un acento por pieza (aquí: violeta). Cero glow. Color plano.
+   ============================================================ */
+
+:root {
+  --c-void:     #0a0a0f;
+  --c-nebula:   #22223a;
+  --c-surface:  #141422;
+  --c-violet:   #a855f7;
+  --c-cyan:     #22d3ee;
+  --c-text:     #f5f5f7;
+  --c-text-dim: #a1a1b5;
+  --c-amber:    #f0b429;
+
+  --accent: var(--c-violet);
+
+  --font-display: "Big Shoulders Display", sans-serif;
+  --font-body: "Inter", -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --max-w: 680px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--c-void);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- tipografía ---------- */
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  line-height: 0.95;
+  letter-spacing: 0.01em;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+
+.dim { color: var(--c-text-dim); }
+
+/* ---------- hero ---------- */
+
+.hero { padding: 72px 0 56px; }
+
+.hero .label { display: block; margin-bottom: 20px; }
+
+.hero h1 {
+  font-size: clamp(56px, 12vw, 104px);
+  margin-bottom: 24px;
+}
+
+.hero h1 .accent { color: var(--accent); }
+
+.hero p {
+  font-size: 19px;
+  max-width: 52ch;
+  color: var(--c-text-dim);
+}
+
+.hero p strong { color: var(--c-text); font-weight: 600; }
+
+/* barra geométrica de marca: bloque plano, sin degradado */
+.brandbar {
+  height: 8px;
+  width: 96px;
+  background: var(--accent);
+  margin-bottom: 32px;
+}
+
+/* ---------- secciones ---------- */
+
+section { padding: 40px 0; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.section-head h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 32px;
+  letter-spacing: 0.02em;
+}
+
+.section-head .hint {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--c-text-dim);
+  text-align: right;
+}
+
+/* ---------- tarjetas ---------- */
+
+.card {
+  display: block;
+  background: var(--c-surface);
+  border: 1px solid var(--c-nebula);
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  text-decoration: none;
+  color: var(--c-text);
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+a.card:hover {
+  border-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.card .card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.card h3 { font-size: 17px; font-weight: 600; }
+
+.card .arrow {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.card p {
+  margin-top: 6px;
+  font-size: 15px;
+  color: var(--c-text-dim);
+}
+
+.card .tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 3px 8px;
+  margin-bottom: 10px;
+}
+
+/* estado vacío (sección recursos antes del primer estreno) */
+.empty {
+  background: var(--c-surface);
+  border: 1px dashed var(--c-nebula);
+  padding: 28px 24px;
+  color: var(--c-text-dim);
+  font-size: 15px;
+}
+
+.empty .label { color: var(--c-amber); }
+
+/* ---------- bloque negocio ---------- */
+
+.biz {
+  background: var(--c-surface);
+  border: 1px solid var(--c-nebula);
+  border-left: 8px solid var(--accent);
+  padding: 32px 28px;
+}
+
+.biz h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.biz p { color: var(--c-text-dim); font-size: 16px; max-width: 56ch; }
+
+.biz .cta-row { margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  padding: 14px 22px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.btn:hover { background: var(--accent); color: var(--c-void); }
+
+.btn.solid { background: var(--accent); color: var(--c-void); }
+.btn.solid:hover { background: var(--c-text); border-color: var(--c-text); }
+
+/* ---------- página de recurso (/r/) ---------- */
+
+.resource-hero { padding: 56px 0 32px; }
+
+.resource-hero h1 {
+  font-size: clamp(40px, 9vw, 72px);
+  margin: 20px 0 16px;
+}
+
+.resource-hero .sub { font-size: 18px; color: var(--c-text-dim); max-width: 54ch; }
+
+.teaser { padding: 8px 0 0; }
+
+.teaser p { color: var(--c-text-dim); margin-bottom: 16px; max-width: 60ch; }
+
+.teaser p:first-child { color: var(--c-text); }
+
+/* corte + gate */
+.gate {
+  margin: 40px 0 64px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-nebula);
+  border-top: 8px solid var(--accent);
+  padding: 32px 28px;
+}
+
+.gate h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.gate > p { color: var(--c-text-dim); font-size: 15px; margin-bottom: 20px; max-width: 52ch; }
+
+.gate form { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.gate input[type="email"] {
+  flex: 1 1 240px;
+  background: var(--c-void);
+  border: 1px solid var(--c-nebula);
+  color: var(--c-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  padding: 14px 16px;
+  outline: none;
+}
+
+.gate input[type="email"]:focus { border-color: var(--accent); }
+
+.gate .fine {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--c-text-dim);
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--c-nebula);
+  margin-top: 40px;
+  padding: 32px 0 48px;
+}
+
+footer .wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--c-text-dim);
+}
+
+footer a { color: var(--c-text-dim); text-decoration: none; }
+footer a:hover { color: var(--accent); }
+
+/* ---------- responsive ---------- */
+
+@media (max-width: 520px) {
+  .hero { padding: 48px 0 36px; }
+  .section-head { flex-direction: column; gap: 4px; }
+  .section-head .hint { text-align: left; }
+  .gate form { flex-direction: column; }
+  .btn { text-align: center; }
+}
