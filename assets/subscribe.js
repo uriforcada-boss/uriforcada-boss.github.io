@@ -8,10 +8,10 @@
    (recurso al instante) → MailerLite le manda el correo de
    confirmación para entrar en la lista (double opt-in activado).
 
-   OJO: el envío va con mode:'no-cors', así que el navegador no nos
-   deja leer la respuesta. Si MailerLite fallara, el alta se perdería
-   en silencio pero la persona sí vería su recurso. Es a propósito:
-   antes dejar a alguien sin apuntar que dejarlo tirado en un error. */
+   Su endpoint responde con `access-control-allow-origin: *`, así que
+   SÍ podemos leer la respuesta ({"success":true}). Nada de enviar a
+   ciegas: si el alta no entra, la persona se entera y puede reintentar
+   en vez de perderse en silencio — que el email es todo el negocio. */
 
 (function () {
   var ENDPOINT = "https://assets.mailerlite.com/jsonp/2531213/forms/193883042373175211/subscribe";
@@ -24,9 +24,14 @@
       var button = form.querySelector("button");
       if (!input || !input.value) return;
 
+      var destino = form.dataset.next;
       var textoOriginal = button.textContent;
       button.disabled = true;
       button.textContent = "Enviando…";
+
+      // si ya había un aviso de un intento anterior, fuera
+      var aviso = form.parentNode.querySelector(".form-msg");
+      if (aviso) aviso.remove();
 
       var datos = new FormData();
       datos.append("fields[email]", input.value.trim());
@@ -34,18 +39,24 @@
       datos.append("ml-submit", "1");
       datos.append("anticsrf", "true");
 
-      var irAlRecurso = function () {
-        window.location.href = form.dataset.next;
+      var fallo = function () {
+        button.disabled = false;
+        button.textContent = textoOriginal;
+        var p = document.createElement("p");
+        p.className = "form-msg";
+        p.innerHTML =
+          "No he podido guardar tu email. Prueba otra vez en un momento — " +
+          'o <a href="' + destino + '">pasa directo al recurso</a>.';
+        form.parentNode.insertBefore(p, form.nextSibling);
       };
 
-      fetch(ENDPOINT, { method: "POST", body: datos, mode: "no-cors" })
-        .then(irAlRecurso)
-        .catch(function () {
-          // aunque el alta falle, la persona se lleva lo que vino a buscar
-          button.disabled = false;
-          button.textContent = textoOriginal;
-          irAlRecurso();
-        });
+      fetch(ENDPOINT, { method: "POST", body: datos })
+        .then(function (r) { return r.json(); })
+        .then(function (r) {
+          if (r && r.success) window.location.href = destino;
+          else fallo();
+        })
+        .catch(fallo);
     });
   });
 })();
