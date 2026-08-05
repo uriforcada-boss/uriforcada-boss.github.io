@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico · Oriol Forcada</title>
+<meta name="description" content="Cuéntame qué sostiene tu negocio cada mes y te digo qué parte puede sostenerla un sistema.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+
+<header class="resource-hero">
+  <div class="wrap">
+    <a href="../" class="label" style="text-decoration:none">← uriforcada</a>
+    <h1 class="display">El diagnóstico</h1>
+    <p class="sub">Cuatro preguntas. Si las contestas en serio, te devuelvo por escrito qué parte del trabajo que hoy sostienen personas puede sostenerla un sistema — y qué parte no.</p>
+  </div>
+</header>
+
+<section class="teaser">
+  <div class="wrap">
+    <p>Esto no es un formulario de contacto. No hay nadie esperando para llamarte.</p>
+    <p>Son las cuatro preguntas que necesito para saber si puedo ayudarte de verdad o no. Si al leer las respuestas veo que no, te lo digo y no te hago perder el tiempo — pasa a menudo y no pasa nada.</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="section-head">
+    <h2>Antes de nada</h2>
+    <span class="hint">30 segundos</span>
+  </div>
+
+  <form class="dg-form" id="dg">
+
+    <div class="grid3">
+      <label class="dg-campo">
+        <span class="dg-lab">Tu negocio</span>
+        <input type="text" name="negocio" required placeholder="Nombre">
+      </label>
+      <label class="dg-campo">
+        <span class="dg-lab">Tu papel en él</span>
+        <input type="text" name="rol" required placeholder="Fundador, socio, director…">
+      </label>
+      <label class="dg-campo">
+        <span class="dg-lab">Cuánta gente sois</span>
+        <input type="text" name="tamano" required placeholder="Número">
+      </label>
+    </div>
+
+    <label class="dg-campo">
+      <span class="dg-lab">Tu email</span>
+      <input type="email" name="email" required placeholder="tu@email.com">
+    </label>
+
+    <div class="section-head" style="margin-top:44px">
+      <h2>Las cuatro</h2>
+      <span class="hint">contesta largo,<br>es lo único que leo</span>
+    </div>
+
+    <label class="dg-campo">
+      <span class="dg-num">01</span>
+      <span class="dg-lab">Imagina que trabajamos juntos y dentro de un año miras atrás. ¿Qué habría pasado en tu negocio para que digas que fue una buena decisión?</span>
+      <textarea name="q1" rows="5" required placeholder="Lo que quieres que sea distinto dentro de un año."></textarea>
+    </label>
+
+    <label class="dg-campo">
+      <span class="dg-num">02</span>
+      <span class="dg-lab">Está claro lo que quieres. ¿Por qué no lo tienes ya? ¿Qué te lo ha impedido?</span>
+      <textarea name="q2" rows="5" required placeholder="Sin filtros. Esta es la que más me dice."></textarea>
+    </label>
+
+    <label class="dg-campo">
+      <span class="dg-num">03</span>
+      <span class="dg-lab">¿Qué tienes ya en el negocio —datos, procesos, gente, herramientas— que no estás aprovechando?</span>
+      <textarea name="q3" rows="5" required placeholder="Lo que ya está dentro y no da todo lo que podría."></textarea>
+    </label>
+
+    <label class="dg-campo">
+      <span class="dg-num">04</span>
+      <span class="dg-lab">¿Quieres que te ayude?</span>
+      <textarea name="q4" rows="3" required placeholder="Sí, no, o lo que haga falta para contestar eso."></textarea>
+    </label>
+
+    <div class="dg-envio">
+      <button class="btn solid" type="submit">Enviar el diagnóstico</button>
+      <p class="fine">Lo leo yo, no un asistente · te contesto por escrito · no te apunto a ninguna lista</p>
+    </div>
+
+  </form>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Oriol Forcada</span>
+    <a href="../">uriforcada.com</a>
+  </div>
+</footer>
+
+<style>
+.dg-form{margin-bottom:80px}
+.dg-campo{display:block;margin-bottom:30px}
+.dg-num{display:block;font-family:var(--f-mono);font-size:11px;line-height:1;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);background:none;border:0;padding:0;margin-bottom:12px}
+.dg-lab{display:block;font-family:var(--f-display);font-weight:700;font-size:17px;letter-spacing:-.012em;
+  margin-bottom:12px;max-width:58ch;line-height:1.3}
+.dg-campo input,.dg-campo textarea{width:100%;background:#fff;border:1px solid var(--line);
+  color:var(--ink);font-family:var(--f-body);font-size:16px;padding:14px 16px;outline:none;border-radius:2px}
+.dg-campo textarea{resize:vertical;line-height:1.6}
+.dg-campo input:focus,.dg-campo textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-pale)}
+.dg-campo input::placeholder,.dg-campo textarea::placeholder{color:var(--dim);opacity:.65}
+.grid3 .dg-campo{margin-bottom:0;padding:0}
+.grid3{margin-bottom:30px;border-top:0;gap:20px;display:grid}
+.dg-envio{margin-top:44px;padding-top:30px;border-top:1px solid var(--line);background:none;
+  border-left:0;border-right:0;border-bottom:0;box-shadow:none}
+.dg-envio .btn{cursor:pointer}
+</style>
+
+<script src="../assets/diagnostico.js"></script>
+
+</body>
+</html>
