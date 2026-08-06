@@ -38,7 +38,7 @@
      el `fetch`, y su lógica no se ha tocado. */
 
 (function () {
-  var ACCESS_KEY = "";                     // ← pegar aquí la clave de Web3Forms
+  var ACCESS_KEY = "6610f07f-d62c-4f0e-b93e-34487a4730d2";                     // ← pegar aquí la clave de Web3Forms
   var DESTINO    = "contacto@uriforcada.com";
   var GRACIAS    = "deberes.html";
   var ENDPOINT   = "https://api.web3forms.com/submit";
