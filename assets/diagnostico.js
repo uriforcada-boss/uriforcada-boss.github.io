@@ -14,12 +14,28 @@
       pierden solicitudes en móvil sin enterarte.
 
    2. mailto — si ACCESS_KEY está vacía, se compone un correo con las
-      respuestas y se abre su cliente. Funciona, pero pierde a quien navegue
-      sin correo configurado. Es solo la red de seguridad.
+      respuestas y se abre su cliente. Es solo la red de seguridad.
+
+   ⚠️ 6-ago: la red de seguridad PERDÍA GENTE EN SILENCIO. Abría el `mailto` y
+   900 ms después mandaba al visitante a la página de deberes — o sea, le decía
+   «ya está» aunque el correo no se hubiera abierto nunca (móvil sin cliente
+   configurado, webmail, permisos). El que se iba tan contento no había enviado
+   nada, y aquí no quedaba rastro. Es el peor fallo posible en la puerta de un
+   embudo: no se ve.
+
+   Cómo queda mientras no haya clave, y por qué:
+     · La copia se guarda en el navegador ANTES de intentar nada, así que
+       ninguna respuesta se pierde por un clic que no funcionó.
+     · No se redirige solo: se enseña un panel con el texto entero, un botón
+       para abrir el correo y otro para copiarlo. **Nadie ve «gracias» sin
+       haber confirmado que lo mandó.**
+     · Si vuelve a la página, se le devuelve lo que escribió.
 
    Cómo conseguir la clave (1 minuto, gratis, sin registro):
      web3forms.com → escribir contacto@uriforcada.com → llega por correo.
-     250 envíos/mes en el plan gratuito. Se pega abajo y ya está. */
+     250 envíos/mes en el plan gratuito. Se pega abajo y ya está.
+     Con la clave puesta, todo lo de arriba deja de usarse: el camino bueno es
+     el `fetch`, y su lógica no se ha tocado. */
 
 (function () {
   var ACCESS_KEY = "";                     // ← pegar aquí la clave de Web3Forms
@@ -62,6 +78,82 @@
     form.querySelector(".dg-envio").appendChild(p);
   }
 
+  /* ── La red de seguridad ────────────────────────────────────────────────
+     Todo lo de aquí abajo solo corre cuando NO hay clave. */
+
+  var CLAVE_COPIA = "dg-borrador";
+
+  function guardarCopia(datos, texto) {
+    try {
+      var obj = { fecha: new Date().toISOString(), texto: texto, campos: {} };
+      ["negocio", "rol", "tamano", "email", "q1", "q2", "q3", "q4"]
+        .forEach(function (k) { obj.campos[k] = datos.get(k) || ""; });
+      localStorage.setItem(CLAVE_COPIA, JSON.stringify(obj));
+    } catch (e) { /* navegador sin almacenamiento: el panel sigue funcionando */ }
+  }
+
+  /* Si vuelve a la página, se le devuelve lo que escribió. Escribir cuatro
+     respuestas largas dos veces no lo hace nadie: se abandona. */
+  (function restaurar() {
+    try {
+      var crudo = localStorage.getItem(CLAVE_COPIA);
+      if (!crudo) return;
+      var obj = JSON.parse(crudo);
+      Object.keys(obj.campos || {}).forEach(function (k) {
+        var campo = form.elements[k];
+        if (campo && !campo.value) campo.value = obj.campos[k];
+      });
+    } catch (e) { /* copia ilegible: se ignora, no se rompe la página */ }
+  })();
+
+  function panelDeReserva(texto, negocio) {
+    var enlace = "mailto:" + DESTINO +
+      "?subject=" + encodeURIComponent("Diagnóstico — " + negocio) +
+      "&body=" + encodeURIComponent(texto);
+
+    var previo = document.getElementById("dg-reserva");
+    if (previo) previo.remove();
+
+    var caja = document.createElement("div");
+    caja.id = "dg-reserva";
+    caja.className = "dg-reserva";
+    caja.innerHTML =
+      '<h3>Ya está listo. Falta mandarlo.</h3>' +
+      '<p class="fine">Esta página no envía sola todavía: lo manda tu correo. ' +
+      'Tus respuestas están guardadas en este navegador, así que no se pierden ' +
+      'aunque cierres.</p>' +
+      '<div class="dg-reserva-btns">' +
+        '<a class="btn solid" id="dg-abrir" href="' + enlace + '">Abrir mi correo</a>' +
+        '<button class="btn" type="button" id="dg-copiar">Copiar el texto</button>' +
+      '</div>' +
+      '<p class="fine">Si no se abre nada, copia el texto y mándalo a ' +
+      '<strong>' + DESTINO + '</strong>.</p>' +
+      '<textarea id="dg-texto" rows="8" readonly></textarea>' +
+      '<button class="btn" type="button" id="dg-hecho">Ya lo he enviado</button>';
+
+    form.parentNode.insertBefore(caja, form.nextSibling);
+    caja.querySelector("#dg-texto").value = texto;
+    caja.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    caja.querySelector("#dg-copiar").addEventListener("click", function () {
+      var boton = this;
+      var area = caja.querySelector("#dg-texto");
+      var listo = function () { boton.textContent = "Copiado ✓"; };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texto).then(listo, function () {
+          area.select(); document.execCommand("copy"); listo();
+        });
+      } else { area.select(); document.execCommand("copy"); listo(); }
+    });
+
+    /* El «gracias» solo llega cuando él dice que lo ha mandado. Antes se daba
+       por hecho a los 900 ms, y esa suposición es la que perdía solicitudes. */
+    caja.querySelector("#dg-hecho").addEventListener("click", function () {
+      try { localStorage.removeItem(CLAVE_COPIA); } catch (e) {}
+      window.location.href = GRACIAS;
+    });
+  }
+
   form.addEventListener("submit", function (e) {
     e.preventDefault();
 
@@ -71,11 +163,8 @@
     var negocio = datos.get("negocio") || "";
 
     if (!ACCESS_KEY) {
-      window.location.href =
-        "mailto:" + DESTINO +
-        "?subject=" + encodeURIComponent("Diagnóstico — " + negocio) +
-        "&body=" + encodeURIComponent(texto);
-      setTimeout(function () { window.location.href = GRACIAS; }, 900);
+      guardarCopia(datos, texto);
+      panelDeReserva(texto, negocio);
       return;
     }
 

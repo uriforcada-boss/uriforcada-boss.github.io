@@ -119,6 +119,19 @@
 .dg-envio{margin-top:44px;padding-top:30px;border-top:1px solid var(--line);background:none;
   border-left:0;border-right:0;border-bottom:0;box-shadow:none}
 .dg-envio .btn{cursor:pointer}
+
+/* El panel de reserva — solo aparece mientras el formulario no tenga clave de
+   envío. Va con el mismo aire que el resto de la página: sin caja de alerta ni
+   rojo, porque no es un error del visitante. */
+.dg-reserva{margin:0 0 80px;padding:26px 0 0;border-top:1px solid var(--line)}
+.dg-reserva h3{font-family:var(--f-display);font-weight:800;font-size:22px;
+  letter-spacing:-.02em;margin:0 0 8px}
+.dg-reserva .fine{margin:0 0 14px;max-width:60ch}
+.dg-reserva-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.dg-reserva .btn{cursor:pointer}
+.dg-reserva textarea{width:100%;background:#fff;border:1px solid var(--line);
+  color:var(--ink);font-family:var(--f-mono);font-size:12px;line-height:1.6;
+  padding:12px 14px;border-radius:2px;resize:vertical;margin-bottom:14px}
 </style>
 
 <script src="../assets/diagnostico.js"></script>

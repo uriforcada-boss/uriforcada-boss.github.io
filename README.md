@@ -51,6 +51,29 @@ sin baja, y la política de privacidad sí promete baja.
 
 Cambiar de cuenta o de formulario = tocar `ENDPOINT` en `assets/subscribe.js`, nada más.
 
+## El diagnóstico (`/diagnostico/`) — ⬜ le falta UNA cosa
+
+La puerta del embudo B. **No pasa por MailerLite a propósito**: sus campos de
+texto truncan, y aquí lo valioso son justo las respuestas largas.
+
+**Lo único pendiente, y lo tiene que hacer Oriol (1 minuto, 0 €, sin registro):**
+
+1. Entrar en `web3forms.com` y escribir `contacto@uriforcada.com`.
+2. La clave llega a ese correo.
+3. Pegarla en `assets/diagnostico.js`, línea 41 → `var ACCESS_KEY = "…";`
+4. Commit y push. Nada más: el resto del camino ya está montado y probado.
+
+Con la clave, la solicitud llega entera por correo sin depender del cliente del
+visitante. **Plan gratuito: 250 envíos/mes.**
+
+**Mientras no esté la clave** (estado de hoy, 6-ago) el formulario NO se pierde
+solicitudes, pero tampoco te llegan solas: al enviar, la página guarda una copia
+en el navegador del visitante y le enseña un panel con el texto entero, un botón
+para abrir su correo y otro para copiarlo. **Solo ve la página de deberes cuando
+confirma que lo ha mandado.** Antes se le mandaba allí a los 900 ms sin
+comprobar nada — el que no tuviera cliente de correo configurado se iba
+convencido de haberlo enviado y aquí no quedaba rastro.
+
 ## Reglas (no negociables)
 
 - Un acento por pieza (el ácido, y solo sobre negro). Cero glow ni degradados.
