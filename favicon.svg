@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Marca «Señal»: hueso, tinta e índigo. El punto de acento de la firma
+       («Oriol Forcada» + punto) es lo único que se conserva a 16px. -->
+  <rect width="64" height="64" fill="#F7F6F2"/>
+  <text x="6" y="47" font-family="Archivo,Impact,Arial Black,sans-serif"
+        font-weight="900" font-size="46" letter-spacing="-3" fill="#0D1520">O</text>
+  <circle cx="52" cy="42" r="7" fill="#1E38DE"/>
+</svg>

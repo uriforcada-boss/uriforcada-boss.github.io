@@ -135,6 +135,87 @@ footer a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--lin
 footer a:hover{color:var(--accent);border-color:var(--accent)}
 .foot-links{display:flex;gap:20px;flex-wrap:wrap}
 
+/* ══════════════════════════════════════════════════════════════════════
+   MODO INSTRUMENTO — 6-ago-2026. La decisión visual del brand brief.
+
+   *«El sistema visual actual (hueso, índigo, Archivo, retícula) falla el swap
+   test: es el estándar de la categoría, tomado de Mistral, Celonis y Synthesia
+   — y de Mistral él había dicho "no me identifico con ellos en su branding".
+   Lo único que sí pasa el hand test es el modo instrumento.»*
+
+   La regla que hace que sea UNA marca y no dos: **entra DENTRO del modo día,
+   nunca al lado**. Es una cita de cristal dentro de una página clara. No se
+   mezclan los colores: se mezclan los papeles — el día HABLA, el instrumento
+   DEMUESTRA. Y le da soporte visual a la regla de voz «enseña, no describas»,
+   que hasta hoy no lo tenía en nada público.
+
+   ⚠️ El ácido `#D4FF00` vive SOLO aquí y con cuentagotas. Fuera del modo día
+   por decisión de Oriol del 5-ago.                                          */
+
+.instrumento{
+  --void:#08090c; --acid:#D4FF00; --glass:rgba(255,255,255,.078);
+  --rim:rgba(255,255,255,.13); --lip:rgba(255,255,255,.20);
+  background:var(--void);color:#E7E9EC;border-radius:3px;
+  padding:38px 30px 32px;margin:0;
+  /* sangra a ancho completo: la cita ocupa la página, no una columna */
+  margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
+  padding-left:max(30px,calc(50vw - var(--max)/2 + 32px));
+  padding-right:max(30px,calc(50vw - var(--max)/2 + 32px));
+  border-radius:0;
+}
+.instrumento .inst-k{display:block;font-family:var(--f-mono);font-size:11px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:20px}
+.instrumento h3{font-family:var(--f-display);font-weight:900;
+  font-size:clamp(26px,4.2vw,44px);line-height:1;letter-spacing:-.035em;
+  color:#fff;margin-bottom:14px;text-transform:none}
+.instrumento>p{font-size:16px;color:#9BA3AE;max-width:56ch}
+
+/* la rejilla de paneles: cristal con luz en el filo, como el HUD */
+.inst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:10px;margin-top:28px}
+.panel{background:var(--glass);border:1px solid var(--rim);border-radius:8px;
+  padding:18px 17px;position:relative;overflow:hidden}
+/* la luz del filo superior — es lo que da profundidad sin sombra dura */
+.panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:var(--lip)}
+.panel .p-lbl{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:#6D7683;display:block;margin-bottom:9px}
+/* block, no inline: como <span> el número y su explicación caían en la misma
+   línea y «43 corriendo por su cuenta» se leía como una frase rota. */
+.panel .p-val{display:block;font-family:var(--f-mono);font-size:30px;font-weight:500;
+  line-height:1;color:#fff}
+.panel .p-val.on{color:var(--acid)}
+.panel .p-sub{display:block;font-size:12.5px;color:#8A929E;margin-top:10px;line-height:1.45}
+.inst-foot{margin-top:24px;padding-top:18px;border-top:1px solid var(--rim);
+  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;color:#6D7683}
+
+/* La FECHA. Bloque propio: es la prueba con la que se juega la marca */
+.fecha{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:44px 0;margin:0}
+.fecha .f-k{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);display:block;margin-bottom:16px}
+.fecha .f-big{font-family:var(--f-display);font-weight:900;
+  font-size:clamp(44px,9vw,110px);line-height:.9;letter-spacing:-.045em}
+.fecha .f-txt{margin-top:24px;font-size:16.5px;color:var(--dim);max-width:58ch}
+.fecha .f-txt strong{color:var(--ink);font-weight:600}
+
+/* Dos columnas: lo que sí y lo que no. Líneas, nunca tarjetas */
+.limites{display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-top:1px solid var(--line)}
+@media(max-width:640px){.limites{grid-template-columns:1fr}}
+.limite{padding:24px 24px 28px;border-bottom:1px solid var(--line)}
+.limite:first-child{border-right:1px solid var(--line)}
+@media(max-width:640px){.limite:first-child{border-right:0}}
+.limite h4{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;margin-bottom:14px;font-weight:500}
+.limite.si h4{color:var(--accent)}
+.limite.no h4{color:var(--dim)}
+.limite ul{list-style:none;padding:0}
+.limite li{font-size:15px;line-height:1.5;padding:7px 0;color:var(--dim);
+  border-bottom:1px solid var(--line)}
+.limite li:last-child{border-bottom:0}
+.limite.si li{color:var(--ink)}
+
 /* páginas de recurso */
 .resource-hero{padding:80px 0 30px}
 .resource-hero .label{margin-bottom:18px;text-decoration:none}

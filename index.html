@@ -3,57 +3,223 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oriol Forcada · Automatizo el growth de tu negocio con IA</title>
-<meta name="description" content="Sistemas de IA que captan, publican y venden solos. Recursos gratis con los prompts y los pasos exactos.">
+<title>Oriol Forcada · Deja de preocuparte. Ocúpate.</title>
+<meta name="description" content="Construyo sistemas de IA que hacen el trabajo que te come el día, y los enseño funcionando. Objetivo público: febrero de 2027.">
+<link rel="canonical" href="https://uriforcada.com/">
+
+<!-- ═══════════════════════════════════════════════════════════════════════
+     SEO y GEO — 6-ago-2026.
+
+     Antes de hoy esta web tenía CERO señales: ni canonical, ni tarjeta social,
+     ni datos estructurados, ni sitemap. El agente de SEO llevaba desde el 2-ago
+     recogiendo búsquedas reales en `Cola SEO — temas a posicionar.md` y nada de
+     eso llegaba nunca al sitio: recogía y ahí se quedaba.
+
+     Dos frentes, y el segundo es el que Oriol quiere:
+       1. Google — canonical, sitemap, títulos, tarjeta social.
+       2. GEO, que le citen ChatGPT / Gemini / Perplexity. Esos modelos leen
+          **datos estructurados** para saber quién eres y qué haces. Sin JSON-LD
+          eres texto suelto; con él eres una entidad con nombre, oficio y área.
+     ══════════════════════════════════════════════════════════════════════ -->
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://uriforcada.com/">
+<meta property="og:site_name" content="Oriol Forcada">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Oriol Forcada · Deja de preocuparte. Ocúpate.">
+<meta property="og:description" content="En el momento en que te ocupas, el miedo empieza a desaparecer. Sistemas de IA enseñados funcionando, no contados.">
+<meta property="og:image" content="https://uriforcada.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Deja de preocuparte. Ocúpate. — Oriol Forcada">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Oriol Forcada · Deja de preocuparte. Ocúpate.">
+<meta name="twitter:description" content="En el momento en que te ocupas, el miedo empieza a desaparecer. Sistemas de IA enseñados funcionando.">
+<meta name="twitter:image" content="https://uriforcada.com/assets/og.png">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F7F6F2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
+
+<!-- Quién es, en formato máquina. Es lo que hace que una IA pueda contestar
+     «¿quién monta sistemas de IA para empresas?» con un nombre y no con una
+     descripción vaga. Ni un dato inventado: solo lo que ya está en la página. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://uriforcada.com/#oriol",
+      "name": "Oriol Forcada",
+      "alternateName": "uriforcada",
+      "url": "https://uriforcada.com/",
+      "email": "contacto@uriforcada.com",
+      "jobTitle": "Consultor de crecimiento con IA",
+      "description": "Creador de IA en español que enseña en abierto, y con fecha, el sistema con el que se va de España partiendo de cero. Construye sistemas de IA para negocios que quieren crecer sin ampliar plantilla.",
+      "knowsAbout": [
+        "automatización de procesos con inteligencia artificial",
+        "agentes de IA para empresas",
+        "IA para pymes",
+        "automatizar tareas repetitivas",
+        "sistemas de captación",
+        "Claude Code",
+        "n8n"
+      ],
+      "knowsLanguage": ["es", "ca"],
+      "sameAs": ["https://www.linkedin.com/in/oriol-forcada-edo-03b0192a1/"]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://uriforcada.com/#servicio",
+      "name": "Oriol Forcada — sistemas de IA para empresas",
+      "url": "https://uriforcada.com/",
+      "image": "https://uriforcada.com/assets/og.png",
+      "founder": { "@id": "https://uriforcada.com/#oriol" },
+      "provider": { "@id": "https://uriforcada.com/#oriol" },
+      "areaServed": { "@type": "Country", "name": "España" },
+      "availableLanguage": ["es", "ca"],
+      "description": "Instalación de sistemas de captación y operaciones con IA, con el alcance cerrado por escrito antes de empezar.",
+      "serviceType": [
+        "Automatización de procesos con IA",
+        "Sistemas de captación",
+        "Agentes de IA a medida"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://uriforcada.com/#web",
+      "url": "https://uriforcada.com/",
+      "name": "Oriol Forcada",
+      "inLanguage": "es-ES",
+      "publisher": { "@id": "https://uriforcada.com/#oriol" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- ══════════════════════════════════════════════════════════════════════
+     LANDING RECONSTRUIDA DESDE EL BRAND BRIEF — 6-ago-2026.
+     Documento dueño: 3_Areas/Marca personal/Brand brief — Oriol Forcada.md
+     (aprobado por Oriol el 6-ago). De ahí sale cada bloque de esta página:
+
+       H1        → §10 GRAN IDEA, «Deja de preocuparte. Ocúpate.»
+       Subtítulo → §3 DECLARACIÓN DE UNICIDAD (la ②, elegida el 6-ago)
+       Enemigo   → §7 EL CONTRASTE — contra una práctica, nunca contra alguien
+       Prueba    → §5 valor 4 «enseña, no describas» → modo instrumento
+       Fecha     → 📅 febrero 2027, con la regla del punto y seguido
+       Límites   → §8 QUÉ SE DA — «ENSEÑAR ≠ ENTREGAR»
+
+     ⚠️ POR QUÉ EL H1 NO ES LA UNICIDAD, que sería lo obvio:
+     §5 valor 6 lo prohíbe — *«Promete lo que se lleva el que lee. Tu sistema
+     va detrás, como prueba. Nunca al revés.»* «Me voy de España en febrero» es
+     SU sistema; en el titular sería hablar de él. Va abajo, de prueba.
+     Y §2 exige que el titular siga siendo legible para el que firma.
+
+     🔒 CANDADOS APLICADOS (§9): la empresa del proyecto NO se nombra · siempre
+     «junto al equipo» y «tuve la oportunidad de participar» · las cifras
+     (36 k → 140 k) son NIVEL 3 y NO salen aquí: esta página lleva el nivel 2,
+     la magnitud sin importe, que el brief autoriza expresamente en «una
+     landing». Ninguna pieza deriva hacia «yo gané X».
+     ══════════════════════════════════════════════════════════════════════ -->
 <header class="hero">
   <div class="wrap">
     <span class="label">Oriol Forcada · @uriforcada</span>
     <div class="brandbar"></div>
-    <h1 class="display">Automatizo<br>growth <span class="accent">con IA</span></h1>
-    <p>Construyo sistemas que captan, publican y venden solos — y <strong>enseño cómo los monto</strong>, con los prompts y los pasos exactos. Sin humo.</p>
+    <h1 class="display">Deja de preocuparte.<br><span class="accent">Ocúpate.</span></h1>
+    <p>En el momento en que te ocupas, el miedo empieza a desaparecer. Construyo sistemas de IA que hacen el trabajo que hoy te come el día — y <strong>los enseño funcionando</strong>, no contados.</p>
     <div class="hero-ctas">
       <a class="btn solid" href="diagnostico/">Pide tu diagnóstico</a>
-      <a class="btn" href="#recursos">Recursos gratis</a>
+      <a class="btn" href="#recursos">Llévate lo que uso</a>
     </div>
   </div>
 </header>
 
-<!-- ══════════ PROBLEMA ══════════ -->
+<!-- ══════════ EL ENEMIGO — §7, contra una práctica, nunca contra alguien ══ -->
 <section id="problema">
   <div class="wrap">
     <div class="section-head">
-      <h2>¿Te suena?</h2>
-      <span class="hint">lo que me cuentan casi siempre</span>
+      <h2>Contra qué va esto</h2>
+      <span class="hint">prácticas, no personas</span>
     </div>
 
     <div class="grid3">
       <div class="pain reveal">
         <span class="pain-num">01</span>
-        <h3>Se te van las horas en cosas que deberían hacerse solas</h3>
-        <p>Publicar, responder, clasificar, copiar de un sitio a otro.</p>
+        <h3>Coleccionar tutoriales sin montar nada</h3>
+        <p>La opción fácil frente a la difícil. Se acumula material y no se mueve una pieza.</p>
       </div>
       <div class="pain reveal">
         <span class="pain-num">02</span>
-        <h3>Quieres crecer sin ampliar el equipo</h3>
-        <p>No necesitas una plantilla más grande, sino sacarle todo el partido a la que ya tienes.</p>
+        <h3>Enseñar teoría sin tener nada funcionando</h3>
+        <p>Si no se puede enseñar la pantalla con el sistema corriendo, es una opinión.</p>
       </div>
       <div class="pain reveal">
         <span class="pain-num">03</span>
-        <h3>Has probado la IA y va a rachas</h3>
-        <p>Prompts sueltos y herramientas desconectadas: un día acierta y al siguiente no.</p>
+        <h3>Esperar a estar listo para empezar</h3>
+        <p>Nadie está listo. Se aprende emprendiendo: empieza para aprender, no al revés.</p>
       </div>
     </div>
 
     <div class="solution reveal">
-      <p>Yo monto <strong>sistemas conectados</strong>, no prompts sueltos. Con el alcance cerrado desde el primer día: <span class="accent">sabes qué recibes antes de empezar.</span></p>
+      <p>El enemigo es <strong>preocuparse sin ocuparse</strong>. <span class="accent">Ocuparse es lo único que apaga el miedo, y empieza por montar una cosa pequeña que funcione de verdad.</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ LA PRUEBA — modo instrumento dentro del modo día ══════════
+     §5 valor 4: «Enseña, no describas. La pantalla con el sistema corriendo
+     vale más que diez frases.» Aquí es donde el instrumento deja de ser una
+     cita decorativa y hace su trabajo. Los datos son los que ya cuenta el
+     sistema en público; sin cifras de facturación (candado §9). -->
+<section id="sistema">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>No te lo cuento: te lo enseño</h2>
+      <span class="hint">el sistema, por dentro</span>
+    </div>
+  </div>
+
+  <div class="instrumento reveal">
+    <span class="inst-k">JARVIS · el sistema con el que trabajo</span>
+    <h3>Corriendo ahora mismo, mientras lees esto</h3>
+    <p>No es una demo grabada ni una plantilla comprada. Es lo que uso todos los días para captar, escribir, medir y decidir — montado por mí, pieza a pieza.</p>
+
+    <div class="inst-grid">
+      <div class="panel">
+        <span class="p-lbl">Agentes</span>
+        <span class="p-val on">43</span>
+        <span class="p-sub">corriendo por su cuenta, cada uno con su horario y su contrato</span>
+      </div>
+      <div class="panel">
+        <span class="p-lbl">Departamentos</span>
+        <span class="p-val">5</span>
+        <span class="p-sub">cada uno con su director y su control de calidad, como una empresa</span>
+      </div>
+      <div class="panel">
+        <span class="p-lbl">En directo</span>
+        <span class="p-val">~360 h</span>
+        <span class="p-sub">construyéndolo delante de quien quisiera mirar</span>
+      </div>
+    </div>
+
+    <p class="inst-foot">Enseñar no es entregar. Se ve funcionando; el montaje fino te lo haces tú.</p>
+  </div>
+</section>
+
+<!-- ══════════ LA FECHA — el compromiso público que puede fallar ══════════ -->
+<section id="fecha">
+  <div class="wrap">
+    <div class="fecha reveal">
+      <span class="f-k">El objetivo, con fecha y en público</span>
+      <div class="f-big display">Febrero<br>de 2027</div>
+      <p class="f-txt">Me voy de España partiendo de cero, y voy enseñando el sistema con el que lo hago. <strong>Es el mes, no el día.</strong> Y ese día no es un veredicto: es un balance — lo que sí ha pasado en seis meses, y sigo.</p>
+      <p class="f-txt">Lo digo en público sabiendo que puedo fallar. <strong>Esa es justo la parte que no se puede copiar.</strong></p>
     </div>
   </div>
 </section>
@@ -62,7 +228,7 @@
 <section id="recursos">
   <div class="wrap">
     <div class="section-head">
-      <h2>Recursos gratis</h2>
+      <h2>La base, gratis</h2>
       <span class="hint">déjame tu email y te lo mando</span>
     </div>
 
@@ -101,43 +267,55 @@
   </div>
 </section>
 
-<!-- ══════════ CÓMO TRABAJO ══════════ -->
-<section id="proceso">
+<!-- ══════════ QUÉ SE DA — §8, «ENSEÑAR ≠ ENTREGAR» ══════════════════════
+     Oriol, 6-ago: *«Enseñar todo el sistema por dentro es enseñarle a la gente
+     a copiar directamente lo que hago. Tanto regalo de cosas, no.»* El límite
+     no es defensivo: dar la base y no el montaje OBLIGA al otro a ocuparse —
+     que es literalmente el propósito del §1. -->
+<section id="alcance">
   <div class="wrap">
     <div class="section-head">
-      <h2>Cómo trabajo</h2>
-      <span class="hint">resultado cerrado, no horas</span>
+      <h2>Enseñar no es entregar</h2>
+      <span class="hint">dónde está la raya</span>
     </div>
 
-    <div class="grid3">
-      <div class="step reveal">
-        <span class="step-num">1</span>
-        <h3>Miramos dónde se van las horas</h3>
-        <p>Qué se hace a mano hoy y qué de eso puede hacerse solo.</p>
+    <div class="limites reveal">
+      <div class="limite si">
+        <h4>Sí se da</h4>
+        <ul>
+          <li>Trucos, frameworks y lo que voy encontrando</li>
+          <li>Repos y skills propias, en <em>white label</em></li>
+          <li>La base sólida para que te lo montes tú</li>
+          <li>Lo que aprendo del sector de agentes</li>
+        </ul>
       </div>
-      <div class="step reveal">
-        <span class="step-num">2</span>
-        <h3>Se cierra el alcance</h3>
-        <p>Qué sistema se monta y qué hace exactamente. Por escrito y antes de empezar.</p>
-      </div>
-      <div class="step reveal">
-        <span class="step-num">3</span>
-        <h3>Se instala y se documenta</h3>
-        <p>Funcionando en tu casa, y explicado para que no dependas de mí.</p>
+      <div class="limite no">
+        <h4>No se da</h4>
+        <ul>
+          <li>El sistema montado y estructurado como lo tengo yo</li>
+          <li>Nada listo para copiar y pegar</li>
+          <li>El montaje, las conexiones y los criterios afinados</li>
+        </ul>
       </div>
     </div>
+    <p class="fine">Te doy la base para que empieces a tocar y a mejorarte lo tuyo. El montaje fino es donde está el trabajo — y donde aprendes.</p>
   </div>
 </section>
 
-<!-- ══════════ TRABAJA CONMIGO ══════════ -->
+<!-- ══════════ TRABAJA CONMIGO ══════════════════════════════════════════
+     🔒 El párrafo del proyecto va en NIVEL 2 (magnitud sin importe), que el
+     §9 autoriza expresamente en «una landing» y en ningún sitio más del feed.
+     Sin nombrar la empresa · «tuve la oportunidad de participar» · «junto al
+     equipo». Las cifras exactas se quedan para el vídeo exclusivo. -->
 <section id="trabajo">
   <div class="wrap">
     <div class="biz reveal">
-      <h3>Automatización para tu negocio</h3>
-      <p>Instalo sistemas de captación y operaciones con IA para negocios que quieren crecer sin ampliar plantilla. Proyectos con alcance cerrado desde el primer día.</p>
+      <h3>Y si lo que quieres es que lo monte yo</h3>
+      <p>El año pasado tuve la oportunidad de participar en un proyecto de crecimiento real: <strong>casi cuadruplicamos la facturación en ocho meses — lo que no se había conseguido en los dos años anteriores</strong>. Junto al equipo, porque estas cosas nunca se hacen solo.</p>
+      <p>Eso es lo que traigo: la parte de empresa, no solo la de IA. Instalo sistemas de captación y operaciones para negocios que quieren crecer sin ampliar plantilla, con el alcance cerrado por escrito antes de empezar.</p>
       <div class="cta-row">
-        <a class="btn solid" href="https://www.linkedin.com/in/oriol-forcada-edo-03b0192a1/" target="_blank" rel="noopener">Escríbeme por LinkedIn</a>
-        <a class="btn" href="mailto:contacto@uriforcada.com?subject=Automatizaci%C3%B3n%20con%20IA">Mándame un email</a>
+        <a class="btn solid" href="diagnostico/">Pide tu diagnóstico</a>
+        <a class="btn" href="https://www.linkedin.com/in/oriol-forcada-edo-03b0192a1/" target="_blank" rel="noopener">Escríbeme por LinkedIn</a>
       </div>
     </div>
   </div>

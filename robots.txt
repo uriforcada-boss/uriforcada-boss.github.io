@@ -1,3 +1,44 @@
+# uriforcada.com — 6-ago-2026
+#
+# ⭐ LOS RASTREADORES DE IA ENTRAN A PROPÓSITO.
+#
+# Oriol quiere lo contrario de lo que hace casi todo el mundo este año:
+# «posicionamiento dentro de las propias inteligencias artificiales para que me
+# recomienden a mí como número 1, 2 o 3». Para que ChatGPT, Claude, Gemini o
+# Perplexity te citen, primero tienen que poder LEERTE. Bloquearlos —que es la
+# moda— es renunciar a ese canal entero.
+#
+# Van declarados uno a uno y no por omisión: sin regla también entrarían, pero
+# entonces nadie sabría que es una decisión y el primer susto sobre «la IA me
+# copia» acabaría bloqueándolos sin querer.
+
+# ⚠️ `/r/` NO se bloquea aquí, aunque sea contenido con puerta de email: sus 8
+# páginas ya llevan `noindex`, y un Disallow impediría al rastreador ENTRAR a
+# leer ese noindex — con lo que podrían acabar en Google como URL suelta. Se
+# bloquea con noindex o con robots, nunca con los dos.
 User-agent: *
 Disallow: /catalogo-rodilla/
 Disallow: /c/
+
+# Los que leen para responder (citan la fuente)
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Claude-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+# Los que leen para entrenar. También sí: entrar en el modelo es la otra mitad
+# de que te nombre cuando no está buscando.
+User-agent: GPTBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://uriforcada.com/sitemap.xml
