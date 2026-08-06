@@ -9,6 +9,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../assets/style.css">
+<style>
+  /* Los bloques de arriba tienen UN párrafo por tarjeta; la historia de origen
+     tiene ocho. Sin esto se leen como un muro: `.res>p` no trae separación
+     porque nunca hasta hoy hubo dos seguidos. (6-ago) */
+  .res > p + p { margin-top: 15px; }
+  /* El remate de la historia es la frase de la portada. Se le da aire para que
+     se lea como el final que es, no como una línea más. */
+  .res > p .accent { font-weight: 700; }
+</style>
 </head>
 <body>
 
@@ -20,11 +29,11 @@
      nadie hable con nadie. Por eso no es un «gracias, te contestaré»: es el
      sitio donde se responden las tres creencias que bloquean la decisión.
 
-     ⚠️ DOS BLOQUES ESTÁN VACÍOS A PROPÓSITO y los marca un aviso amarillo.
-     Piden la historia de origen de Oriol (las 8 preguntas del Epiphany Bridge,
-     que siguen sin contestar en «Expert Secrets aplicado»). No se inventan:
-     ni antigüedad, ni cifras, ni clientes. Se rellenan con su voz o se
-     borran los bloques enteros antes de publicar.
+     ✅ 6-ago-2026: los dos bloques que faltaban —historia de origen y qué
+     prueba se enseña— ya están, dictados por Oriol y aprobados por él. Los
+     candados que se les aplicaron van escritos justo encima de cada uno.
+     Sigue en pie la regla que los mantuvo vacíos trece días: ni antigüedad,
+     ni cifras, ni clientes con nombre. Antes vacío que inventado.
      ───────────────────────────────────────────────────────────────────── -->
 
 <header class="resource-hero">
@@ -90,16 +99,54 @@
     <p>Es la pregunta más justa de todas y la que menos gente se atreve a hacer en voz alta. La respuesta corta: lo que se monta queda en tus cuentas, con tus accesos y documentado para que otro pueda cogerlo. Si al terminar dependes de mí para que siga funcionando, he construido dependencia, no sistema — y eso es un trabajo mal hecho.</p>
   </div>
 
-  <!-- ══ PENDIENTE · dos bloques que faltan y los escribe Oriol ═══════════
-       1) SU HISTORIA DE ORIGEN — las 8 preguntas del Epiphany Bridge, hoy
-          sin contestar. Va aquí y aquí rinde: el §9 del posicionamiento la
-          reserva para esta superficie, no para el feed.
-       2) LA PRUEBA — qué se enseña. Lo único real hoy es su propio sistema
-          corriendo. Ningún cliente con nombre, ninguna cifra, ninguna
-          antigüedad, hasta que él lo autorice.
-       Se publicó sin ellos a propósito: una página sin historia cierra menos,
-       pero una con una historia inventada no se puede sostener.
+  <!-- ══ HISTORIA DE ORIGEN — dictada por Oriol el 6-ago-2026 ═══════════════
+       Epiphany Bridge. Tres candados aplicados sobre su dictado, y los tres
+       los aprobó él antes de publicar:
+       1) No se nombra la empresa ni el sector (candado §9 del brand brief).
+       2) El conflicto apunta a la PRÁCTICA, no a las personas (§7: contra qué,
+          nunca contra quién). Una página pública donde unos socios son los
+          malos describe al que la escribe tanto como a ellos.
+       3) Fuera «no tengo un puto duro»: baja de estatus a cambio de nada justo
+          donde alguien decide si te confía su operación. Sobrevive la parte
+          útil — prefiere montarlo y entenderlo.
+       Cierra en «Deja de preocuparte. Ocúpate.», que es el H1 de la portada, y
+       no por casualidad: es lo que él se dijo. La gran idea de la marca sale
+       de aquí, no al revés.
        ───────────────────────────────────────────────────────────────────── -->
+  <div class="section-head" style="margin-top:56px">
+    <h2>Por qué hago esto</h2>
+    <span class="hint">para que sepas quién lo va a leer</span>
+  </div>
+
+  <div class="res">
+    <p>En primero de carrera me obsesioné con el growth. Intenté montarme mis propios sistemas, no tenía ni idea de cómo hacerlo, y lo aparqué. Prioricé otras cosas.</p>
+    <p>Este año, en el proyecto en el que estaba, necesitábamos una aplicación interna hecha a medida. Pedimos presupuesto a varios desarrolladores. El mejor de todos nos pedía <strong>6.000 $</strong>, y no era caro por malo — era bueno de verdad. Era que por ese dinero comprábamos algo que después no íbamos a poder tocar.</p>
+    <p>Le dije a un compañero: dame dos días. Me compré Claude y me puse. En dos días vi que aquello se podía hacer. Y me enganchó, porque montar un sistema es un puzzle, y los puzzles me encantan. Lo monté entero, fuera de mi área, en paralelo a mi trabajo.</p>
+    <p>Cuando lo enseñé, la respuesta fue que me centrara en lo mío y que aquello se lo dejara a otro.</p>
+    <p>No discuto que tuviera su lógica. Pero ahí aprendí una cosa que no se me ha ido: <strong>el sistema con el que trabajas no es un accesorio que se delega. Es cómo funciona tu negocio.</strong> Quien lo monta decide cómo funcionas.</p>
+    <p>Un mes y medio después dejé el proyecto. Tuve tres semanas sin saber qué hacer, y en la última no paraban de salirme vídeos de gente ganando dinero con IA, gente sin formación de empresa. Y pensé: no puede ser.</p>
+    <p>Ahí se acabó el «por qué todo me pasa a mí». <span class="accent">Deja de preocuparte. Ocúpate.</span></p>
+    <p>Eso es lo que hay detrás de todo esto. Sigo montando yo lo que uso, entiendo cada pieza, y monto para otros lo mismo que monto para mí.</p>
+  </div>
+
+  <!-- ══ LA PRUEBA — su respuesta del 6-ago, y es mejor que una lista ═══════
+       Preguntado por qué enseña, contestó con el giro correcto: «la pregunta
+       es qué quiere ver la otra persona». Por eso este bloque no es un
+       porfolio. Y descarta a propósito el documento-catálogo de «todo lo que
+       he resuelto», que él mismo tumbó: sin filtrar no aporta valor a nadie.
+       ⛔ Ni clientes con nombre, ni cifras de terceros, ni antigüedad.
+       ───────────────────────────────────────────────────────────────────── -->
+  <div class="section-head" style="margin-top:56px">
+    <h2>Qué te voy a enseñar</h2>
+    <span class="hint">y qué no</span>
+  </div>
+
+  <div class="res">
+    <p>La pregunta no es qué tengo para enseñarte. Es <strong>qué necesitas ver tú.</strong></p>
+    <p>Puedo enseñarte el sistema con el que trabajo cada día: más de cuarenta agentes corriendo, las métricas de uso, los avisos que me llegan al móvil cuando algo se rompe. Pero enseñártelo todo de golpe es un porfolio, y un porfolio no te resuelve nada.</p>
+    <p>Así que en la devolución te enseño <strong>la pieza que responde a tu pregunta</strong>. Si lo tuyo es que se te escapan cosas por el correo, te enseño cómo lo resolví yo. Si es que no sabes qué está pasando en tu negocio hasta que alguien te lo cuenta, te enseño eso.</p>
+    <p>Lo que no vas a ver: logos de clientes, capturas de resultados de otros ni cifras que no pueda probar. <span class="accent">Lo que enseño es mi propio sistema, porque es lo único que puedo enseñarte entero y por dentro.</span></p>
+  </div>
 
   <div style="margin:56px 0 70px">
     <p style="color:var(--dim);max-width:60ch">Si mientras tanto quieres añadir algo a lo que contestaste, responde al correo y ya está. Lo leo igual.</p>
