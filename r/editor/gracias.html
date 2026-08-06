@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editor por lotes · el recurso completo · Oriol Forcada</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+
+<header class="resource-hero">
+  <div class="wrap">
+    <span class="label">✓ Desbloqueado</span>
+    <h1 class="display">Editor por lotes</h1>
+    <p class="sub">Quita silencios, transcribe y quema subtítulos. En tu ordenador, sin subir nada a ninguna nube y sin pagar nada.</p>
+  </div>
+</header>
+
+<div class="wrap recurso" style="padding-bottom:24px">
+
+  <p><strong>La idea que lo ordena todo:</strong> edita <em>todos</em> los vídeos, no solo los que crees que valen. Un vídeo en bruto lleno de silencios no se puede juzgar; uno cortado y subtitulado sí. Primero se editan todos, después decides cuáles suben — y para eso te deja un informe con lo que dice cada uno.</p>
+
+  <h2>Qué necesitas</h2>
+  <ul>
+    <li><strong>Python 3</strong> — en un Mac ya viene puesto.</li>
+    <li><strong><code>uv</code></strong> — el que descarga solo el resto (ffmpeg y el transcriptor) sin instalarte nada a lo bestia ni pedirte contraseña. <a href="https://docs.astral.sh/uv/" target="_blank" rel="noopener">docs.astral.sh/uv</a></li>
+  </ul>
+  <p class="fine">No hace falta Homebrew, ni <code>sudo</code>, ni cuenta en ningún sitio. La primera vez tarda un poco más porque se descarga lo que necesita; a partir de ahí va directo.</p>
+
+  <h2>Cómo se usa</h2>
+  <pre># 1 · Suelta los vídeos en una carpeta llamada  brutos/
+# 2 · Corre esto:
+python3 editor.py
+
+# O apúntale a la carpeta que quieras:
+python3 editor.py ~/Desktop/rodaje-lunes</pre>
+
+  <p>Sale todo en <code>editados/</code> más un <code>INFORME.md</code> con una tabla: duración antes y después, cuánto ha recortado cada vídeo, los avisos, y la transcripción de lo que dice. <strong>Los originales no se tocan nunca</strong> — solo se escribe en la carpeta de salida.</p>
+
+  <h2>Qué hace, en orden — y el fallo fácil</h2>
+  <ol>
+    <li><strong>Detecta los silencios</strong> por volumen.</li>
+    <li><strong>Corta</strong> en una sola pasada, dejando un margen alrededor del habla para no cortar en seco.</li>
+    <li><strong>Transcribe el vídeo YA CORTADO.</strong></li>
+    <li><strong>Quema los subtítulos</strong>, máximo cinco palabras en pantalla.</li>
+  </ol>
+  <p><strong>El orden del punto 3 no es un detalle.</strong> Si transcribes el original y cortas después, los tiempos del subtítulo dejan de cuadrar y salen desplazados todo el vídeo. Es el error que se comete siempre la primera vez.</p>
+  <p>Y los subtítulos van limitados <strong>por palabras y no por caracteres</strong>: limitando por caracteres salen bloques de cuatro líneas que en vertical tapan medio encuadre. Comprobado sacando un fotograma, no leyendo el archivo de subtítulos.</p>
+
+  <h2>Los tres números que puedes tocar</h2>
+  <pre>UMBRAL_DB    = -30     # a partir de qué volumen se considera silencio
+                       # más cerca de 0 = corta más agresivo
+MIN_SILENCIO = 0.6     # segundos de silencio mínimos para que corte
+MARGEN       = 0.15    # segundos que se conservan alrededor del habla</pre>
+
+  <h2>Lo que hay que vigilar la primera vez</h2>
+  <ul>
+    <li><strong>Con música de fondo no funciona el recorte.</strong> El volumen nunca baja del umbral, así que sale al 0 %. Está hecho para alguien hablando a cámara.</li>
+    <li><strong>Si el primer lote sale a 0 % de recorte, el umbral está mal</strong> para tu micro: sube <code>UMBRAL_DB</code> hacia 0 y baja <code>MIN_SILENCIO</code>.</li>
+    <li><strong>Si recorta más del 60 %, te avisa.</strong> Casi siempre es audio bajo, no un vídeo lleno de pausas. Escúchalo antes de fiarte.</li>
+  </ul>
+
+  <div class="solution">
+    <p><strong>Estado honesto:</strong> probado de punta a punta con un reel real —corta, transcribe, quema y deja informe, verificado sacando fotogramas—
+    <span class="accent">pero todavía no contra una sesión de rodaje entera.</span> Si lo pruebas con la tuya y el umbral no te cuadra, escríbeme y lo miramos: me sirve tanto como a ti.</p>
+  </div>
+
+  <h2>Descárgalo</h2>
+  <p>El script completo, comentado y en un solo archivo de 352 líneas. Guárdalo como <code>editor.py</code>, crea una carpeta <code>brutos/</code> al lado y ya está.</p>
+  <div class="cta-row">
+    <a class="btn solid" href="editor.py" download>Descargar editor.py</a>
+    <a class="btn" href="mailto:contacto@uriforcada.com?subject=Editor%20por%20lotes">Escríbeme si se atasca</a>
+  </div>
+
+  <div class="biz" style="margin-top:40px">
+    <h3>¿Y esto mismo, pero en tu negocio?</h3>
+    <p>Esto es una pieza suelta de un sistema más grande. Si quieres saber qué parte del trabajo que hoy sostienen personas puede sostenerla un sistema, contesta cuatro preguntas y te lo digo por escrito.</p>
+    <div class="cta-row">
+      <a class="btn solid" href="https://uriforcada.com/diagnostico/">El diagnóstico</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>Recurso de @uriforcada</span>
+    <a href="../../">← Ver todos los recursos</a>
+  </div>
+</footer>
+
+</body>
+</html>
