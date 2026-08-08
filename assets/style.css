@@ -260,3 +260,42 @@ pre code{background:none;padding:0;color:inherit}
   .recurso pre{font-size:11.5px}
   .biz{padding:34px 24px}
 }
+
+/* ── NAVEGACIÓN GLOBAL — 8-ago-2026 ───────────────────────────────────
+   La web nació como landing de scroll único: no había forma de ir a
+   ningún sitio. Al pasar a cuatro páginas, la barra es lo que las cose.
+
+   Decisiones:
+   · Sticky y de 1px de línea, no una barra que pesa. La retícula manda.
+   · La página activa se marca con el índigo, nunca con un fondo.
+   · En móvil no hay hamburguesa: cuatro enlaces caben en una fila que
+     hace scroll lateral. Un menú desplegable para cuatro cosas es
+     esconder la navegación a cambio de nada.
+   · El selector de idioma va al final y en mono, para que se lea como
+     dato y no compita con las secciones.                              */
+.nav{position:sticky;top:0;z-index:50;background:rgba(247,246,242,.92);
+  backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;gap:28px;height:58px}
+.nav a.brand{font-family:var(--f-display);font-weight:800;letter-spacing:-.02em;
+  font-size:17px;color:var(--ink);text-decoration:none;white-space:nowrap}
+.nav ul{display:flex;gap:24px;list-style:none;margin-left:auto;overflow-x:auto;
+  scrollbar-width:none;-ms-overflow-style:none}
+.nav ul::-webkit-scrollbar{display:none}
+.nav ul a{font-size:15px;color:var(--dim);text-decoration:none;white-space:nowrap;
+  padding:4px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+.nav ul a:hover{color:var(--ink)}
+.nav ul a[aria-current="page"]{color:var(--accent);border-bottom-color:var(--accent)}
+.nav .lang{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--dim);text-decoration:none;white-space:nowrap}
+.nav .lang:hover{color:var(--accent)}
+@media(max-width:640px){
+  .nav .wrap{gap:16px;height:52px}
+  .nav ul{gap:18px}
+  .nav ul a{font-size:14px}
+}
+
+/* Aviso de borrador — solo para las páginas cuyo copy aún no ha aprobado
+   Oriol. Se quita borrando el bloque, no tocando el contenido. */
+.borrador{background:#FFF4D6;border:1px solid #E8C766;border-radius:4px;
+  padding:14px 18px;margin:0 0 28px;font-size:15px;line-height:1.5}
+.borrador strong{display:block;margin-bottom:4px}

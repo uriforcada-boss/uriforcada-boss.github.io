@@ -1,18 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Solo lo que se quiere indexar. El diagnóstico va con noindex a propósito
      (es la puerta del embudo, no una página de captación por buscador) y los
-     portales de cliente están fuera por robots.txt. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+     portales de cliente están fuera por robots.txt.
+
+     8-ago-2026: entran las tres páginas nuevas, las legales y el catalán.
+     Cada URL declara sus alternativas con xhtml:link, que es lo que evita que
+     Google trate la versión catalana como contenido duplicado.
+     El BLOG va solo en castellano por decisión de Oriol: traducir cada
+     artículo duplicaría el mantenimiento para siempre. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
   <url>
     <loc>https://uriforcada.com/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://uriforcada.com/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://uriforcada.com/ca/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://uriforcada.com/"/>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
   <url>
-    <loc>https://uriforcada.com/privacidad.html</loc>
-    <lastmod>2026-08-06</lastmod>
+    <loc>https://uriforcada.com/ca/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://uriforcada.com/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://uriforcada.com/ca/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://uriforcada.com/"/>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://uriforcada.com/automatizaciones/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://uriforcada.com/automatizaciones/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://uriforcada.com/ca/automatitzacions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://uriforcada.com/automatizaciones/"/>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://uriforcada.com/ca/automatitzacions/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://uriforcada.com/automatizaciones/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://uriforcada.com/ca/automatitzacions/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://uriforcada.com/automatizaciones/"/>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://uriforcada.com/trabajar-conmigo/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://uriforcada.com/trabajar-conmigo/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://uriforcada.com/ca/treballar-amb-mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://uriforcada.com/trabajar-conmigo/"/>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://uriforcada.com/ca/treballar-amb-mi/</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://uriforcada.com/trabajar-conmigo/"/>
+    <xhtml:link rel="alternate" hreflang="ca" href="https://uriforcada.com/ca/treballar-amb-mi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://uriforcada.com/trabajar-conmigo/"/>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://uriforcada.com/blog/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://uriforcada.com/aviso-legal.html</loc>
+    <lastmod>2026-08-08</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.1</priority>
   </url>
+
+  <url>
+    <loc>https://uriforcada.com/privacidad.html</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+
+  <url>
+    <loc>https://uriforcada.com/cookies.html</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.1</priority>
+  </url>
+
 </urlset>

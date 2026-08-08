@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skills — recurso completo · Oriol Forcada</title>
+<title>Skills: recurso completo · Oriol Forcada</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,7 +16,7 @@
   <div class="wrap">
     <span class="label">✓ Desbloqueado</span>
     <h1 class="display">Skills</h1>
-    <p class="sub"><strong>Es la plantilla, no las skills</strong>: las tres partes que hacen que se dispare cuando toca y no cuando no — cuándo se activa, qué NO debe hacer, y de dónde saca sus datos.</p>
+    <p class="sub"><strong>Es la plantilla, no las skills</strong>: las tres partes que hacen que se dispare cuando toca y no cuando no, cuándo se activa, qué NO debe hacer, y de dónde saca sus datos.</p>
   </div>
 </header>
 
@@ -26,11 +26,11 @@
 
   <h2>Qué vas a usar</h2>
   <ul>
-    <li><strong>Claude Code</strong> — la versión de terminal. Las skills viven en una carpeta suya y las carga solas. <a href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code</a></li>
-    <li><strong>Un editor de texto</strong> — cualquiera. Una skill es un archivo <code>.md</code>, nada más.</li>
+    <li><strong>Claude Code</strong>, la versión de terminal. Las skills viven en una carpeta suya y las carga solas. <a href="https://claude.com/claude-code" target="_blank" rel="noopener">claude.com/claude-code</a></li>
+    <li><strong>Un editor de texto</strong>, cualquiera. Una skill es un archivo <code>.md</code>, nada más.</li>
   </ul>
 
-  <h2>Paso 1 — Crea el archivo en su sitio</h2>
+  <h2>Paso 1: Crea el archivo en su sitio</h2>
   <p>Las skills globales (disponibles en todos tus proyectos) van en una carpeta por skill, dentro de <code>~/.claude/skills/</code>:</p>
   <pre>~/.claude/skills/
   ventas/
@@ -39,15 +39,15 @@
     SKILL.md</pre>
   <p>El nombre de la carpeta es el comando: la carpeta <code>ventas</code> se invoca con <code>/ventas</code>.</p>
 
-  <h2>Paso 2 — Entiende las tres partes (aquí está el truco)</h2>
+  <h2>Paso 2: Entiende las tres partes (aquí está el truco)</h2>
   <p>Una skill que funciona no es un prompt largo. Son tres cosas separadas, y la que casi todo el mundo se salta es la tercera:</p>
   <ul>
-    <li><strong>Rol</strong> — quién es y qué NO le toca a él.</li>
-    <li><strong>Conocimiento</strong> — qué archivos debe leer siempre antes de responder. Aquí es donde la skill se conecta con tus notas reales y deja de dar respuestas genéricas.</li>
-    <li><strong>Límites</strong> — lo que tiene prohibido hacer. Sin esto, la skill improvisa justo el día que no quieres.</li>
+    <li><strong>Rol</strong>, quién es y qué NO le toca a él.</li>
+    <li><strong>Conocimiento</strong>, qué archivos debe leer siempre antes de responder. Aquí es donde la skill se conecta con tus notas reales y deja de dar respuestas genéricas.</li>
+    <li><strong>Límites</strong>, lo que tiene prohibido hacer. Sin esto, la skill improvisa justo el día que no quieres.</li>
   </ul>
 
-  <h2>Paso 3 — La plantilla</h2>
+  <h2>Paso 3: La plantilla</h2>
   <p>Pega esto en tu <code>SKILL.md</code> y sustituye lo de dentro de los corchetes:</p>
   <pre>---
 name: [nombre-en-minusculas]
@@ -58,10 +58,10 @@ description: [Qué hace y CUÁNDO usarla. Escribe aquí las frases
   skill correcta en ese caso.]
 ---
 
-# [Nombre] — [el rol en una línea]
+# [Nombre]: [el rol en una línea]
 
 Eres el departamento de [X]. Tu trabajo es [resultado concreto].
-No haces [lo que le toca a otra skill] — eso es /[otra-skill].
+No haces [lo que le toca a otra skill], eso es /[otra-skill].
 
 Petición: $ARGUMENTS
 
@@ -95,14 +95,14 @@ Si un archivo contradice a otro, gana [el que mande].
 ## Qué entregas
 
 [Formato exacto del output: dónde lo guardas, cómo se llama
-el archivo, y qué le dices por pantalla — corto.]</pre>
+el archivo, y qué le dices por pantalla, corto.]</pre>
 
   <h2>Por qué funciona</h2>
   <p>Porque separa el criterio del encargo. El criterio (rol, fuentes, límites) se escribe una vez y deja de degradarse; tú solo aportas el encargo del día. Es la diferencia entre explicarle a un becario cómo se hacen las cosas cada mañana y tener a alguien que ya sabe.</p>
   <p>Empieza por una sola: la tarea que más repites esta semana. Cuando esa funcione, clona el archivo y cambia el rol.</p>
 
   <p class="lista-nota" style="margin-top:32px;font-size:13px;opacity:.72;border-top:1px solid currentColor;border-top-color:rgba(128,128,128,.25);padding-top:16px">
-    Ya estás en la lista. <strong>No te va a llegar ningún email ahora</strong> — este recurso es
+    Ya estás en la lista. <strong>No te va a llegar ningún email ahora</strong>, este recurso es
     tuyo desde esta página, guárdala o cópiate lo de arriba. Te escribo solo cuando publique algo
     nuevo, y te puedes borrar con un clic desde cualquier correo.
   </p>
