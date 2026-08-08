@@ -77,6 +77,12 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+  <url>
+    <loc>https://uriforcada.com/blog/como-automatizar-tareas-repetitivas-con-ia/</loc>
+    <lastmod>2026-08-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <url>
     <loc>https://uriforcada.com/aviso-legal.html</loc>

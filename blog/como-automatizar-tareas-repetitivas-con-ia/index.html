@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://assets.mailerlite.com https://*.mailerlite.com; base-uri 'self'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo automatizar tareas repetitivas con IA (sin comprar otra herramienta)</title>
+<meta name="description" content="Qué tareas se automatizan de verdad, cuáles no, y en qué orden montarlo para no acabar pagando una herramienta que nadie abre. Con el criterio de las tres preguntas.">
+<link rel="canonical" href="https://uriforcada.com/blog/como-automatizar-tareas-repetitivas-con-ia/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://uriforcada.com/blog/como-automatizar-tareas-repetitivas-con-ia/">
+<meta property="og:site_name" content="Oriol Forcada">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Cómo automatizar tareas repetitivas con IA sin acabar con otra herramienta que nadie usa">
+<meta property="og:description" content="Qué tareas se automatizan de verdad, cuáles no, y en qué orden montarlo.">
+<meta property="og:image" content="https://uriforcada.com/assets/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=20260808b">
+
+<!-- Sin hreflang: el blog se queda en castellano (decisión de Oriol, 8-ago).
+     Traducir cada artículo duplicaría el mantenimiento para siempre. -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://uriforcada.com/blog/como-automatizar-tareas-repetitivas-con-ia/#articulo",
+  "headline": "Cómo automatizar tareas repetitivas con IA sin acabar con otra herramienta que nadie usa",
+  "description": "Qué tareas se automatizan de verdad, cuáles no, y en qué orden montarlo para no acabar pagando una herramienta que nadie abre.",
+  "url": "https://uriforcada.com/blog/como-automatizar-tareas-repetitivas-con-ia/",
+  "inLanguage": "es-ES",
+  "datePublished": "2026-08-08",
+  "dateModified": "2026-08-08",
+  "author": { "@id": "https://uriforcada.com/#oriol" },
+  "publisher": { "@id": "https://uriforcada.com/#oriol" },
+  "isPartOf": { "@id": "https://uriforcada.com/blog/#pagina" },
+  "mainEntityOfPage": "https://uriforcada.com/blog/como-automatizar-tareas-repetitivas-con-ia/"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué es automatizar tareas repetitivas con IA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Es dejar que un sistema haga el trabajo que hoy alguien repite a mano: recoger datos de un sitio y ponerlos en otro, clasificar, redactar lo de siempre, avisar antes de que venza algo. La IA se encarga de la parte que antes obligaba a que lo leyera una persona, como entender un correo o sacar los datos de una factura."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Por dónde se empieza a automatizar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Por la tarea que ocurre más de dos veces por semana, sale igual cada vez y no necesita que alguien decida nada. Si cumple las tres, se automatiza. Si falla la tercera, lo que se automatiza es el papeleo de alrededor, no la decisión."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué no conviene automatizar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lo que exige criterio: decidir un precio, valorar un caso raro, responder a un cliente enfadado, interpretar un cambio de normativa. También lo que pasa dos veces al año: montarlo cuesta más que hacerlo a mano."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Hace falta un programador para automatizar procesos con IA?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Para lo primero, no. Lo que hace falta antes que cualquier herramienta es tener el proceso escrito paso a paso. Un proceso que no sabes contar no se puede automatizar, y ahí es donde se atascan casi todos los intentos."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="/">Oriol Forcada</a>
+    <ul>
+      <li><a href="/automatizaciones/">Automatizaciones</a></li>
+      <li><a href="/trabajar-conmigo/">Trabajar conmigo</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a class="lang" href="/ca/" hreflang="ca">CAT</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="resource-hero post">
+  <div class="wrap">
+    <a class="label" href="/blog/">← Blog</a>
+    <h1 class="display">Cómo automatizar tareas repetitivas con IA sin acabar con otra herramienta que nadie usa</h1>
+    <p class="sub">Qué se automatiza de verdad, qué no, y en qué orden montarlo.</p>
+    <p class="post-meta"><time datetime="2026-08-08">8 de agosto de 2026</time> · 6 min de lectura</p>
+  </div>
+</header>
+
+<div class="wrap recurso">
+
+  <p class="lede"><strong>Automatizar una tarea repetitiva con IA es dejar que un sistema haga el trabajo que hoy alguien repite a mano</strong>: recoger datos de un sitio y ponerlos en otro, clasificar, redactar lo de siempre, avisar antes de que venza algo. Se empieza por lo que ocurre <strong>más de dos veces por semana</strong>, sale igual cada vez y no necesita que nadie decida nada. Lo que necesita criterio no se automatiza: se le quita el papeleo de alrededor para que la persona llegue a la decisión con todo delante.</p>
+
+  <p>Eso es la respuesta corta. Lo que viene ahora es el orden, que es donde se cae casi todo el mundo.</p>
+
+  <h2>Por qué acabas con una herramienta que nadie abre</h2>
+
+  <p>El intento típico empieza al revés. Primero se elige la herramienta, porque alguien la ha visto funcionando en un vídeo, y después se busca dónde encajarla. A los dos meses hay una suscripción activa, un tablero a medio montar y todo el mundo sigue haciendo el trabajo como antes.</p>
+
+  <p>No es un problema de herramienta. Es que <strong>un proceso que no sabes contar no se puede automatizar</strong>. Si nadie es capaz de explicar paso a paso cómo se hace hoy algo, ninguna IA lo va a adivinar. Lo que se automatiza no es la herramienta: es el proceso que ya existe, escrito.</p>
+
+  <p>Y ahí hay una trampa cómoda: mirar tutoriales da la sensación de estar avanzando. No avanzas. <strong>Avanzas el día que coges una sola tarea y la dejas corriendo sola.</strong></p>
+
+  <h2>Las tres preguntas que deciden si una tarea se automatiza</h2>
+
+  <p>No hace falta una auditoría para saber por dónde empezar. Coge la tarea que más te canse y hazle estas tres preguntas, en este orden:</p>
+
+  <ol>
+    <li><strong>¿Cuántas veces pasa?</strong> Si ocurre más de dos veces por semana, entra. Si pasa dos veces al año, montarlo cuesta más que hacerlo a mano, y esto también es una respuesta.</li>
+    <li><strong>¿Sale igual cada vez?</strong> Si el resultado es el mismo con datos distintos, entra. Si cada caso es un mundo, no.</li>
+    <li><strong>¿Alguien tiene que decidir algo?</strong> Si hay que valorar, elegir o interpretar, esa parte se queda con una persona. Lo que se automatiza es todo lo que hay <em>alrededor</em> de esa decisión.</li>
+  </ol>
+
+  <p>La tercera es la que más dinero ahorra, y casi nadie la hace. Casi ninguna tarea es «automatizable» o «no automatizable» entera: dentro hay una decisión de treinta segundos y cuarenta minutos de recados. <strong>Los recados son tuyos para quitar. La decisión no.</strong></p>
+
+  <div class="limites">
+    <div class="limite si">
+      <h4>Se automatiza</h4>
+      <ul>
+        <li>Recoger datos de correos, PDF o facturas y dejarlos ordenados</li>
+        <li>Clasificar lo que entra y mandarlo a quien toca</li>
+        <li>Redactar lo que siempre se redacta igual</li>
+        <li>Avisar antes de que venza un plazo, sin que nadie mire un calendario</li>
+        <li>Cruzar dos listas para ver qué falta</li>
+        <li>Dejar preparado el informe que alguien monta a mano cada lunes</li>
+      </ul>
+    </div>
+    <div class="limite no">
+      <h4>No se automatiza</h4>
+      <ul>
+        <li>Poner un precio</li>
+        <li>Responder a un cliente enfadado</li>
+        <li>Decidir qué se hace con el caso raro</li>
+        <li>Interpretar un cambio de normativa</li>
+        <li>Lo que pasa dos veces al año</li>
+        <li>Lo que nadie sabe explicar cómo se hace hoy</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>El orden que funciona</h2>
+
+  <p>Cuatro pasos, y el primero no toca un ordenador.</p>
+
+  <ol>
+    <li><strong>Escribe la tarea como se la contarías a alguien que entra mañana.</strong> Sin tecnicismos y sin saltarte lo obvio. Si al escribirla aparecen tres «depende», acabas de encontrar las decisiones que se quedan con una persona.</li>
+    <li><strong>Corta el trozo aburrido.</strong> De todo eso, quédate con la parte que no tiene ningún «depende». Ese trozo es el primero, y suele ser más pequeño de lo que esperabas.</li>
+    <li><strong>Móntalo pequeño y déjalo correr en paralelo una semana.</strong> El sistema hace su versión, la persona sigue haciendo la suya, y al final de la semana se comparan. Sin esto no sabes si funciona: sabes que no ha dado error, que no es lo mismo.</li>
+    <li><strong>Solo entonces conéctalo</strong> a lo que ya usas. Nunca antes, porque conectar es lo caro de deshacer.</li>
+  </ol>
+
+  <p>Este orden es lento en el papel y rapidísimo en la práctica, porque evita lo único que de verdad cuesta dinero: <strong>montar tres meses de algo que después nadie usa</strong>.</p>
+
+  <h2>Lo que descubres cuando escribes el proceso</h2>
+
+  <p>Casi siempre pasa lo mismo. Al escribir una tarea paso a paso aparece que se hace de dos maneras distintas según quién la haga, que hay un paso que ya no sirve para nada y que nadie sabe por qué se sigue haciendo, y que la parte que más molesta no es la más larga.</p>
+
+  <p>Eso ya vale por sí solo, aunque no automatices nada después. <strong>La mitad del tiempo que se recupera no viene de la IA: viene de mirar el proceso con criterio por primera vez.</strong></p>
+
+  <h2>El error de fondo no es técnico</h2>
+
+  <p>Cuando el trabajo repetido crece, la reacción por defecto es meter a alguien más. Es la salida conocida, y funciona: también multiplica la coordinación, el coste fijo y las cosas que solo sabe hacer una persona concreta.</p>
+
+  <p>La otra opción es que <strong>el trabajo que hoy sostienen personas lo sostenga un sistema montado sobre tu propia operación</strong>. No una herramienta comprada, que no sabe cómo trabajas, ni un técnico suelto, que sabe montarlo pero no sabe dónde meterlo. Montado sobre lo que ya haces, con las decisiones todavía en manos de quien las toma hoy.</p>
+
+  <p>Aquí no hay atajo honesto: lleva trabajo y hay que meterse dentro del negocio. Pero es la diferencia entre crecer contratando y crecer sin que cada cliente nuevo pese lo mismo que el anterior.</p>
+
+  <h2>Por dónde empezar esta semana</h2>
+
+  <p>Coge la tarea que más te canse. Escríbela como se la contarías a alguien nuevo. Márcale los «depende». Lo que quede sin marcar es tu primera automatización, y probablemente la puedas tener funcionando antes del viernes.</p>
+
+  <p>Yo monté el sistema con el que trabajo hoy en tres semanas. Si me lo preguntas tres semanas antes, te digo que no sé hacerlo. <strong>Empiezas para aprender, no al revés.</strong></p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <p><strong>¿Hace falta un programador?</strong><br>
+  Para lo primero, no. Lo que hace falta antes que cualquier herramienta es el proceso escrito. Cuando lo tengas, ya se verá si hace falta alguien.</p>
+
+  <p><strong>¿Y si me equivoco de tarea?</strong><br>
+  Por eso el paso 3 es dejarlo corriendo en paralelo una semana. Equivocarte ahí cuesta una semana. Equivocarte después de conectarlo todo cuesta bastante más.</p>
+
+  <p><strong>¿Esto sustituye a alguien de mi equipo?</strong><br>
+  Lo que sustituye son los recados, no las decisiones. La persona sigue decidiendo, pero llega a la decisión con todo delante en vez de después de cuarenta minutos de recopilar.</p>
+
+  <p><strong>¿Cuánto tarda en notarse?</strong><br>
+  La primera tarea, días. Que el negocio entero deje de depender de meter gente, meses. Cualquiera que te prometa lo segundo en dos semanas te está vendiendo la primera.</p>
+
+  <div class="biz">
+    <h3>Si quieres que mire tu caso</h3>
+    <p>Cuéntame qué sostiene tu negocio cada mes y te digo qué parte puede sostenerla un sistema. Sin presentación y sin compromiso.</p>
+    <div class="cta-row">
+      <a class="btn solid" href="/trabajar-conmigo/">Trabajar conmigo</a>
+      <a class="btn" href="/automatizaciones/">Ver qué se puede automatizar</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Oriol Forcada · <time datetime="2026-08-08">Publicado el 8 de agosto de 2026</time></span>
+    <span class="foot-links">
+      <a href="/blog/">Blog</a>
+      <a href="/aviso-legal.html">Aviso legal</a>
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a>
+    </span>
+  </div>
+</footer>
+
+</body>
+</html>
