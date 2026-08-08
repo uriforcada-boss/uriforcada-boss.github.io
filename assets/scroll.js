@@ -21,7 +21,11 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var lenis = new Lenis({
-    duration: 0.9,          // más alto es más "flotante". 0.9 se nota sin marear
+    // Más alto es más flotante y más lento. Oriol lo probó a 0.9 y pidió
+    // "un pelín de nada más rápido" porque la espera le estresaba, así que
+    // baja a 0.75: se sigue notando la inercia pero llega antes. Si algún
+    // día se quiere más seco, 0.6; más flotante, 1.0. Es este número y ya.
+    duration: 0.75,
     smoothWheel: true,
     // El móvil se queda con su scroll nativo: el de iOS y Android ya va
     // bien, y suavizarlo por encima es lo que hace que una web se sienta
