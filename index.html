@@ -2,6 +2,11 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<!-- Sin CSP a propósito: esta página lleva JavaScript en línea y una
+     política que lo bloquee la rompe entera. Sacarlo a un fichero aparte
+     arreglaría las dos cosas, pero en `catalogo-rodilla` son 560 KB de app
+     embebida y el riesgo de tocarla supera al de dejarla. Las 25 páginas sin
+     script en línea SÍ llevan CSP. Revisar si algún día se extrae ese JS. -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Oriol Forcada · Deja de preocuparte. Ocúpate.</title>
 <meta name="description" content="Construyo sistemas de IA que hacen el trabajo que te come el día, y los enseño funcionando. Objetivo público: febrero de 2027.">
@@ -94,6 +99,7 @@
     },
     {
       "@type": "WebSite",
+      "dateModified": "2026-08-08",
       "@id": "https://uriforcada.com/#web",
       "url": "https://uriforcada.com/",
       "name": "Oriol Forcada",
@@ -378,7 +384,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Oriol Forcada</span>
+    <span>© 2026 Oriol Forcada · <time datetime="2026-08-08">Actualizado el 8 de agosto de 2026</time></span>
     <span class="foot-links">
       <a href="/blog/">Blog</a>
       <a href="aviso-legal.html">Aviso legal</a>

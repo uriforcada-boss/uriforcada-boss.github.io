@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://assets.mailerlite.com https://*.mailerlite.com; base-uri 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Automatizaciones · Oriol Forcada</title>
 <meta name="description" content="Qué trabajo se puede quitar de encima una empresa pequeña con sistemas de IA, y cómo se monta. Enseñado funcionando, no contado.">
@@ -22,6 +23,27 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/style.css?v=20260808">
+
+<!-- Fecha en formato máquina. Sin dateModified, un modelo trata la
+     página como vieja y prefiere citar a otro que sí la declara. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": "https://uriforcada.com/automatizaciones/#pagina",
+  "url": "https://uriforcada.com/automatizaciones/",
+  "name": "Automatizaciones",
+  "inLanguage": "es-ES",
+  "isPartOf": {
+    "@id": "https://uriforcada.com/#web"
+  },
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-08",
+  "publisher": {
+    "@id": "https://uriforcada.com/#oriol"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -46,9 +68,20 @@
 
 <div class="wrap recurso">
 
+  <!-- Párrafos escritos para que cada uno se entienda SOLO. Es lo que la
+       auditoría de GEO señaló bien: un modelo cita el pasaje que responde
+       entero, no el que obliga a juntar tres párrafos para tener sentido. -->
+
+  <h2>Qué es automatizar el trabajo repetitivo</h2>
+  <p><strong>Automatizar el trabajo repetitivo es hacer que las tareas que se ejecutan igual cada vez las haga un sistema, sin que nadie se acuerde de lanzarlas.</strong> No es sustituir a nadie ni comprar una herramienta más: es quitar de la semana lo que no requiere criterio, para que las personas se queden con lo que sí. En una empresa pequeña eso suele ser pedir documentación, pasar datos de un sitio a otro, avisar de vencimientos y contestar lo mismo con otro nombre.</p>
+
   <h2>Contra qué va esto</h2>
   <p>Hay una parte del día que no es tu trabajo: pedir la misma documentación por tercera vez, pasar datos de un sitio a otro, acordarte de un vencimiento, escribir el mismo correo con otro nombre. No es difícil. Es que <strong>se repite</strong>, y por eso te come.</p>
   <p>Un sistema bien montado hace eso solo, a su hora, sin que nadie se acuerde de él. Tú te quedas con la parte que sí requiere criterio.</p>
+
+  <h2>Cómo se sabe qué merece la pena automatizar</h2>
+  <p><strong>Una tarea merece automatizarse cuando se repite, se hace siempre igual y no depende de una decisión.</strong> Si cada vez se resuelve distinto, no es repetición: es criterio, y ahí no se toca. La forma rápida de verlo es mirar la semana pasada y preguntarse qué hiciste más de tres veces exactamente igual. Eso es lo que hay que automatizar primero, y casi nunca es lo que uno tenía en la cabeza.</p>
+  <p>El error más caro que veo es al revés: automatizar un proceso que todavía no está claro. Si el proceso es un lío, un sistema te da el mismo lío pero más rápido y con menos gente entendiéndolo. <strong>Primero se ordena, después se automatiza.</strong></p>
 
   <h2>Por dónde se suele empezar</h2>
   <div class="limites">
@@ -107,9 +140,25 @@
       </div>
     </div>
 
-    <p class="inst-foot">Enseñar no es entregar. Se ve funcionando; el montaje fino te lo haces tú.</p>
+    <!-- El contexto que la auditoría de GEO echaba en falta, y con razón: los
+         números sueltos no se citan porque no se pueden situar. Lo que NO se
+         hace es lo que proponía el auditor, añadirles una métrica de ahorro
+         inventada. Se explica qué son, no se les cuelga una cifra falsa. -->
+    <p class="inst-foot"><strong>Qué son esos 43 agentes, para que el número signifique algo:</strong> cada uno es un programa pequeño con una sola tarea y una hora fija. Uno busca empresas a las que tenga sentido escribir. Otro redacta los correos y los deja en borradores, sin enviarlos. Otro mira quién ha contestado. Otro avisa si alguno de los demás se ha roto o se ha quedado callado. Están repartidos en cinco departamentos, cada uno con un responsable que reúne lo que dicen los suyos en un solo aviso, para no recibir cuarenta y tres mensajes cada mañana.</p>
+    <p class="inst-foot">Ese es exactamente el tipo de sistema que instalo en otras empresas, con sus tareas y no con las mías. Enseñar no es entregar: se ve funcionando, y el montaje fino te lo haces tú.</p>
   </div>
 </section>
+
+<div class="wrap recurso">
+  <h2>Qué hace falta por tu parte</h2>
+  <p><strong>Menos de lo que la gente espera, pero no cero.</strong> No hace falta que nadie de tu equipo sepa programar ni aprenda una herramienta nueva: si el sistema exige que alguien se acuerde de usarlo, está mal montado y es una tarea más. Lo que sí hace falta es que alguien de dentro pueda contarme cómo se hace hoy el trabajo de verdad, no cómo dice el manual que se hace. Suele ser la persona que lleva años haciéndolo, y es la que mejor sabe dónde está el tiempo perdido.</p>
+
+  <h2>Cuánto tarda en notarse</h2>
+  <p>La primera pieza suele estar funcionando en cuestión de días, porque se monta por trozos y cada trozo se ve funcionando antes de pasar al siguiente. Lo que tarda más no es construir, es <strong>decidir bien qué se automatiza</strong>. Por eso el diagnóstico va primero y es gratis: si de esas cuatro preguntas sale que no hay nada que merezca la pena, te lo digo y te ahorras el resto.</p>
+
+  <h2>Lo que no automatizo</h2>
+  <p>No toco nada que dependa de criterio: decidir un precio, valorar a un cliente, resolver una excepción. Tampoco monto sistemas que sustituyan a personas del equipo, porque lo que se automatiza es trabajo repetido, no gente. Y no automatizo procesos que en tu empresa todavía no están claros, por lo dicho arriba: sale un lío más rápido.</p>
+</div>
 
 <div class="wrap recurso">
   <div class="cta-row" style="margin-top:8px">
@@ -120,7 +169,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Oriol Forcada</span>
+    <span>© 2026 Oriol Forcada · <time datetime="2026-08-08">Actualizado el 8 de agosto de 2026</time></span>
     <span class="foot-links">
       <a href="/blog/">Blog</a>
       <a href="/aviso-legal.html">Aviso legal</a>

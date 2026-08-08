@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://assets.mailerlite.com https://*.mailerlite.com; base-uri 'self'; object-src 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Blog · Oriol Forcada</title>
 <meta name="description" content="Cómo automatizar el trabajo que se repite, explicado para quien no es técnico. Sin humo y con las fuentes a la vista.">
@@ -23,6 +24,27 @@
 <!-- El blog NO lleva hreflang: se queda solo en castellano por decisión de
      Oriol (8-ago). El catalán cubre la home y las tres páginas principales;
      traducir cada artículo duplicaría el mantenimiento para siempre. -->
+
+<!-- Fecha en formato máquina. Sin dateModified, un modelo trata la
+     página como vieja y prefiere citar a otro que sí la declara. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "@id": "https://uriforcada.com/blog/#pagina",
+  "url": "https://uriforcada.com/blog/",
+  "name": "Blog",
+  "inLanguage": "es-ES",
+  "isPartOf": {
+    "@id": "https://uriforcada.com/#web"
+  },
+  "datePublished": "2026-08-06",
+  "dateModified": "2026-08-08",
+  "publisher": {
+    "@id": "https://uriforcada.com/#oriol"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -87,7 +109,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Oriol Forcada</span>
+    <span>© 2026 Oriol Forcada · <time datetime="2026-08-08">Actualizado el 8 de agosto de 2026</time></span>
     <span class="foot-links">
       <a href="/blog/">Blog</a>
       <a href="/aviso-legal.html">Aviso legal</a>
