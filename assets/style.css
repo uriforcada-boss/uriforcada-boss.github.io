@@ -311,6 +311,159 @@ pre code{background:none;padding:0;color:inherit}
 /* La entradilla es lo que un modelo cita: se lee antes que el resto. */
 .recurso .lede{font-size:19px;line-height:1.6;color:var(--ink);max-width:60ch}
 
+/* ══════════════════════════════════════════════════════════════════════
+   MOVIMIENTO · CAPA 0 — 8-ago-2026. CSS puro, 0 kb, ninguna librería.
+   ══════════════════════════════════════════════════════════════════════
+   El sistema por capas está en el vault («Scroll horizontal con GSAP +
+   Lenis», verificado el 8-ago). Esta es la capa 0, que es la que hace el
+   80% del trabajo: transiciones, entrada del hero, progresión ligada al
+   scroll y transición entre páginas. Lenis (capa 1, ~4 kb) y GSAP (capa 2,
+   ~70 kb) se quedan fuera: hoy nada de esta web los justifica.
+
+   Regla que gobierna todo el bloque: si el visitante ha pedido menos
+   movimiento, no hay movimiento. Está al final, y no se toca.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Lenis (capa 1). Su CSS oficial, copiado de lenis@1.3.8/dist/lenis.css:
+   sin esto el contenedor no puede crecer y el suavizado no engancha. */
+html.lenis,html.lenis body{height:auto}
+.lenis:not(.lenis-autoToggle).lenis-stopped{overflow:clip}
+.lenis.lenis-smooth [data-lenis-prevent]{overscroll-behavior:contain}
+.lenis.lenis-smooth iframe{pointer-events:none}
+
+/* El scroll suave del navegador queda para cuando Lenis no está (móvil, o
+   `prefers-reduced-motion`). Con Lenis activo lo lleva él, y las dos cosas
+   a la vez pelean por el mismo movimiento. */
+html:not(.lenis){scroll-behavior:smooth}
+/* Los anclajes (#recursos) caían justo debajo de la barra y el titular de
+   la sección quedaba tapado. */
+:target,section[id]{scroll-margin-top:88px}
+
+/* ── Transición entre páginas. Navegar deja de ser un parpadeo en blanco.
+      Donde el navegador no lo soporte, no pasa nada: no se ejecuta. ── */
+@view-transition{navigation:auto}
+
+/* ── El hero entra solo al cargar, escalonado. Sin JS y sin observador:
+      es lo primero que se ve, así que no puede depender de nada. ── */
+@keyframes entra{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes linea{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+.hero .label{animation:entra .5s cubic-bezier(.2,.7,.3,1) both}
+.hero .brandbar{transform-origin:left;animation:linea .8s .1s cubic-bezier(.2,.8,.2,1) both}
+.hero h1{animation:entra .6s .16s cubic-bezier(.2,.7,.3,1) both}
+.hero p{animation:entra .6s .26s cubic-bezier(.2,.7,.3,1) both}
+.hero-ctas{animation:entra .6s .36s cubic-bezier(.2,.7,.3,1) both}
+
+/* ── Progresión ligada al scroll, nativa. `animation-timeline: view()` ata
+      la animación a la posición del elemento en pantalla, sin observador y
+      sin un solo byte de JS. Va dentro de @supports porque aún no está en
+      todos los navegadores; donde no está, el elemento se queda como hoy. ── */
+@supports (animation-timeline: view()){
+  /* La línea de cada cabecera se dibuja sola al llegar a ella.
+     Se anima un pseudo-elemento y NO la caja: escalar la cabecera entera
+     deformaría el texto del H2. */
+  .section-head{position:relative}
+  .section-head::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;
+    background:var(--accent);transform-origin:left;
+    animation:linea linear both;
+    animation-timeline:view();
+    animation-range:entry 20% cover 30%;
+  }
+}
+
+/* ── Micro-interacciones. Nada gira, nada rebota: es la regla del sitio. ── */
+.panel{transition:background .2s ease}
+.panel:hover{background:rgba(255,255,255,.04)}
+.limite li{transition:padding-left .16s cubic-bezier(.2,.7,.3,1)}
+.limite li:hover{padding-left:6px}
+.nav ul a{transition:color .16s ease}
+.res{transition:opacity .2s ease}
+
+/* ── Y el candado. Si el sistema operativo pide menos movimiento, se apaga
+      TODO lo de arriba, incluida la entrada del hero. ── */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero .label,.hero .brandbar,.hero h1,.hero p,.hero-ctas{animation:none}
+  .section-head::after{animation:none;display:none}
+  .panel,.limite li,.nav ul a,.res{transition:none}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   RETÍCULA ANCHA — 8-ago-2026. Dirección 2 de la galería, elegida por Oriol.
+   ══════════════════════════════════════════════════════════════════════
+   El diagnóstico: hasta hoy el ancho del contenedor y la medida de lectura
+   eran el MISMO número (860), así que texto, tarjetas y tablas medían todos
+   igual. Por eso la página se leía como un PDF y a 1440 px sobraban 290 px
+   muertos a cada lado. Se separan las dos cosas:
+
+     · el contenedor sube a 1320
+     · el texto corrido se queda en ~64ch, que es lo que se lee bien
+     · las rejillas usan el ancho entero
+     · los bloques de color van a sangre
+
+   Tres anchos conviviendo, que es lo que no había.
+
+   ⚠️ Va SOLO en la home (`body.ancho`). Las demás páginas siguen a 860 a
+   propósito: en una página de texto largo, ensanchar la caja empeora la
+   lectura. Cuando se decida extenderlo, se decide página a página.
+   ══════════════════════════════════════════════════════════════════════ */
+
+body.ancho{--max:1320px}
+
+/* LA regla de esta dirección: la caja crece, la línea de texto no. */
+body.ancho .hero p,
+body.ancho .res>p,
+body.ancho .fine,
+body.ancho .f-txt,
+body.ancho .inst-foot{max-width:64ch}
+
+body.ancho .hero{padding:112px 0 64px}
+body.ancho .hero h1{max-width:15ch}
+
+body.ancho .section-head{padding-bottom:20px;margin-bottom:40px}
+body.ancho .section-head h2{font-size:clamp(28px,4vw,46px)}
+
+body.ancho .grid3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:880px){body.ancho .grid3{grid-template-columns:1fr}}
+body.ancho .pain{padding:32px 30px 36px}
+body.ancho .pain h3{font-size:20px}
+body.ancho .pain p{font-size:15px}
+
+/* Cuatro fichas en columna dentro de una caja estrecha se leían como un
+   listado. En dos columnas vuelven a ser fichas. */
+body.ancho #recursos .wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:56px;align-items:start}
+body.ancho #recursos .section-head{grid-column:1/-1}
+body.ancho .res{border-bottom:1px solid var(--line);padding-bottom:32px;margin-bottom:32px}
+body.ancho .res>p{max-width:none}
+@media(max-width:900px){body.ancho #recursos .wrap{display:block}}
+
+body.ancho .limite{padding:30px 30px 34px}
+body.ancho .limite li{font-size:15.5px;padding:9px 0}
+
+body.ancho .solution{
+  padding-top:72px;padding-bottom:72px;
+  padding-left:max(32px,calc(50vw - var(--max)/2 + 32px));
+  padding-right:max(32px,calc(50vw - var(--max)/2 + 32px));
+}
+body.ancho .solution p{max-width:26ch;font-size:clamp(26px,4.4vw,48px)}
+body.ancho .solution .accent{max-width:56ch}
+
+body.ancho .panel{padding:28px 26px}
+
+/* La fecha estaba apilada y se leía como un párrafo más. A dos columnas,
+   el número grande vuelve a ser el protagonista. */
+body.ancho .fecha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  column-gap:64px;align-items:start}
+body.ancho .fecha .f-k{grid-column:1/-1;margin-bottom:20px}
+body.ancho .fecha .f-big{grid-column:1;grid-row:2/span 2}
+body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
+@media(max-width:900px){body.ancho .fecha{display:block}}
+
+/* Por debajo de 1100 vuelve exactamente a la página de antes. Móvil intacto. */
+@media(max-width:1100px){body.ancho{--max:860px}}
+
 /* Tarjeta de artículo en el índice del blog. NO se reutiliza `.biz`: esa caja
    es oscura y su interior está pensado para botones, así que un titular
    enlazado dentro salía en azul acento sobre fondo tinta, ilegible. */

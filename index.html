@@ -50,7 +50,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=20260808b">
+<link rel="stylesheet" href="assets/style.css?v=20260808d">
 
 <!-- Quién es, en formato máquina. Es lo que hace que una IA pueda contestar
      «¿quién monta sistemas de IA para empresas?» con un nombre y no con una
@@ -110,7 +110,10 @@
 }
 </script>
 </head>
-<body>
+<!-- `ancho`: la retícula de 1320 elegida el 8-ago (dirección 2 de la galería).
+     Solo la home la lleva; el resto sigue a 860 a propósito. Detalle y porqués
+     en el bloque «RETÍCULA ANCHA» de assets/style.css. -->
+<body class="ancho">
 
 <nav class="nav">
   <div class="wrap">
@@ -420,5 +423,8 @@
 
 <script src="assets/subscribe.js"></script>
 
+
+<script src="/assets/lenis.min.js" defer></script>
+<script src="/assets/scroll.js" defer></script>
 </body>
 </html>
