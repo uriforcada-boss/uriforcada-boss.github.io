@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retícula de la home · 3 direcciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#EFEDE7;color:#0D1520;font-family:"Inter",sans-serif;font-size:15px;padding:28px 24px 60px}
+h1{font-family:"Archivo",sans-serif;font-weight:900;font-size:30px;letter-spacing:-.035em;margin-bottom:6px}
+.intro{color:#5A6473;max-width:80ch;margin-bottom:22px;line-height:1.55}
+.intro strong{color:#0D1520}
+.mono{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#5A6473}
+
+.barra{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:22px;
+  padding:14px 16px;background:#F7F6F2;border:1px solid #D8D5CC;border-radius:3px}
+.barra span.mono{margin-right:6px}
+button{font-family:"Inter",sans-serif;font-size:13px;font-weight:600;cursor:pointer;
+  padding:8px 14px;border:1px solid #0D1520;background:none;color:#0D1520;border-radius:2px}
+button:hover{background:#0D1520;color:#F7F6F2}
+button.on{background:#1E38DE;border-color:#1E38DE;color:#fff}
+
+.fila{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;align-items:start}
+@media(max-width:1500px){.fila{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.fila{grid-template-columns:1fr}}
+
+.col h2{font-family:"Archivo",sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;margin-bottom:3px}
+.col .num{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;color:#1E38DE;margin-bottom:7px;display:block}
+.col .desc{color:#5A6473;font-size:13.5px;line-height:1.5;margin-bottom:6px;min-height:76px}
+.col .coste{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:#5A6473;margin-bottom:12px;display:block}
+.col.actual .num{color:#5A6473}
+
+.shot{position:relative;width:100%;aspect-ratio:1440/2600;overflow:hidden;
+  border:1px solid #D8D5CC;background:#F7F6F2;border-radius:3px}
+.shot iframe{width:1440px;height:2600px;border:0;transform-origin:0 0;position:absolute;top:0;left:0}
+.abrir{display:inline-block;margin-top:10px;font-size:13px;font-weight:600;color:#1E38DE;text-decoration:none}
+.abrir:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+
+<h1>La retícula de la home · 3 direcciones</h1>
+<p class="intro">
+  Las tres atacan lo mismo: hoy solo hay <strong>dos anchos</strong> en toda la página (columna de 860 o pantalla entera),
+  y por eso a 1440 px sobran 290 px muertos a cada lado. Falta un <strong>tercer registro</strong> que use el lateral para algo.
+  Ninguna toca la tipografía del hero ni los colores. Las tres son CSS puro, sin librerías, y por debajo de ~1050 px
+  las tres se pliegan a la página de hoy: <strong>en móvil no cambia nada</strong>.
+  Míralas y dime el número.
+</p>
+
+<div class="barra">
+  <span class="mono">Ver la misma zona en las cuatro</span>
+  <button data-y="0" class="on">Hero</button>
+  <button data-y="900">El enemigo</button>
+  <button data-y="1750">La prueba</button>
+  <button data-y="2500">La fecha</button>
+  <button data-y="3100">Recursos</button>
+  <button data-y="4300">Los límites</button>
+</div>
+
+<div class="fila">
+
+  <div class="col actual">
+    <span class="num">HOY</span>
+    <h2>Como está ahora</h2>
+    <p class="desc">Un solo ancho para todo: texto, tarjetas y tablas miden lo mismo. Es lo que hace que se lea como un PDF y que sobren los laterales.</p>
+    <span class="coste">Referencia</span>
+    <div class="shot"><iframe src="/index.html" scrolling="no"></iframe></div>
+    <a class="abrir" href="/index.html" target="_blank">Abrir a tamaño real →</a>
+  </div>
+
+  <div class="col">
+    <span class="num">DIRECCIÓN 1</span>
+    <h2>Margen anotado</h2>
+    <p class="desc">La columna de lectura no se toca. Se añade un margen izquierdo donde viven los rótulos, la numeración y las etiquetas, y el título de sección se queda pegado mientras la recorres. Registro de libro técnico.</p>
+    <span class="coste">Coste bajo · riesgo bajo</span>
+    <div class="shot"><iframe src="/_galeria/reticula/a.html" scrolling="no"></iframe></div>
+    <a class="abrir" href="/_galeria/reticula/a.html" target="_blank">Abrir a tamaño real →</a>
+  </div>
+
+  <div class="col">
+    <span class="num">DIRECCIÓN 2</span>
+    <h2>Registro ancho</h2>
+    <p class="desc">Deja de confundir el ancho de la caja con la medida de lectura. El texto sigue a 64 caracteres, pero las rejillas se abren a 1320: los recursos pasan a dos columnas y la fecha se parte en dos. Registro de revista.</p>
+    <span class="coste">Coste medio · el que más rompe el PDF</span>
+    <div class="shot"><iframe src="/_galeria/reticula/b.html" scrolling="no"></iframe></div>
+    <a class="abrir" href="/_galeria/reticula/b.html" target="_blank">Abrir a tamaño real →</a>
+  </div>
+
+  <div class="col">
+    <span class="num">DIRECCIÓN 3</span>
+    <h2>Carril fijo</h2>
+    <p class="desc">La página se parte en dos carriles permanentes: 300 px de índice a la izquierda, contenido a la derecha. Siempre sabes en qué sección estás. El bloque azul es el único que cruza los dos, y por eso golpea. Registro de producto.</p>
+    <span class="coste">Coste medio · la más agresiva</span>
+    <div class="shot"><iframe src="/_galeria/reticula/c.html" scrolling="no"></iframe></div>
+    <a class="abrir" href="/_galeria/reticula/c.html" target="_blank">Abrir a tamaño real →</a>
+  </div>
+
+</div>
+
+<script>
+// Los bloques `.reveal` entran con una animación que dispara un observador
+// al hacer scroll. Dentro de una miniatura eso no ocurre nunca, así que
+// media página se vería en blanco y no se podría comparar nada.
+function revelar(f){
+  try{
+    var d=f.contentDocument, s=d.createElement('style');
+    s.textContent='.reveal{opacity:1 !important;transform:none !important}';
+    d.head.appendChild(s);
+  }catch(e){}
+}
+document.querySelectorAll('.shot iframe').forEach(function(f){
+  f.addEventListener('load',function(){revelar(f)});
+  revelar(f);
+});
+
+// Escala cada captura para que 1440 px de web entren en la columna.
+function escalar(){
+  document.querySelectorAll('.shot').forEach(function(s){
+    var f=s.querySelector('iframe');
+    f.style.transform='scale('+(s.clientWidth/1440)+')';
+  });
+}
+window.addEventListener('resize',escalar);
+window.addEventListener('load',escalar);
+escalar();
+
+// Mueve las cuatro a la misma altura, para comparar la misma zona.
+document.querySelectorAll('.barra button').forEach(function(b){
+  b.addEventListener('click',function(){
+    document.querySelectorAll('.barra button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    var y=parseInt(b.dataset.y,10);
+    document.querySelectorAll('.shot iframe').forEach(function(f){
+      try{ f.contentWindow.scrollTo(0,y); }catch(e){}
+    });
+  });
+});
+</script>
+
+</body>
+</html>
