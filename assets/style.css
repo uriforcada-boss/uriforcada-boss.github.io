@@ -92,6 +92,16 @@ section{padding:56px 0}
 .gate-form input[type=email]:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-pale)}
 .gate-form .btn{cursor:pointer;display:flex;align-items:center;justify-content:center}
 .fine{margin-top:14px;font-family:var(--f-mono);font-size:11px;letter-spacing:.06em;color:var(--dim)}
+/* Aviso de datos junto al campo, no solo en el pie (art. 13 RGPD): quien deja
+   el email tiene que poder leerlo sin buscarlo. En mono no se lee, así que
+   rompe la familia de `.fine` a propósito. */
+/* `.res > p` vale 15px y gana por especificidad a una clase suelta, así que el
+   selector la iguala a propósito. Sin esto el aviso salía del tamaño del cuerpo
+   y perdía la jerarquía: es secundario, pero legible. */
+.gate-legal,.res > p.gate-legal{font-family:var(--f-body);font-size:12.5px;letter-spacing:0;
+  line-height:1.55;max-width:62ch;margin-top:8px;color:var(--dim)}
+.gate-legal a{color:var(--dim);text-decoration:underline;text-underline-offset:2px}
+.gate-legal a:hover{color:var(--ink)}
 .form-msg{margin-top:14px;background:var(--ink);color:#E7E9EC;border:0;box-shadow:none;border-radius:2px;
   padding:13px 16px;font-size:14px;line-height:1.5}
 .form-msg a{color:var(--accent-pale)}

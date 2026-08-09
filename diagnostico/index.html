@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/style.css?v=20260809a">
 </head>
 <body>
 
@@ -90,6 +90,12 @@
     <div class="dg-envio">
       <button class="btn solid" type="submit">Enviar el diagnóstico</button>
       <p class="fine">Lo leo yo, no un asistente · te contesto por escrito · no te apunto a ninguna lista</p>
+      <!-- Información en el punto de recogida (art. 13 RGPD). Esta página pide
+           nombre, empresa, email y cuatro respuestas sobre el negocio: es la que
+           más datos recoge de todo el sitio, y hasta el 9-ago no enlazaba la
+           política por ningún lado. El aviso va aquí, junto al botón, no solo en
+           el pie: el que rellena el formulario tiene que verlo sin buscarlo. -->
+      <p class="fine dg-legal">Tus respuestas las trata Oriol Forcada para contestarte, y nada más. No se ceden a nadie ni se usan para enviarte publicidad. Puedes pedir acceso o borrado escribiendo a <a href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a>. Más detalle en la <a href="/privacidad.html">política de privacidad</a>.</p>
     </div>
 
   </form>
@@ -99,12 +105,25 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Oriol Forcada</span>
-    <a href="../">uriforcada.com</a>
+    <span class="foot-links">
+      <a href="../">uriforcada.com</a>
+      <a href="/aviso-legal.html">Aviso legal</a>
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a>
+    </span>
   </div>
 </footer>
 
 <style>
 .dg-form{margin-bottom:80px}
+/* El aviso de privacidad no va en monoespaciada: son tres líneas de texto
+   corrido y en mono se lee como una advertencia de sistema. Tiene que poder
+   leerse, que es justo lo que el art. 13 pide. */
+.dg-legal{font-family:var(--f-body);font-size:12.5px;letter-spacing:0;line-height:1.55;
+  max-width:62ch;margin-top:18px}
+.dg-legal a{color:var(--dim);text-decoration:underline;text-underline-offset:2px}
+.dg-legal a:hover{color:var(--ink)}
 .dg-campo{display:block;margin-bottom:30px}
 .dg-num{display:block;font-family:var(--f-mono);font-size:11px;line-height:1;letter-spacing:.18em;
   text-transform:uppercase;color:var(--accent);background:none;border:0;padding:0;margin-bottom:12px}
