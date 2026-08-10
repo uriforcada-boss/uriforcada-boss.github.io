@@ -92,6 +92,72 @@
     } catch (e) { /* navegador sin almacenamiento: el panel sigue funcionando */ }
   }
 
+  /* ── 10-ago-2026 · EL GUARDADO ERA CÓDIGO MUERTO ──────────────────────
+     `restaurar()` (justo aquí abajo) llevaba desde el 6-ago devolviendo lo
+     escrito al que volvía… menos que nunca había nada que devolver:
+     `guardarCopia()` SOLO se llamaba en el camino sin clave, y la clave está
+     puesta desde entonces. O sea, con el formulario tal y como está hoy en
+     producción, el que escribe tres respuestas largas y cierra la pestaña
+     por lo que sea lo pierde todo. En el paso donde se compra.
+
+     Se arregla guardando MIENTRAS escribe, no al enviar. 400 ms de espera
+     para no tocar el disco en cada tecla, y el mismo formato que ya lee
+     `restaurar()`, así que aquella función pasa a servir para algo.
+
+     Se guarda todo menos el correo… no: el correo también, es lo que más
+     cuesta volver a escribir en móvil. Nada de esto sale del navegador: es
+     `localStorage`, no viaja a ningún sitio. Y se borra en cuanto el envío
+     sale bien. */
+  var CAMPOS = ["negocio", "rol", "tamano", "email", "q1", "q2", "q3", "q4"];
+
+  function guardarBorrador() {
+    try {
+      var obj = { fecha: new Date().toISOString(), texto: "", campos: {} };
+      CAMPOS.forEach(function (k) {
+        var campo = form.elements[k];
+        obj.campos[k] = campo ? campo.value : "";
+      });
+      localStorage.setItem(CLAVE_COPIA, JSON.stringify(obj));
+      avisarGuardado();
+    } catch (e) { /* sin almacenamiento: el formulario funciona igual */ }
+  }
+
+  var avisoGuardado = document.getElementById("dg-guardado");
+  var relojAviso = null;
+  function avisarGuardado() {
+    if (!avisoGuardado) return;
+    avisoGuardado.classList.add("on");
+    clearTimeout(relojAviso);
+    relojAviso = setTimeout(function () {
+      avisoGuardado.classList.remove("on");
+    }, 2000);
+  }
+
+  /* El contador de las cuatro. Cuenta respuesta CONTESTADA, no campo tocado:
+     el listón son 20 caracteres, porque «sí» en la 4 vale y «asdf» en la 1 no
+     debería encender nada. La 4 es la excepción y se cuenta con que haya algo,
+     que ahí «sí» es una respuesta entera. */
+  function pintarAvance() {
+    var hechas = 0;
+    ["q1", "q2", "q3"].forEach(function (k) {
+      var campo = form.elements[k];
+      if (campo && campo.value.trim().length >= 20) hechas++;
+    });
+    if (form.elements.q4 && form.elements.q4.value.trim().length > 0) hechas++;
+
+    var n = document.getElementById("dg-hechas");
+    var b = document.getElementById("dg-barra");
+    if (n) n.textContent = hechas;
+    if (b) b.style.transform = "scaleX(" + hechas / 4 + ")";
+  }
+
+  var relojGuardado = null;
+  form.addEventListener("input", function () {
+    pintarAvance();
+    clearTimeout(relojGuardado);
+    relojGuardado = setTimeout(guardarBorrador, 400);
+  });
+
   /* Si vuelve a la página, se le devuelve lo que escribió. Escribir cuatro
      respuestas largas dos veces no lo hace nadie: se abandona. */
   (function restaurar() {
@@ -103,6 +169,7 @@
         var campo = form.elements[k];
         if (campo && !campo.value) campo.value = obj.campos[k];
       });
+      pintarAvance();   // si vuelve con tres contestadas, el contador lo dice
     } catch (e) { /* copia ilegible: se ignora, no se rompe la página */ }
   })();
 
@@ -192,7 +259,13 @@
     })
       .then(function (r) { return r.json(); })
       .then(function (r) {
-        if (r && r.success) window.location.href = GRACIAS;
+        if (r && r.success) {
+          /* Enviado de verdad: se tira el borrador. Si no, al volver a la
+             página se le devolvería lo que YA ha mandado y parecería que no
+             llegó. */
+          try { localStorage.removeItem(CLAVE_COPIA); } catch (e) {}
+          window.location.href = GRACIAS;
+        }
         else throw new Error("respuesta no ok");
       })
       .catch(function () { fallar(boton, textoOriginal); });

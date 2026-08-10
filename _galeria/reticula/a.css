@@ -1,0 +1,123 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   DIRECCIÓN A · MARGEN ANOTADO
+   ═══════════════════════════════════════════════════════════════════════
+   La columna de lectura NO se toca: 860px sigue siendo buena medida y el
+   texto se lee igual de bien. Lo que se añade es un TERCER registro: una
+   columna de margen a la izquierda donde vive todo lo que hoy flota
+   suelto (el rótulo de sección, los metadatos, la numeración).
+
+   Referencia mental: un paper o un libro técnico con notas al margen.
+   El lateral deja de ser hueco y pasa a ser aparato crítico.
+
+   Coste: bajo. Solo CSS, sin tocar una línea del HTML.
+   Riesgo: bajo. Si falla, se quita este fichero y todo vuelve a estar.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --max:1180px;
+  --margen:250px;     /* la columna nueva */
+  --canal:56px;       /* separación entre margen y texto */
+}
+
+.wrap{
+  max-width:var(--max);
+  display:grid;
+  grid-template-columns:var(--margen) minmax(0,1fr);
+  column-gap:var(--canal);
+  align-items:start;
+}
+/* Por defecto todo cae en la columna de lectura. Lo que va al margen se
+   saca a mano, uno a uno: así nada se descoloca por accidente. */
+.wrap > *{grid-column:2}
+
+/* ── El hero: el rótulo se va al margen, a la altura del titular ── */
+.hero{padding:104px 0 60px}
+.hero .label{grid-column:1;margin:0;padding-top:6px;text-align:left;line-height:1.5}
+.hero .brandbar{grid-column:1/-1}
+.hero h1{max-width:14ch}
+
+/* ── La cabecera de sección se parte en dos: el H2 al margen y pegado
+      mientras dura la sección, el rótulo mono encima del contenido ── */
+.section-head{
+  grid-column:1/-1;
+  display:grid;
+  grid-template-columns:var(--margen) minmax(0,1fr);
+  column-gap:var(--canal);
+  align-items:start;
+  border-bottom:0;
+  padding-bottom:0;
+  margin-bottom:30px;
+}
+.section-head h2{
+  grid-column:1;
+  position:sticky;
+  top:80px;
+  font-size:clamp(21px,2.1vw,27px);
+  line-height:1.1;
+  text-align:left;
+}
+.section-head .hint{
+  grid-column:2;
+  text-align:left;
+  border-bottom:1px solid var(--line);
+  padding-bottom:14px;
+  display:block;
+}
+
+/* ── La numeración de los tres enemigos sale del bloque y se va al canal.
+      Es exactamente el tipo de dato que pide margen y no cuerpo. ── */
+.grid3{grid-column:1/-1;grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:820px){.grid3{grid-template-columns:1fr}}
+.pain{position:relative;padding-left:52px}
+.pain-num{position:absolute;left:24px;top:26px;margin:0;font-size:12px}
+
+/* ── Los bloques que ya iban a sangre siguen yendo, ahora con el ancho
+      nuevo. La técnica es la que ya estaba en el fichero, línea 75. ── */
+.solution{
+  grid-column:1/-1;
+  padding-left:max(32px,calc(50vw - var(--max)/2 + 32px));
+  padding-right:max(32px,calc(50vw - var(--max)/2 + 32px));
+}
+.solution p{max-width:24ch}
+
+/* ── Recursos: la etiqueta se va al margen y el formulario respira ── */
+.res{position:relative;padding-left:0}
+.res .tag{
+  position:absolute;
+  left:calc(-1 * (var(--margen) + var(--canal)));
+  top:4px;
+  width:var(--margen);
+  margin:0;
+}
+@media(max-width:900px){
+  .res .tag{position:static;width:auto;margin-bottom:12px}
+}
+
+/* ── La fecha usa el margen para el rótulo, igual que las secciones ── */
+.fecha{position:relative}
+.fecha .f-k{
+  position:absolute;
+  left:calc(-1 * (var(--margen) + var(--canal)));
+  top:6px;
+  width:var(--margen);
+}
+@media(max-width:900px){
+  .fecha .f-k{position:static;width:auto}
+}
+
+/* ── Pie: se alinea con la columna de texto, no con el borde ── */
+footer .wrap{grid-column:2}
+
+/* ── Por debajo de 1000px el margen no cabe y se pliega a una columna.
+      Móvil queda EXACTAMENTE como hoy: cero riesgo. ── */
+@media(max-width:1000px){
+  :root{--max:860px}
+  .wrap,.section-head{display:block}
+  .wrap > *,.section-head h2,.section-head .hint{grid-column:auto}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;
+    gap:20px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .section-head h2{position:static}
+  .section-head .hint{border-bottom:0;padding-bottom:0;text-align:right}
+  .pain{padding-left:24px}
+  .pain-num{position:static}
+}

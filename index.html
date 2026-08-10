@@ -115,6 +115,10 @@
      en el bloque «RETÍCULA ANCHA» de assets/style.css. -->
 <body class="ancho">
 
+<!-- Cuánto queda de página. Se pinta desde JS; si no hay JS, no hay barra y
+     no falta nada. -->
+<div class="progreso" id="progreso" aria-hidden="true"></div>
+
 <nav class="nav">
   <div class="wrap">
     <a class="brand" href="/">Oriol Forcada</a>
@@ -159,9 +163,16 @@
     <div class="brandbar"></div>
     <h1 class="display">Deja de preocuparte.<br><span class="accent">Ocúpate.</span></h1>
     <p>En el momento en que te ocupas, el miedo empieza a desaparecer. Construyo sistemas de IA que hacen el trabajo que hoy te come el día, y <strong>los enseño funcionando</strong>, no contados.</p>
+    <!-- 10-ago: el segundo botón mandaba a /recursos/, es decir, a la puerta de
+         los regalos. Contradecía la decisión del 8-ago («la home se queda PARA
+         COMPRADORES») justo en el sitio donde más se mira: al que viene a
+         comprar se le abría la salida a lo gratis antes de haber visto nada.
+         Ahora el par de botones son dos grados del MISMO camino — decidir ya, o
+         entender cómo se trabaja. La puerta de los recursos sigue en la página,
+         más abajo y con su propia sección. -->
     <div class="hero-ctas">
       <a class="btn solid" href="diagnostico/">Pide tu diagnóstico</a>
-      <a class="btn" href="/recursos/">Llévate lo que uso</a>
+      <a class="btn" href="/trabajar-conmigo/">Cómo trabajamos juntos</a>
     </div>
   </div>
 </header>
@@ -198,6 +209,55 @@
   </div>
 </section>
 
+<!-- ══════════ EL DESPUÉS — 10-ago-2026 ═════════════════════════════════
+     El agujero que tenía la página: contaba contra qué va, cómo se hace y
+     dónde está la raya, y en ningún sitio decía cómo se vive el día después.
+     Al que llega sin ese cuadro solo le queda una vara de medir, el precio.
+
+     ⚠️ NI UNA PROMESA NUEVA. Las cuatro frases de la derecha ya estaban
+     escritas y aprobadas en `/trabajar-conmigo/`:
+       · «Que el trabajo que se repite deje de necesitarte» (H1 de la página)
+       · «crecer sin ampliar plantilla» (§ el proyecto)
+       · «en tus cuentas» + «documentado para que otro pueda cogerlo» (fase 3 y 4)
+       · «si al terminar no puedes seguir sin mí, el trabajo está mal hecho»
+     Lo único que se añade es el estado de HOY enfrente, que es del propio
+     visitante y no afirma nada sobre Oriol. -->
+<section id="despues">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Cómo se trabaja cuando ya está montado</h2>
+      <span class="hint">el día después</span>
+    </div>
+
+    <div class="despues">
+      <div class="fila reveal">
+        <div class="lado"><span class="k">Hoy</span>
+          <p>El trabajo que se repite depende de que alguien se acuerde de hacerlo.</p></div>
+        <div class="lado post"><span class="k">Después</span>
+          <p>El trabajo que se repite deja de necesitarte.</p></div>
+      </div>
+      <div class="fila reveal">
+        <div class="lado"><span class="k">Hoy</span>
+          <p>Para asumir más trabajo hay que meter más manos.</p></div>
+        <div class="lado post"><span class="k">Después</span>
+          <p>El negocio crece sin que crezca la plantilla.</p></div>
+      </div>
+      <div class="fila reveal">
+        <div class="lado"><span class="k">Hoy</span>
+          <p>Cómo funciona cada cosa vive en la cabeza de alguien.</p></div>
+        <div class="lado post"><span class="k">Después</span>
+          <p>Está montado en tus cuentas y documentado para que otro pueda cogerlo.</p></div>
+      </div>
+      <div class="fila reveal">
+        <div class="lado"><span class="k">Hoy</span>
+          <p>Lo que se automatiza acaba dependiendo del que lo montó.</p></div>
+        <div class="lado post"><span class="k">Después</span>
+          <p>Si al terminar dependes de mí, el trabajo está mal hecho.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════ LA PRUEBA — modo instrumento dentro del modo día ══════════
      §5 valor 4: «Enseña, no describas. La pantalla con el sistema corriendo
      vale más que diez frases.» Aquí es donde el instrumento deja de ser una
@@ -212,7 +272,10 @@
   </div>
 
   <div class="instrumento reveal">
-    <span class="inst-k">JARVIS · el sistema con el que trabajo</span>
+    <!-- El punto que late: la frase de abajo dice «corriendo ahora mismo» y
+         hasta hoy los tres números estaban tan quietos como una captura. O se
+         quitaba la frase o se cumplía. -->
+    <span class="inst-k live">JARVIS · el sistema con el que trabajo</span>
     <h3>Corriendo ahora mismo, mientras lees esto</h3>
     <p>No es una demo grabada ni una plantilla comprada. Es lo que uso todos los días para captar, escribir, medir y decidir. Montado por mí, pieza a pieza.</p>
 
@@ -309,6 +372,18 @@
         <a class="btn solid" href="/trabajar-conmigo/">Cómo trabajamos juntos</a>
         <a class="btn" href="diagnostico/">Pide tu diagnóstico</a>
       </div>
+      <!-- El precio no se dice aquí, y no hace falta: lo que frena a alguien
+           delante de un botón no es cuánto cuesta el trabajo, es cuánto le
+           cuesta equivocarse. Las tres frases ya estaban en `/trabajar-conmigo/`
+           (fase 1 «la primera es gratis», fase 2 «aquí se para y no has perdido
+           nada», y las cuatro preguntas sin llamada). Puestas AL LADO del botón
+           quitan el motivo para escribir «¿cuánto vale esto?» y dejan el motivo
+           para escribir lo otro. ⚠️ Ninguna cifra: el precio lo fija Oriol. -->
+      <p class="sin-riesgo">
+        El diagnóstico son <strong>cuatro preguntas por escrito</strong>, sin llamada.<br>
+        Si veo que no puedo ayudarte, <strong>te lo digo</strong>. Pasa a menudo.<br>
+        Y si la propuesta no te encaja, <strong>ahí se para y no has perdido nada</strong>.
+      </p>
     </div>
   </div>
 </section>
@@ -363,6 +438,28 @@
       });
     }, { threshold: 0.01, rootMargin: '0px 0px 120px 0px' });
     els.forEach(function(e){ io.observe(e); });
+  })();
+</script>
+
+<script>
+  // ── Barra de progreso de lectura — 10-ago-2026.
+  // Es de adorno hasta que deja de serlo: en una página larga dice cuánto
+  // queda, y eso es lo que evita el abandono a media altura. No toca el
+  // contenido — si esto no corre, la página se lee exactamente igual.
+  (function(){
+    var barra = document.getElementById('progreso');
+    if (!barra) return;
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var pendiente = false;
+    var pintar = function(){
+      var alto = document.documentElement.scrollHeight - innerHeight;
+      barra.style.transform = 'scaleX(' + (alto > 0 ? Math.min(1, scrollY / alto) : 0) + ')';
+      pendiente = false;
+    };
+    addEventListener('scroll', function(){
+      if (!pendiente){ pendiente = true; requestAnimationFrame(pintar); }
+    }, { passive:true });
+    pintar();
   })();
 </script>
 

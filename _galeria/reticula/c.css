@@ -1,0 +1,136 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   DIRECCIÓN C · CARRIL FIJO
+   ═══════════════════════════════════════════════════════════════════════
+   La página se parte en dos carriles permanentes:
+
+     · izquierda, 300px: el nombre de la sección, PEGADO mientras dura
+     · derecha, el resto: todo el contenido
+
+   El lateral deja de ser margen y pasa a ser navegación: en todo momento
+   sabes en qué parte de la página estás sin subir a mirar. Es el registro
+   de un producto o una documentación, no el de un folleto.
+
+   Es la que más dice «esto es un sistema», que es literalmente lo que
+   vende la marca. También es la más agresiva de las tres.
+
+   Coste: medio. Solo CSS.
+   Riesgo: el que más cambia la sensación de la página. O gusta o no.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root{
+  --max:1340px;
+  --carril:300px;
+  --canal:72px;
+}
+
+.wrap{
+  max-width:var(--max);
+  display:grid;
+  grid-template-columns:var(--carril) minmax(0,1fr);
+  column-gap:var(--canal);
+  align-items:start;
+}
+.wrap > *{grid-column:2}
+
+section{padding:76px 0}
+
+/* ── El hero también respeta el carril: rótulo y CTAs a la izquierda,
+      titular y texto a la derecha. Marca el sistema desde el principio ── */
+.hero{padding:116px 0 72px}
+.hero .label{grid-column:1;margin:0;padding-top:8px;line-height:1.5}
+.hero .brandbar{grid-column:1/-1}
+.hero h1{max-width:14ch}
+.hero p{max-width:56ch}
+.hero-ctas{grid-column:2}
+
+/* ── La cabecera: el H2 vive en el carril y se queda pegado. El rótulo
+      mono se convierte en la línea de encabezado del contenido. ── */
+.section-head{
+  grid-column:1/-1;
+  display:grid;
+  grid-template-columns:var(--carril) minmax(0,1fr);
+  column-gap:var(--canal);
+  align-items:start;
+  border-bottom:0;
+  padding-bottom:0;
+  margin-bottom:0;
+}
+.section-head h2{
+  grid-column:1;
+  position:sticky;
+  top:88px;
+  font-size:clamp(22px,2.3vw,30px);
+  line-height:1.08;
+  padding-right:16px;
+  border-left:2px solid var(--accent);
+  padding-left:16px;
+}
+.section-head .hint{
+  grid-column:2;
+  text-align:left;
+  display:block;
+  border-bottom:1px solid var(--line);
+  padding-bottom:16px;
+  margin-bottom:32px;
+}
+
+/* ── Contenido a la derecha, en rejillas de dos ── */
+.grid3{grid-column:2;grid-template-columns:repeat(2,minmax(0,1fr));
+  border-top:1px solid var(--line)}
+@media(max-width:1000px){.grid3{grid-template-columns:1fr}}
+.pain{padding:28px 26px 32px}
+
+/* ── El bloque azul ocupa TODO, carril incluido: es el único momento en
+      que la página deja de estar partida, y por eso golpea. ── */
+.solution{
+  grid-column:1/-1;
+  padding-top:76px;padding-bottom:76px;
+  padding-left:max(32px,calc(50vw - var(--max)/2 + 32px));
+  padding-right:max(32px,calc(50vw - var(--max)/2 + 32px));
+}
+.solution p{max-width:22ch}
+
+/* ── Recursos: el carril dice qué tipo de recurso es ── */
+.res{position:relative}
+.res .tag{
+  position:absolute;
+  left:calc(-1 * (var(--carril) + var(--canal)));
+  top:2px;
+  width:var(--carril);
+  margin:0;
+  padding-left:18px;
+  border-left:1px solid var(--line);
+}
+@media(max-width:1000px){
+  .res .tag{position:static;width:auto;padding-left:0;border-left:0;margin-bottom:12px}
+}
+
+/* ── La fecha: el rótulo al carril, el número grande manda a la derecha ── */
+.fecha{position:relative}
+.fecha .f-k{
+  position:absolute;
+  left:calc(-1 * (var(--carril) + var(--canal)));
+  top:4px;
+  width:var(--carril);
+  padding-left:18px;
+  border-left:1px solid var(--line);
+}
+.fecha .f-txt{max-width:54ch}
+@media(max-width:1000px){
+  .fecha .f-k{position:static;width:auto;padding-left:0;border-left:0}
+}
+
+footer .wrap{grid-column:2}
+
+/* ── Por debajo de 1080 el carril no cabe: se pliega a la página de hoy ── */
+@media(max-width:1080px){
+  :root{--max:860px}
+  .wrap,.section-head{display:block}
+  .wrap > *,.section-head h2,.section-head .hint,.grid3,.hero-ctas{grid-column:auto}
+  .section-head{display:flex;align-items:flex-end;justify-content:space-between;
+    gap:20px;flex-wrap:wrap;padding-bottom:16px;border-bottom:1px solid var(--line);
+    margin-bottom:36px}
+  .section-head h2{position:static;border-left:0;padding-left:0}
+  .section-head .hint{border-bottom:0;padding-bottom:0;margin-bottom:0;text-align:right}
+  section{padding:56px 0}
+}

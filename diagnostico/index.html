@@ -58,6 +58,18 @@
       <input type="email" name="email" required placeholder="tu@email.com">
     </label>
 
+    <!-- La barra de avance — 10-ago-2026.
+         Cuatro respuestas largas sin saber por dónde vas es donde se abandona.
+         Va pegada arriba (sticky) para que el avance se vea mientras escribes,
+         y a su derecha el aviso de que lo escrito está guardado. Si el JS no
+         corre, esto se queda en «0 de 4» y no molesta a nadie: el formulario
+         funciona igual. -->
+    <div class="dg-avance" id="dg-avance">
+      <span class="txt"><b id="dg-hechas">0</b> de 4 contestadas</span>
+      <span class="barra"><i id="dg-barra"></i></span>
+      <span class="dg-guardado" id="dg-guardado">Guardado en este navegador</span>
+    </div>
+
     <div class="section-head" style="margin-top:44px">
       <h2>Las cuatro</h2>
       <span class="hint">contesta largo,<br>es lo único que leo</span>

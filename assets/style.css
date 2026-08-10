@@ -485,3 +485,167 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
 .recurso a.post-card:hover h3{color:var(--accent)}
 .post-card p{color:var(--dim);font-size:15.5px;margin-bottom:8px;max-width:60ch}
 .post-card .post-meta{margin-top:0}
+
+/* ══════════════════════════════════════════════════════════════════════
+   CAPA DE CONVERSIÓN — 10-ago-2026
+   ══════════════════════════════════════════════════════════════════════
+   El encargo, en sus palabras: que la marca se vea y no se cuestione lo que
+   vale. La comparación era una operación de corazón — nadie pregunta el
+   precio primero, preguntan cómo van a estar después.
+
+   Traducido a pantalla, eso son tres cosas y ninguna es un adorno:
+     1. Que la puerta de compra esté SIEMPRE a la vista (botón en la barra).
+     2. Que se vea el DESPUÉS, no solo el problema y el método.
+     3. Que lo que decimos que está vivo, parezca vivo (el instrumento).
+
+   Ni una promesa nueva: cada frase que entra sale de algo ya aprobado en
+   `Brand brief — Oriol Forcada.md` o de `/trabajar-conmigo/`.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1 · La puerta, siempre a la vista ────────────────────────────────
+   «Trabajar conmigo» era un enlace más entre cinco, del mismo gris que
+   «Recursos». La acción que da dinero no puede pesar lo mismo que la que
+   regala cosas. Se resuelve por SELECTOR DE ATRIBUTO, sin tocar el HTML de
+   ninguna de las 25 páginas: donde exista ese enlace, se convierte en botón.
+   Se cubren las dos rutas (es y ca) para no depender del idioma.
+
+   ⚠️ El `:not(.lang)` NO es defensivo, arregla un fallo que se vio en pantalla:
+   dentro de `/trabajar-conmigo/`, el conmutador de idioma apunta justamente a
+   `/ca/treballar-amb-mi/`, así que el selector lo cazaba y «CAT» salía también
+   como botón azul. Dos botones en la barra y ninguno de los dos se entiende. */
+.nav ul a[href="/trabajar-conmigo/"]:not(.lang),
+.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang){
+  color:var(--accent);border:1px solid var(--accent);border-bottom-color:var(--accent);
+  border-radius:2px;padding:7px 14px;font-weight:600;line-height:1;
+  transition:background .16s ease,color .16s ease}
+.nav ul a[href="/trabajar-conmigo/"]:not(.lang):hover,
+.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang):hover{
+  background:var(--accent);color:#fff}
+/* Ya estás dentro: el botón se rellena en vez de seguir invitando a entrar */
+.nav ul a[href="/trabajar-conmigo/"]:not(.lang)[aria-current="page"],
+.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang)[aria-current="page"]{
+  background:var(--accent);color:#fff}
+/* ── El botón en móvil, que es donde casi lo estropeo ─────────────────
+   La barra no tiene hamburguesa a propósito: cinco enlaces en una fila que
+   hace scroll lateral. Con el botón puesto, en un móvil de 375 px solo se
+   veían «Sobre mí» y «Automatizaciones», o sea que la acción que da dinero
+   quedaba fuera de pantalla salvo que a alguien se le ocurriera arrastrar la
+   barra. Justo lo contrario de lo que se pretendía.
+
+   Se resuelve con `order`: en móvil el botón se coloca el PRIMERO de la fila,
+   así que es lo primero que se ve y los demás enlaces scrollean detrás.
+
+   ⚠️ Antes de esto se probó anclarlo al borde derecho con `position:sticky`
+   y se descartó por lo que se vio en la captura, no en teoría: en 375 px el
+   botón fijo se queda ENCIMA de los enlaces que pasan por debajo y se leen
+   trozos sueltos («Sob…», «…or») a los dos lados. Queda sucio. Con `order`
+   no se solapa nada. (De paso: el sticky habría que ponerlo en el <li>, no
+   en el <a>, porque el <a> no tiene sitio dentro de su propio <li>.)
+
+   `order` mueve solo lo que se ve. El orden del DOM no cambia, así que para
+   un lector de pantalla la barra se sigue leyendo igual que siempre. */
+@media(max-width:640px){
+  .nav ul{gap:16px}
+  .nav ul li:has(a[href="/trabajar-conmigo/"]:not(.lang)),
+  .nav ul li:has(a[href="/ca/treballar-amb-mi/"]:not(.lang)){order:-1}
+  .nav ul a[href="/trabajar-conmigo/"]:not(.lang),
+  .nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang){padding:6px 11px}
+}
+
+/* ── 2 · La barra de progreso de lectura ──────────────────────────────
+   1px de índigo arriba del todo. No es decoración: en una página larga dice
+   cuánto queda, y eso es lo que evita el abandono a media altura. Va con la
+   regla de la casa — nada gira, nada rebota, la retícula manda. */
+.progreso{position:fixed;top:0;left:0;height:2px;width:100%;z-index:60;
+  background:var(--accent);transform:scaleX(0);transform-origin:0 50%;
+  will-change:transform;pointer-events:none}
+@media(prefers-reduced-motion:reduce){.progreso{display:none}}
+
+/* ── 3 · EL DESPUÉS ───────────────────────────────────────────────────
+   El bloque que faltaba. La página contaba contra qué va (el enemigo), cómo
+   se hace (el proceso) y dónde está la raya (los límites), pero en ningún
+   sitio decía CÓMO SE VIVE cuando está montado. Sin eso, lo primero que
+   pregunta el que llega es el precio, porque no tiene otra cosa que medir.
+
+   Cada línea de la derecha es una promesa que YA estaba escrita en
+   `/trabajar-conmigo/`. Aquí solo se le pone enfrente el estado de hoy. */
+.despues{border-top:1px solid var(--line);margin-top:0}
+.despues .fila{display:grid;grid-template-columns:1fr 1fr;gap:0;
+  border-bottom:1px solid var(--line)}
+.despues .lado{padding:26px 28px 26px 0}
+.despues .lado+.lado{padding-left:28px;border-left:1px solid var(--line)}
+.despues .k{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;margin-bottom:10px;color:var(--dim)}
+.despues .lado.post .k{color:var(--accent)}
+.despues .lado p{font-size:16px;line-height:1.5;color:var(--dim);max-width:40ch}
+.despues .lado.post p{color:var(--ink);font-weight:600}
+@media(max-width:640px){
+  .despues .fila{grid-template-columns:1fr}
+  .despues .lado{padding:22px 0 6px}
+  .despues .lado+.lado{padding-left:0;border-left:0;padding-bottom:22px}
+}
+/* La línea que desactiva la pregunta del precio antes de que se haga.
+   No dice cuánto cuesta: dice cuánto cuesta EQUIVOCARSE, que es cero.
+
+   ⚠️ Vive DENTRO de `.biz`, que es la caja tinta. La primera versión heredaba
+   `--ink` en el <strong> y las palabras en negrita salían del mismo color que
+   el fondo: invisibles. Lo destapó comparar los dos valores computados, no
+   mirar la pantalla, porque a simple vista solo parecía que faltaba énfasis.
+   Por eso los colores se declaran aquí y no se heredan. */
+.sin-riesgo{margin-top:22px;font-family:var(--f-mono);font-size:11.5px;
+  letter-spacing:.06em;line-height:1.7;color:var(--dim)}
+.sin-riesgo strong{color:var(--ink);font-weight:500}
+.biz .sin-riesgo{color:#9BA3AE}
+.biz .sin-riesgo strong{color:#fff;font-weight:500}
+
+/* ── 4 · El instrumento, vivo ─────────────────────────────────────────
+   El texto dice «corriendo ahora mismo, mientras lees esto» y el píxel decía
+   lo contrario: tres números tan quietos como una captura. O se quita la
+   frase o se cumple. Se cumple con UN punto que late cada 2,4 s.
+
+   ⚠️ Aquí hubo una segunda idea y se ha tirado a propósito: hacer que los
+   números subieran contando al entrar en pantalla. Se probó y se vio en
+   pantalla que durante casi un segundo el panel decía «3 agentes» y
+   «0 departamentos». En una página cuyo argumento entero es que las cifras
+   son verificables, enseñar una cifra falsa —aunque sea 900 ms— es el peor
+   sitio posible para poner un adorno. Además choca con la regla escrita
+   arriba en este mismo fichero: nada gira, nada rebota. El número se pinta
+   bien desde el primer frame. */
+.instrumento .inst-k.live{display:flex;align-items:center;gap:9px}
+/* flex:0 0 6px, o el punto se aplasta a una raya al competir con el texto */
+.instrumento .inst-k.live::before{content:'';flex:0 0 6px;width:6px;height:6px;
+  border-radius:50%;background:var(--acid);
+  animation:latido 2.4s ease-in-out infinite}
+@keyframes latido{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(212,255,0,.45)}
+  50%{opacity:.42;box-shadow:0 0 0 5px rgba(212,255,0,0)}}
+.panel .p-val{font-variant-numeric:tabular-nums}
+@media(prefers-reduced-motion:reduce){
+  .instrumento .inst-k.live::before{animation:none}
+}
+
+/* ── 5 · El formulario del diagnóstico ────────────────────────────────
+   Es el paso donde se compra y era el más áspero del sitio: cuatro campos
+   cortos y cuatro respuestas largas, todo obligatorio, sin decir por dónde
+   vas y —esto es lo gordo— perdiendo lo escrito si se cerraba la pestaña.
+   Dos arreglos: contador de avance y guardado continuo en el navegador.
+   La validación se deja en manos del navegador a propósito: `required` sigue
+   funcionando aunque el JS se caiga, y un validador propio no. */
+.dg-avance{position:sticky;top:0;z-index:40;background:rgba(247,246,242,.94);
+  backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line);
+  padding:12px 0;margin-bottom:8px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.dg-avance .txt{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--dim);white-space:nowrap}
+.dg-avance .txt b{color:var(--accent);font-weight:500}
+.dg-avance .barra{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden}
+.dg-avance .barra i{position:absolute;inset:0;background:var(--accent);
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+.dg-guardado{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--dim);opacity:0;transition:opacity .3s ease;
+  white-space:nowrap}
+.dg-guardado.on{opacity:1}
+@media(prefers-reduced-motion:reduce){.dg-avance .barra i{transition:none}}
+@media(max-width:520px){
+  .dg-avance{flex-wrap:wrap}
+  .dg-avance .barra{order:3;flex-basis:100%}
+}
