@@ -441,27 +441,7 @@
   })();
 </script>
 
-<script>
-  // ── Barra de progreso de lectura — 10-ago-2026.
-  // Es de adorno hasta que deja de serlo: en una página larga dice cuánto
-  // queda, y eso es lo que evita el abandono a media altura. No toca el
-  // contenido — si esto no corre, la página se lee exactamente igual.
-  (function(){
-    var barra = document.getElementById('progreso');
-    if (!barra) return;
-    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var pendiente = false;
-    var pintar = function(){
-      var alto = document.documentElement.scrollHeight - innerHeight;
-      barra.style.transform = 'scaleX(' + (alto > 0 ? Math.min(1, scrollY / alto) : 0) + ')';
-      pendiente = false;
-    };
-    addEventListener('scroll', function(){
-      if (!pendiente){ pendiente = true; requestAnimationFrame(pintar); }
-    }, { passive:true });
-    pintar();
-  })();
-</script>
+<script src="assets/progreso.js" defer></script>
 
 <script src="assets/subscribe.js"></script>
 

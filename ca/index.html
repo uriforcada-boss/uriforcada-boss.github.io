@@ -45,6 +45,10 @@
 </head>
 <body>
 
+<!-- Quant queda de pàgina. Es pinta des de JS; si no hi ha JS, no hi ha barra
+     i no falta res. -->
+<div class="progreso" id="progreso" aria-hidden="true"></div>
+
 <nav class="nav">
   <div class="wrap">
     <a class="brand" href="/ca/">Oriol Forcada</a>
@@ -69,6 +73,53 @@
   </div>
 </header>
 
+<!-- ══════════ EL DIA DESPRÉS — 10-ago-2026 ═════════════════════════════
+     Portat de la home en castellà per encàrrec d'Oriol. Mateix bloc, mateixa
+     retícula, mateixes quatre promeses.
+
+     ⚠️ Ni una promesa nova, però l'origen NO és el mateix que en castellà i
+     val la pena deixar-ho escrit: `/ca/treballar-amb-mi/` és molt més curta
+     que la castellana i **només hi té la de créixer sense ampliar plantilla**.
+     Les altres tres viuen a `/trabajar-conmigo/` (fases 3 i 4, i la regla de
+     «si al acabar depens de mi, està mal fet»). O sigui que aquí són la
+     mateixa promesa ja aprovada, traduïda, no una promesa nova.
+     Si algun dia es retoquen allà, s'han de retocar aquí. -->
+<section id="despues">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Com es treballa quan ja està muntat</h2>
+      <span class="hint">el dia després</span>
+    </div>
+
+    <div class="despues">
+      <div class="fila">
+        <div class="lado"><span class="k">Avui</span>
+          <p>La feina que es repeteix depèn que algú se'n recordi.</p></div>
+        <div class="lado post"><span class="k">Després</span>
+          <p>La feina que es repeteix deixa de necessitar-te.</p></div>
+      </div>
+      <div class="fila">
+        <div class="lado"><span class="k">Avui</span>
+          <p>Per assumir més feina cal posar-hi més mans.</p></div>
+        <div class="lado post"><span class="k">Després</span>
+          <p>El negoci creix sense que creixi la plantilla.</p></div>
+      </div>
+      <div class="fila">
+        <div class="lado"><span class="k">Avui</span>
+          <p>Com funciona cada cosa viu al cap d'algú.</p></div>
+        <div class="lado post"><span class="k">Després</span>
+          <p>Està muntat als teus comptes i documentat perquè un altre ho pugui agafar.</p></div>
+      </div>
+      <div class="fila">
+        <div class="lado"><span class="k">Avui</span>
+          <p>El que s'automatitza acaba depenent de qui ho va muntar.</p></div>
+        <div class="lado post"><span class="k">Després</span>
+          <p>Si en acabar depens de mi, la feina està mal feta.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 
 <section id="sistema">
   <div class="wrap">
@@ -79,7 +130,9 @@
   </div>
 
   <div class="instrumento">
-    <span class="inst-k">JARVIS · el sistema amb què treballo</span>
+    <!-- El punt que batega: el titular diu «funcionant ara mateix» i fins avui
+         els tres números estaven tan quiets com una captura. -->
+    <span class="inst-k live">JARVIS · el sistema amb què treballo</span>
     <h3>Funcionant ara mateix, mentre llegeixes això</h3>
     <p>No és una demo gravada ni una plantilla comprada. És el que faig servir cada dia per captar, escriure, mesurar i decidir. Muntat per mi, peça a peça.</p>
 
@@ -111,6 +164,16 @@
     <a class="btn solid" href="/ca/treballar-amb-mi/">Com treballem junts</a>
     <a class="btn" href="/blog/">Llegir el blog (en castellà)</a>
   </div>
+  <!-- El preu no es diu aquí, i no cal: el que frena algú davant d'un botó no
+       és quant costa la feina, és quant li costa equivocar-se. Les tres frases
+       ja són a `/trabajar-conmigo/`. ⚠️ Cap xifra: el preu el fixa Oriol.
+       Nota: el formulari del diagnòstic només existeix en castellà, i les
+       quatre preguntes són les mateixes, així que la frase és certa. -->
+  <p class="sin-riesgo">
+    El diagnòstic són <strong>quatre preguntes per escrit</strong>, sense trucada.<br>
+    Si veig que no puc ajudar-te, <strong>t'ho dic</strong>. Passa sovint.<br>
+    I si la proposta no t'encaixa, <strong>allà s'atura i no has perdut res</strong>.
+  </p>
 </div>
 
 <footer>
@@ -126,6 +189,8 @@
   </div>
 </footer>
 
+
+<script src="/assets/progreso.js" defer></script>
 
 <script src="/assets/lenis.min.js" defer></script>
 <script src="/assets/scroll.js" defer></script>
