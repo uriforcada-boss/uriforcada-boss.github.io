@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.web3forms.com https://assets.mailerlite.com https://*.mailerlite.com; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://assets.mailerlite.com https://*.mailerlite.com; base-uri 'self'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatizar procesos administrativos: por dónde empezar sin programar</title>
+<meta name="description" content="Qué proceso administrativo se automatiza primero en un despacho, cómo mapearlo antes de tocar ninguna herramienta y con qué montarlo por menos de 100 € al mes.">
+<link rel="canonical" href="https://uriforcada.com/blog/automatizar-procesos-administrativos-sin-programar/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://uriforcada.com/blog/automatizar-procesos-administrativos-sin-programar/">
+<meta property="og:site_name" content="Oriol Forcada">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Automatizar procesos administrativos: por dónde empezar sin programar">
+<meta property="og:description" content="Qué se automatiza primero en un despacho, cómo mapearlo antes de tocar ninguna herramienta, y con qué montarlo por menos de 100 € al mes.">
+<meta property="og:image" content="https://uriforcada.com/assets/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=20260809a">
+
+<!-- Sin hreflang: el blog se queda en castellano (decisión de Oriol, 8-ago). -->
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     ARTÍCULO 2 — 10-ago-2026. Sale del BRIEF #3 de `SEO — plan de contenido`
+     (Arquitecto de contenido SEO), que a su vez sale de la Cola SEO: 323
+     búsquedas reales del autocompletado, no de temas que nos parezcan.
+
+     🔒 LOS TRES DATOS PROPIOS, Y DE DÓNDE SALE CADA UNO. El brief pedía tres
+     cosas que el modelo no puede inventarse, y ninguna se ha inventado:
+
+     · «Qué herramienta con menos de 100 €/mes» → su stack real: n8n
+       autoalojado (0 €) + un modelo por uso. Es lo que usa, no una
+       recomendación de catálogo.
+     · «Qué proceso administrativo se repite más» → los dolores documentados
+       en `2_Proyectos/Nicho — Gestorías Laborales.md`, que salen de discovery
+       real con un despacho, no de suposiciones. Reparto de nóminas y
+       perseguir variables antes del día 25.
+     · «Qué proceso automatizó primero y cuántas horas liberó» → ⚠️ AQUÍ NO
+       HAY CASO DE CLIENTE, y por eso no se cuenta ninguno. Se usa el suyo
+       propio, que sí es verificable y además es su marca: el primero que
+       automatizó fue el suyo. Ni un cliente, ni una hora ahorrada que no se
+       pueda enseñar.
+     ══════════════════════════════════════════════════════════════════════ -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://uriforcada.com/blog/automatizar-procesos-administrativos-sin-programar/#articulo",
+  "headline": "Automatizar procesos administrativos: por dónde empezar sin programar",
+  "description": "Qué proceso administrativo se automatiza primero en un despacho, cómo mapearlo antes de tocar ninguna herramienta y con qué montarlo por menos de 100 € al mes.",
+  "url": "https://uriforcada.com/blog/automatizar-procesos-administrativos-sin-programar/",
+  "datePublished": "2026-08-10",
+  "dateModified": "2026-08-10",
+  "inLanguage": "es-ES",
+  "author": { "@id": "https://uriforcada.com/#oriol" },
+  "publisher": { "@id": "https://uriforcada.com/#oriol" },
+  "isPartOf": { "@id": "https://uriforcada.com/#web" },
+  "mainEntityOfPage": "https://uriforcada.com/blog/automatizar-procesos-administrativos-sin-programar/"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Hace falta un programador para automatizar procesos administrativos?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Para el primero, no. Lo que hace falta antes que ninguna herramienta es el proceso escrito paso a paso. Con el proceso delante se ve solo si hace falta alguien o no." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto cuesta empezar a automatizar en una pyme?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Se puede empezar por debajo de 100 € al mes. Un conector autoalojado como n8n es gratis y se paga solo el servidor donde corre; el gasto variable es el modelo de IA, que se cobra por uso y en un proceso mensual son céntimos." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué proceso administrativo conviene automatizar primero?",
+      "acceptedAnswer": { "@type": "Answer", "text": "El que se repite todos los meses, sale igual cada vez y no lo decide nadie. En los despachos laborales suele ser el reparto de documentos a clientes y la persecución de datos antes del cierre de nómina." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Automatizar un proceso administrativo sustituye a alguien del equipo?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sustituye los recados, no las decisiones. La persona sigue decidiendo, pero llega a la decisión con todo delante en vez de después de cuarenta minutos de recopilar." }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="/">Oriol Forcada</a>
+    <ul>
+      <li><a href="/sobre-mi/">Sobre mí</a></li>
+      <li><a href="/automatizaciones/">Automatizaciones</a></li>
+      <li><a href="/recursos/">Recursos</a></li>
+      <li><a href="/trabajar-conmigo/">Trabajar conmigo</a></li>
+      <li><a class="lang" href="/ca/" hreflang="ca">CAT</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="resource-hero post">
+  <div class="wrap">
+    <a class="label" href="/blog/">← Blog</a>
+    <h1 class="display">Automatizar procesos administrativos: por dónde empezar sin programar</h1>
+    <p class="sub">Cuál se automatiza primero, cómo mapearlo antes de tocar nada y con qué montarlo.</p>
+    <p class="post-meta"><time datetime="2026-08-10">10 de agosto de 2026</time> · 7 min de lectura</p>
+  </div>
+</header>
+
+<div class="wrap recurso">
+
+  <p class="lede"><strong>Un proceso administrativo se automatiza cuando se repite todos los meses, sale igual cada vez y nadie tiene que decidir nada dentro.</strong> El primero no se elige por lo importante que sea, sino por lo aburrido: el que alguien hace a mano, siempre igual, y que si se olvida se nota. En un despacho laboral eso suele ser <strong>repartir documentos a los clientes uno a uno</strong> y <strong>perseguir datos antes del cierre de nómina</strong>. Para montarlo no hace falta programar ni cambiar de software: hace falta el proceso escrito y un conector que hable con lo que ya tienes.</p>
+
+  <p>Esa es la respuesta corta. Lo que viene ahora es cómo se decide cuál, que es donde se pierde el tiempo de verdad.</p>
+
+  <h2>Qué cuenta como proceso administrativo</h2>
+
+  <p>Proceso administrativo es todo el trabajo que hay que hacer para que el trabajo de verdad pueda hacerse. No factura, no vende y no se ve. Pero si nadie lo hace, se para todo.</p>
+
+  <p>Casi siempre son cuatro familias:</p>
+
+  <ul>
+    <li><strong>Meter datos de un sitio a otro.</strong> Lo que llega por correo o en un PDF y alguien copia a mano en el programa bueno.</li>
+    <li><strong>Comprobar que algo cuadra.</strong> Cruzar dos listas para ver qué falta o qué no coincide, antes de presentar nada.</li>
+    <li><strong>Avisar de que se acerca una fecha.</strong> Plazos, vencimientos, cierres. Hoy lo sostiene la cabeza de alguien y un calendario.</li>
+    <li><strong>Repartir lo que ya está hecho.</strong> Partir un documento, casar cada trozo con su destinatario y mandarlo.</li>
+  </ul>
+
+  <p>Las cuatro se automatizan bien. Lo que no se automatiza es lo que lleva un «depende» dentro: interpretar un cambio de normativa, decidir qué se hace con el caso raro, valorar si a este cliente se le pasa o no se le pasa. Eso se queda con una persona, y lo que se le quita es el papeleo de alrededor para que llegue a la decisión con todo delante.</p>
+
+  <h2>Cómo mapear el proceso antes de tocar ninguna herramienta</h2>
+
+  <p>Este es el paso que casi todo el mundo se salta, y es el único que no se puede saltar. Cuatro preguntas, y ninguna necesita ordenador:</p>
+
+  <ol>
+    <li><strong>¿Qué haces a mano cada semana?</strong> Escríbelo como se lo contarías a alguien que entra mañana. Sin tecnicismos y sin saltarte lo obvio.</li>
+    <li><strong>¿Cuánto tiempo se va?</strong> No hace falta cronómetro. Con una estimación honesta basta para saber si merece la pena.</li>
+    <li><strong>¿Se cuelan errores?</strong> Si el proceso falla de vez en cuando y el fallo cuesta dinero o un plazo, sube puestos aunque tarde poco.</li>
+    <li><strong>¿Lo hace siempre la misma persona?</strong> Si la respuesta es sí, tienes dos problemas y no uno. El segundo es que ese proceso se va de vacaciones cuando esa persona se va de vacaciones.</li>
+  </ol>
+
+  <p>Al escribirlo van a salir tres o cuatro «depende». Márcalos. <strong>Lo que queda sin marcar es tu primera automatización</strong>, y suele ser un trozo más pequeño de lo que esperabas: una parte de la tarea, no la tarea entera.</p>
+
+  <p>Y hay una razón práctica para escribirlo antes: un proceso que no sabes contar no se puede automatizar. Si nadie es capaz de explicar paso a paso cómo se hace hoy, ninguna herramienta lo va a adivinar.</p>
+
+  <h2>Con qué montarlo, y cuánto cuesta de verdad</h2>
+
+  <p>Aquí es donde suele aparecer la suscripción que nadie abre a los dos meses. Para empezar por debajo de 100 € al mes hay tres piezas, y solo una cuesta dinero:</p>
+
+  <div class="limites">
+    <div class="limite si">
+      <h4>Lo que uso yo</h4>
+      <ul>
+        <li><strong>n8n autoalojado</strong> para conectar lo que ya tienes. Es gratis y de código abierto: pagas el servidor donde corre, no la herramienta</li>
+        <li><strong>Un modelo de IA por uso</strong> para lo que hay que leer o redactar. Se paga por lo que gasta, y un proceso mensual son céntimos</li>
+        <li><strong>El correo y el programa que ya usáis.</strong> No se cambia nada de sitio</li>
+      </ul>
+    </div>
+    <div class="limite no">
+      <h4>Lo que no hace falta el primer mes</h4>
+      <ul>
+        <li>Cambiar de software de gestión</li>
+        <li>Una suscripción por cada persona del equipo</li>
+        <li>Un panel de control con gráficas</li>
+        <li>Contratar a nadie</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>Hay alternativas de pago que se montan antes y no hace falta alojar: sirven igual para empezar y se paga por volumen. La elección importa mucho menos que el proceso: <strong>una herramienta cara sobre un proceso que nadie ha escrito sigue sin funcionar</strong>, y una gratis sobre un proceso claro funciona el primer día.</p>
+
+  <h2>Las primeras que dan resultado en un despacho</h2>
+
+  <p>Esto no es una lista genérica. Sale de escuchar a despachos laborales contar qué les come el mes:</p>
+
+  <ol>
+    <li><strong>Repartir los documentos a cada cliente.</strong> Cuando la nómina está calculada, hay que partir el export por trabajador, casar cada PDF con su destinatario y mandarlo uno a uno. Es mensual, le pasa a todo el mundo y es manual de principio a fin. No hay ni un «depende» dentro, y por eso es el mejor primer candidato que existe.</li>
+    <li><strong>Perseguir las variables antes del cierre.</strong> Cada mes hay que ir detrás del cliente por las horas extra, las ausencias y las altas y bajas antes de cerrar. Se van días en insistir por correo. Automatizar la persecución no es automatizar la nómina: es que el recordatorio salga solo, con lo que falta de cada uno, y que quien lo lleva vea de un vistazo quién ha contestado y quién no.</li>
+    <li><strong>Avisar de que algo no va a cuadrar.</strong> Los datos del programa de nóminas y los de la administración tienen que coincidir. Cuando no coinciden, el envío se rechaza, y si se pasa el plazo hay sanción. Cruzar las dos listas antes de presentar es exactamente el trabajo que mejor hace una máquina y peor hace una persona cansada.</li>
+    <li><strong>Contestar lo que se pregunta siempre.</strong> Las preguntas triviales que llegan al que más sabe y le parten la mañana. Aquí no se automatiza la respuesta: se automatiza tener la respuesta buena preparada para que la mande cualquiera.</li>
+  </ol>
+
+  <p>Fíjate en el orden. No empieza por lo más difícil ni por lo más vistoso. Empieza por lo que es <strong>mensual, universal y sin decisiones dentro</strong>.</p>
+
+  <h2>Los cuatro errores que se repiten</h2>
+
+  <ul>
+    <li><strong>Querer automatizarlo todo a la vez.</strong> Se monta grande, no funciona a la primera, y como está todo conectado no se sabe qué parte falla. Uno pequeño terminado vale más que cuatro a medias.</li>
+    <li><strong>No dejarlo corriendo en paralelo.</strong> La primera semana el sistema hace su versión y la persona sigue haciendo la suya, y al final se comparan. Sin eso no sabes que funciona: sabes que no ha dado error, que no es lo mismo.</li>
+    <li><strong>No documentar lo que se montó.</strong> A los tres meses nadie se acuerda de por qué hace lo que hace, y el sistema pasa a ser otra cosa que solo entiende una persona. Que era justo el problema del principio.</li>
+    <li><strong>Confiar a ciegas.</strong> En lo que tiene consecuencia legal o dinero encima, siempre mira alguien antes de enviar. La máquina prepara, la persona firma.</li>
+  </ul>
+
+  <h2>El primero que automaticé fue el mío</h2>
+
+  <p>No te voy a contar el caso de un cliente para ilustrar esto, porque lo honesto es enseñar lo que puedo enseñar. El sistema con el que trabajo todos los días está montado por mí, pieza a pieza, y hace lo mismo que acabo de describir: busca, clasifica, escribe lo de siempre, mide y avisa. Lo puedes ver funcionando en la <a href="/">portada</a>, con los números que lleva encima.</p>
+
+  <p>Lo que aprendí montándolo es lo que más te va a servir, y no es técnico: <strong>la mitad del tiempo que se recupera no viene de la automatización, viene de mirar el proceso con criterio por primera vez.</strong> Al escribir paso a paso lo que hacía cada semana, la mitad no había que automatizarla. Había que dejar de hacerla.</p>
+
+  <p>La otra mitad de lo que aprendí es que se empieza sabiendo menos de lo que crees que necesitas saber. <strong>Empiezas para aprender, no al revés.</strong></p>
+
+  <h2>Por dónde empezar esta semana</h2>
+
+  <p>Coge el proceso que más te canse del mes. Escríbelo como se lo contarías a alguien que entra mañana. Márcale los «depende». Lo que quede sin marcar es lo primero, y probablemente lo puedas tener corriendo en paralelo antes de que acabe la semana.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <p><strong>¿Hace falta un programador?</strong><br>
+  Para el primero, no. Lo que hace falta antes que ninguna herramienta es el proceso escrito paso a paso. Con el proceso delante se ve solo si hace falta alguien.</p>
+
+  <p><strong>¿Cuánto cuesta empezar?</strong><br>
+  Por debajo de 100 € al mes. El conector puede ser gratis y de código abierto, y solo pagas el servidor donde corre. El gasto variable es el modelo de IA, que se cobra por uso: en un proceso que se ejecuta una vez al mes son céntimos.</p>
+
+  <p><strong>¿Y si me equivoco de proceso?</strong><br>
+  Por eso la primera semana va en paralelo. Equivocarte ahí cuesta una semana. Equivocarte después de haberlo conectado todo cuesta bastante más.</p>
+
+  <p><strong>¿Esto sustituye a alguien de mi equipo?</strong><br>
+  Sustituye los recados, no las decisiones. La persona sigue decidiendo, pero llega a la decisión con todo delante en vez de después de cuarenta minutos de recopilar.</p>
+
+  <p><strong>¿Cuánto tarda en notarse?</strong><br>
+  El primer proceso, días. Que el negocio entero deje de depender de meter gente, meses. Cualquiera que te prometa lo segundo en dos semanas te está vendiendo lo primero.</p>
+
+  <p class="fine">¿Te interesa el paso anterior a este? En <a href="/blog/como-automatizar-tareas-repetitivas-con-ia/">cómo automatizar tareas repetitivas con IA</a> está el criterio de las tres preguntas para decidir si una tarea entra o no entra.</p>
+
+  <div class="biz">
+    <h3>Si quieres que mire tu caso</h3>
+    <p>Cuéntame qué sostiene tu despacho cada mes y te digo qué parte puede sostenerla un sistema, y qué parte no. Sin presentación y sin compromiso.</p>
+    <div class="cta-row">
+      <a class="btn solid" href="/diagnostico/">Pide tu diagnóstico</a>
+      <a class="btn" href="/trabajar-conmigo/">Cómo trabajamos juntos</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Oriol Forcada · <time datetime="2026-08-10">Publicado el 10 de agosto de 2026</time></span>
+    <span class="foot-links">
+      <a href="/preguntas-frecuentes/">Preguntas frecuentes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/aviso-legal.html">Aviso legal</a>
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a>
+    </span>
+  </div>
+</footer>
+
+
+<script src="/assets/lenis.min.js" defer></script>
+<script src="/assets/scroll.js" defer></script>
+</body>
+</html>
