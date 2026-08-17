@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.web3forms.com https://assets.mailerlite.com https://*.mailerlite.com; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://assets.mailerlite.com https://*.mailerlite.com; base-uri 'self'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnòstic · Oriol Forcada</title>
+<meta name="description" content="Explica'm què sosté el teu negoci cada mes i et dic quina part la pot sostenir un sistema.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=20260817b">
+</head>
+<body>
+
+<header class="resource-hero">
+  <div class="wrap">
+    <a href="/ca/" class="label" style="text-decoration:none">← uriforcada</a>
+    <h1 class="display">El diagnòstic</h1>
+    <p class="sub">Quatre preguntes. Si les contestes de debò, et torno per escrit quina part de la feina que avui sostenen persones la pot sostenir un sistema, i quina part no.</p>
+  </div>
+</header>
+
+<section class="teaser">
+  <div class="wrap">
+    <p>Això no és un formulari de contacte. No hi ha ningú esperant per trucar-te.</p>
+    <p>Són les quatre preguntes que necessito per saber si et puc ajudar de veritat o no. Si en llegir les respostes veig que no, t'ho dic i no et faig perdre el temps. Passa sovint i no passa res.</p>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <div class="section-head">
+    <h2>Abans de res</h2>
+    <span class="hint">30 segons</span>
+  </div>
+
+  <!-- `data-gracias`: la pàgina de després, en català. Sense això el JS
+       enviava a `deberes.html`, que en aquesta carpeta no existeix. -->
+  <form class="dg-form" id="dg" data-gracias="deures.html">
+
+    <div class="grid3">
+      <label class="dg-campo">
+        <span class="dg-lab">El teu negoci</span>
+        <input type="text" name="negocio" required placeholder="Nom">
+      </label>
+      <label class="dg-campo">
+        <span class="dg-lab">El teu paper</span>
+        <input type="text" name="rol" required placeholder="Fundador, soci, director…">
+      </label>
+      <label class="dg-campo">
+        <span class="dg-lab">Quanta gent sou</span>
+        <input type="text" name="tamano" required placeholder="Número">
+      </label>
+    </div>
+
+    <label class="dg-campo">
+      <span class="dg-lab">El teu correu</span>
+      <input type="email" name="email" required placeholder="tu@email.com">
+    </label>
+
+    <div class="dg-avance" id="dg-avance">
+      <span class="txt"><b id="dg-hechas">0</b> de 4 contestades</span>
+      <span class="barra"><i id="dg-barra"></i></span>
+      <span class="dg-guardado" id="dg-guardado">Desat en aquest navegador</span>
+    </div>
+
+    <div class="section-head" style="margin-top:44px">
+      <h2>Les quatre</h2>
+      <span class="hint">contesta llarg,<br>és l'únic que llegeixo</span>
+    </div>
+
+    <label class="dg-campo">
+      <span class="dg-num">01</span>
+      <span class="dg-lab">Imagina que treballem junts i d'aquí a un any mires enrere. Què hauria passat al teu negoci perquè diguessis que va ser una bona decisió?</span>
+      <textarea name="q1" rows="5" required placeholder="El que vols que sigui diferent d'aquí a un any."></textarea>
+    </label>
+
+    <label class="dg-campo">
+      <span class="dg-num">02</span>
+      <span class="dg-lab">Està clar què vols. Per què no ho tens ja? Què t'ho ha impedit?</span>
+      <textarea name="q2" rows="5" required placeholder="Sense filtres. Aquesta és la que més em diu."></textarea>
+    </label>
+
+    <label class="dg-campo">
+      <span class="dg-num">03</span>
+      <span class="dg-lab">Què tens ja al negoci (dades, processos, gent, eines) que no estàs aprofitant?</span>
+      <textarea name="q3" rows="5" required placeholder="El que ja és a dins i no dona tot el que podria."></textarea>
+    </label>
+
+    <label class="dg-campo">
+      <span class="dg-num">04</span>
+      <span class="dg-lab">Vols que t'ajudi?</span>
+      <textarea name="q4" rows="3" required placeholder="Sí, no, o el que calgui per contestar això."></textarea>
+    </label>
+
+    <div class="dg-envio">
+      <button class="btn solid" type="submit">Enviar el diagnòstic</button>
+      <p class="fine">El llegeixo jo, no un assistent · et contesto per escrit · no t'apunto a cap llista</p>
+      <!-- Informació en el punt de recollida (art. 13 RGPD), igual que en la
+           versió castellana: aquesta pàgina és la que més dades recull de tot
+           el lloc i l'avís ha d'estar al costat del botó, no només al peu.
+           ⚠️ La política enllaçada és la castellana perquè les plantilles
+           legals les posa Oriol i no es redacten de zero. -->
+      <p class="fine dg-legal">Les teves respostes les tracta Oriol Forcada per contestar-te, i res més. No es cedeixen a ningú ni s'utilitzen per enviar-te publicitat. Pots demanar accés o esborrat escrivint a <a href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a>. Més detall a la <a href="/privacidad.html">política de privacitat</a>.</p>
+    </div>
+
+  </form>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Oriol Forcada</span>
+    <span class="foot-links">
+      <a href="/ca/">uriforcada.com</a>
+      <a href="/aviso-legal.html">Avís legal</a>
+      <a href="/privacidad.html">Privacitat</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+.dg-form{margin-bottom:80px}
+.dg-legal{font-family:var(--f-body);font-size:12.5px;letter-spacing:0;line-height:1.55;
+  max-width:62ch;margin-top:18px}
+.dg-legal a{color:var(--dim);text-decoration:underline;text-underline-offset:2px}
+.dg-legal a:hover{color:var(--ink)}
+.dg-campo{display:block;margin-bottom:30px}
+.dg-num{display:block;font-family:var(--f-mono);font-size:11px;line-height:1;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--accent);background:none;border:0;padding:0;margin-bottom:12px}
+.dg-lab{display:block;font-family:var(--f-display);font-weight:700;font-size:17px;letter-spacing:-.012em;
+  margin-bottom:12px;max-width:58ch;line-height:1.3}
+.dg-campo input,.dg-campo textarea{width:100%;background:#fff;border:1px solid var(--line);
+  color:var(--ink);font-family:var(--f-body);font-size:16px;padding:14px 16px;outline:none;border-radius:2px}
+.dg-campo textarea{resize:vertical;line-height:1.6}
+.dg-campo input:focus,.dg-campo textarea:focus{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-pale)}
+.dg-campo input::placeholder,.dg-campo textarea::placeholder{color:var(--dim);opacity:.65}
+.grid3 .dg-campo{margin-bottom:0;padding:0}
+.grid3{margin-bottom:30px;border-top:0;gap:20px;display:grid}
+.dg-envio{margin-top:44px;padding-top:30px;border-top:1px solid var(--line);background:none;
+  border-left:0;border-right:0;border-bottom:0;box-shadow:none}
+.dg-envio .btn{cursor:pointer}
+.dg-reserva{margin:0 0 80px;padding:26px 0 0;border-top:1px solid var(--line)}
+.dg-reserva h3{font-family:var(--f-display);font-weight:800;font-size:22px;
+  letter-spacing:-.02em;margin:0 0 8px}
+.dg-reserva .fine{margin:0 0 14px;max-width:60ch}
+.dg-reserva-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.dg-reserva .btn{cursor:pointer}
+.dg-reserva textarea{width:100%;background:#fff;border:1px solid var(--line);
+  color:var(--ink);font-family:var(--f-mono);font-size:12px;line-height:1.6;
+  padding:12px 14px;border-radius:2px;resize:vertical;margin-bottom:14px}
+</style>
+
+<script src="/assets/diagnostico.js"></script>
+
+</body>
+</html>

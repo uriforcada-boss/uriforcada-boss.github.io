@@ -1,0 +1,158 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   DIRECCIÓN D · EJE CENTRAL
+   ═══════════════════════════════════════════════════════════════════════
+   Pedida por Oriol el 17-ago-2026. Aviso honesto de entrada: **esto no
+   es recuperar nada**. Las tres direcciones que se descartaron el 9-ago
+   (Margen anotado, Registro ancho, Carril fijo) estaban las tres
+   alineadas a la izquierda; ninguna centraba el texto. Buscado en el
+   repo y en el historial de git. Así que esta es nueva.
+
+   Qué hace, y por qué no es solo «poner text-align:center»:
+
+     · El eje de la página deja de ser el borde izquierdo y pasa a ser
+       la línea central. Todo lo que hoy arranca en el mismo sitio
+       (rótulo, titular, párrafo, botones) pasa a colgar del centro.
+     · La medida de lectura NO cambia: el texto sigue en 64ch. Lo que
+       cambia es que esos 64ch se centran en vez de pegarse a un lado.
+       Un párrafo centrado y ancho es ilegible; centrado y estrecho, no.
+     · Los rótulos de sección dejan de ir a la derecha del titular y
+       bajan debajo. En una página centrada, un elemento anclado a la
+       derecha rompe el eje y se ve como un error.
+     · La barra de marca del hero deja de cruzar la página: pasa a ser
+       una regla corta centrada. Una línea a todo lo ancho debajo de un
+       titular centrado señala un borde que ya no existe.
+
+   Se monta ENCIMA de la retícula ancha que ya está viva (`body.ancho`),
+   no en su lugar: los 1320 px y los tres anchos se conservan.
+
+   Coste: bajo. Solo CSS, ni una línea de HTML.
+   Riesgo: medio, y está localizado. Ver la nota de LOS LÍMITES abajo.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── El eje. Todo lo que es texto corrido se centra y se ancla al medio.
+      `margin-inline:auto` es la mitad del trabajo: sin él, el bloque
+      sigue pegado a la izquierda aunque su texto esté centrado. ── */
+.hero,
+.section-head,
+.solution,
+.fecha,
+.biz,
+.instrumento,
+.fine{text-align:center}
+
+.hero h1,
+.hero p,
+.solution p,
+.solution .accent,
+.biz p,
+.biz .sin-riesgo,
+.instrumento>p,
+.instrumento .inst-foot,
+.fecha .f-txt,
+.fine,
+.card p{margin-inline:auto}
+
+/* ── EL HERO ──────────────────────────────────────────────────────────
+   La barra de marca pasa de cruzar la página a ser una regla corta bajo
+   el rótulo. Y el titular se estrecha un punto: centrado, 15ch se parten
+   en líneas muy desiguales, y 13ch cae mucho mejor. */
+.hero{padding:120px 0 68px}
+.hero .brandbar{width:64px;margin-inline:auto;margin-bottom:32px;
+  transform-origin:center}
+.hero h1{max-width:13ch}
+.hero p{max-width:56ch}
+.hero-ctas{justify-content:center}
+
+/* ── CABECERAS DE SECCIÓN ─────────────────────────────────────────────
+   Hoy son un flex con el titular a la izquierda y el rótulo a la derecha.
+   Centrado, eso se convierte en dos objetos flotando en los extremos.
+   Se apilan: titular y debajo su rótulo, los dos en el eje. */
+.section-head{flex-direction:column;align-items:center;gap:10px;
+  padding-bottom:20px;margin-bottom:44px}
+.section-head h2{max-width:20ch}
+.section-head .hint{text-align:center}
+
+/* ── LAS TRES COLUMNAS DEL ENEMIGO ────────────────────────────────────
+   Cada ficha se centra sobre su propia columna. Las líneas verticales
+   que las separan se quedan: son la retícula, y sin ellas tres textos
+   centrados y sueltos se leen como un poema. */
+.pain,.step{text-align:center;padding:34px 26px 38px}
+.pain h3,.step h3{margin-inline:auto;max-width:18ch}
+.pain p,.step p{margin-inline:auto;max-width:32ch}
+
+/* ── EL BLOQUE DE COLOR ───────────────────────────────────────────────
+   A sangre y centrado. La frase larga se estrecha a 22ch para que las
+   líneas caigan parejas, que es lo único que sostiene un centrado. */
+.solution p{max-width:22ch}
+.solution .accent{max-width:52ch}
+
+/* ── HOY / DESPUÉS ────────────────────────────────────────────────────
+   La comparación de dos columnas se conserva, pero cada lado se centra
+   sobre sí mismo. El relleno era asimétrico (0 por la derecha en el lado
+   izquierdo) porque estaba pensado para texto pegado al margen; centrado,
+   eso descuadra los dos lados. Se iguala. */
+.despues .lado{text-align:center;padding:30px 28px}
+.despues .lado+.lado{padding-left:28px}
+.despues .lado p{margin-inline:auto;max-width:34ch}
+
+/* ── LOS LÍMITES ──────────────────────────────────────────────────────
+   ⚠️ ESTE es el punto que hay que mirar con la página delante, y el
+   motivo de que el riesgo no sea bajo. Una lista centrada se ve bien y
+   se escanea mal: el ojo pierde el punto de arranque en cada renglón,
+   que es justo lo que una lista de «sí se da / no se da» necesita.
+
+   Se centra porque es lo que se ha pedido y porque es una dirección, no
+   una decisión. Si al verlo canta, se cambian estas dos líneas a `left`
+   y el resto de la página se queda igual. */
+.limite{text-align:center}
+.limite li{text-align:center}
+
+/* ── LA FECHA ─────────────────────────────────────────────────────────
+   En la retícula ancha va a dos columnas (número grande a la izquierda,
+   texto a la derecha). Centrado no puede ser: se apila, número encima. */
+.fecha{display:block}
+.fecha .f-txt{max-width:52ch;margin-top:28px}
+
+/* ── EL INSTRUMENTO ───────────────────────────────────────────────────
+   Los paneles de cristal centran su contenido. El número grande centrado
+   es lo que mejor le sienta a esta dirección: pasa a ser un marcador. */
+.instrumento>p{max-width:56ch}
+.instrumento .panel{text-align:center}
+.instrumento .panel .p-sub{margin-inline:auto;max-width:26ch}
+.instrumento .inst-foot{max-width:56ch}
+
+/* ── LA CAJA TINTA ────────────────────────────────────────────────────
+   Los botones dejan de arrancar a la izquierda y se centran en fila. */
+.biz p{max-width:52ch}
+.biz .cta-row{justify-content:center}
+/* 48ch parecía lo lógico y en pantalla partía las tres frases por la mitad:
+   va en mono, que ocupa bastante más por carácter. A 64ch cada frase cabe
+   en su renglón, que es lo único que hace legible un bloque centrado. */
+.biz .sin-riesgo{max-width:64ch}
+
+/* ── LA TARJETA DE LINKEDIN ───────────────────────────────────────────
+   `.card-top` es un flex que separa el titular de la flecha a los dos
+   extremos. Centrado, la flecha se queda sola en el borde derecho sin
+   nada que la justifique: se pega al titular. Y el desplazamiento de
+   10px al pasar por encima se sustituye por el mismo movimiento hecho
+   desde el centro, o la tarjeta entera se descuadraría hacia un lado. */
+.card{text-align:center}
+.card .card-top{justify-content:center;gap:10px}
+.card p{max-width:52ch}
+a.card:hover{padding-left:0;transform:translateY(-2px)}
+
+/* ── EL PIE ───────────────────────────────────────────────────────────
+   Deja de ser dos bloques en los extremos y pasa a ser una columna. */
+footer .wrap{flex-direction:column;align-items:center;gap:14px;text-align:center}
+.foot-links{justify-content:center}
+
+/* ── MÓVIL ───────────────────────────────────────────────────────────
+   Por debajo de 1100 px la retícula ancha ya vuelve a 860, y el centrado
+   se queda: en una columna estrecha es donde mejor funciona. Lo único
+   que hay que deshacer es lo de la comparación, que abajo de 640 pasa a
+   una sola columna y no necesita relleno lateral. */
+@media(max-width:640px){
+  .despues .lado{padding:22px 0 6px}
+  .despues .lado+.lado{padding-left:0;padding-bottom:22px}
+  .hero .brandbar{margin-bottom:26px}
+}

@@ -40,11 +40,50 @@
 (function () {
   var ACCESS_KEY = "6610f07f-d62c-4f0e-b93e-34487a4730d2";                     // ← pegar aquí la clave de Web3Forms
   var DESTINO    = "contacto@uriforcada.com";
-  var GRACIAS    = "deberes.html";
+  var GRACIAS_POR_DEFECTO = "deberes.html";  // se puede sobreescribir con data-gracias en el <form>
   var ENDPOINT   = "https://api.web3forms.com/submit";
 
   var form = document.getElementById("dg");
   if (!form) return;
+  var GRACIAS = form.dataset.gracias || GRACIAS_POR_DEFECTO;
+
+  /* ── Idioma — 17-ago-2026 ──────────────────────────────────────────────
+     Esta página existe en castellano y en catalán, y hasta hoy el JS tenía
+     los textos clavados en castellano: en la versión catalana, todo lo que
+     el visitante veía DESPUÉS de pulsar (el «Enviando…», el panel de
+     reserva, el aviso de error) salía en castellano. En una web que va a
+     captar en Lleida, eso es peor que no tener la página traducida: dice
+     que la traducción es una capa de pintura.
+
+     Se resuelve leyendo `lang` del <html>. Las etiquetas de PREGUNTAS NO se
+     traducen a propósito: esas van en el correo que recibe Oriol, no en la
+     pantalla del visitante, y en su bandeja conviene que siempre pongan lo
+     mismo. Lo que sí cambia es el asunto, para que un lead catalán se
+     reconozca de un vistazo. */
+  var CA = (document.documentElement.lang || "es").slice(0, 2) === "ca";
+  var T = CA ? {
+    enviando: "Enviant…",
+    error:    "No l'he pogut enviar. Prova-ho un altre cop, o escriu-me directament a ",
+    asunto:   "Diagnòstic (CA) — ",
+    listo:    "Ja està llest. Falta enviar-lo.",
+    aviso:    "Aquesta pàgina encara no envia sola: ho envia el teu correu. Les teves respostes estan desades en aquest navegador, així que no es perden encara que tanquis.",
+    abrir:    "Obrir el meu correu",
+    copiar:   "Copiar el text",
+    sinada:   "Si no s'obre res, copia el text i envia'l a ",
+    hecho:    "Ja l'he enviat",
+    copiado:  "Copiat ✓"
+  } : {
+    enviando: "Enviando…",
+    error:    "No he podido enviarlo. Prueba otra vez, o escríbeme directo a ",
+    asunto:   "Diagnóstico — ",
+    listo:    "Ya está listo. Falta mandarlo.",
+    aviso:    "Esta página no envía sola todavía: lo manda tu correo. Tus respuestas están guardadas en este navegador, así que no se pierden aunque cierres.",
+    abrir:    "Abrir mi correo",
+    copiar:   "Copiar el texto",
+    sinada:   "Si no se abre nada, copia el texto y mándalo a ",
+    hecho:    "Ya lo he enviado",
+    copiado:  "Copiado ✓"
+  };
 
   var PREGUNTAS = {
     q1: "01 · Dentro de un año, qué habría pasado para que fuera buena decisión",
@@ -73,7 +112,7 @@
     var p = document.createElement("p");
     p.className = "form-msg";
     p.innerHTML =
-      "No he podido enviarlo. Prueba otra vez, o escríbeme directo a " +
+      T.error +
       '<a href="mailto:' + DESTINO + '">' + DESTINO + "</a>.";
     form.querySelector(".dg-envio").appendChild(p);
   }
@@ -175,7 +214,7 @@
 
   function panelDeReserva(texto, negocio) {
     var enlace = "mailto:" + DESTINO +
-      "?subject=" + encodeURIComponent("Diagnóstico — " + negocio) +
+      "?subject=" + encodeURIComponent(T.asunto + negocio) +
       "&body=" + encodeURIComponent(texto);
 
     var previo = document.getElementById("dg-reserva");
@@ -185,18 +224,16 @@
     caja.id = "dg-reserva";
     caja.className = "dg-reserva";
     caja.innerHTML =
-      '<h3>Ya está listo. Falta mandarlo.</h3>' +
-      '<p class="fine">Esta página no envía sola todavía: lo manda tu correo. ' +
-      'Tus respuestas están guardadas en este navegador, así que no se pierden ' +
-      'aunque cierres.</p>' +
+      '<h3>' + T.listo + '</h3>' +
+      '<p class="fine">' + T.aviso + '</p>' +
       '<div class="dg-reserva-btns">' +
-        '<a class="btn solid" id="dg-abrir" href="' + enlace + '">Abrir mi correo</a>' +
-        '<button class="btn" type="button" id="dg-copiar">Copiar el texto</button>' +
+        '<a class="btn solid" id="dg-abrir" href="' + enlace + '">' + T.abrir + '</a>' +
+        '<button class="btn" type="button" id="dg-copiar">' + T.copiar + '</button>' +
       '</div>' +
-      '<p class="fine">Si no se abre nada, copia el texto y mándalo a ' +
+      '<p class="fine">' + T.sinada +
       '<strong>' + DESTINO + '</strong>.</p>' +
       '<textarea id="dg-texto" rows="8" readonly></textarea>' +
-      '<button class="btn" type="button" id="dg-hecho">Ya lo he enviado</button>';
+      '<button class="btn" type="button" id="dg-hecho">' + T.hecho + '</button>';
 
     form.parentNode.insertBefore(caja, form.nextSibling);
     caja.querySelector("#dg-texto").value = texto;
@@ -205,7 +242,7 @@
     caja.querySelector("#dg-copiar").addEventListener("click", function () {
       var boton = this;
       var area = caja.querySelector("#dg-texto");
-      var listo = function () { boton.textContent = "Copiado ✓"; };
+      var listo = function () { boton.textContent = T.copiado; };
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(texto).then(listo, function () {
           area.select(); document.execCommand("copy"); listo();
@@ -237,7 +274,7 @@
 
     var textoOriginal = boton.textContent;
     boton.disabled = true;
-    boton.textContent = "Enviando…";
+    boton.textContent = T.enviando;
 
     var previo = form.querySelector(".form-msg");
     if (previo) previo.remove();
@@ -247,7 +284,7 @@
       headers: { "Content-Type": "application/json", Accept: "application/json" },
       body: JSON.stringify({
         access_key: ACCESS_KEY,
-        subject: "Diagnóstico — " + negocio,
+        subject: T.asunto + negocio,
         from_name: "Diagnóstico · uriforcada.com",
         replyto: datos.get("email") || "",
         negocio: negocio,

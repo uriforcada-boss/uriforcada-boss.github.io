@@ -159,11 +159,20 @@ footer a:hover{color:var(--accent);border-color:var(--accent)}
    DEMUESTRA. Y le da soporte visual a la regla de voz «enseña, no describas»,
    que hasta hoy no lo tenía en nada público.
 
-   ⚠️ El ácido `#D4FF00` vive SOLO aquí y con cuentagotas. Fuera del modo día
-   por decisión de Oriol del 5-ago.                                          */
+   ⚠️ 17-ago-2026: el ácido `#D4FF00` SALE y entra un azul chillón,
+   `#1E90FF`, por decisión de Oriol. Sigue viviendo SOLO aquí y con
+   cuentagotas, y sigue fuera del modo día. Documento dueño del hecho:
+   Identidad visual — Mapa de marca (vault).
+
+   Por qué este azul y no el índigo de la marca (`#1E38DE`): sobre el void
+   casi negro, el índigo se apaga y el rótulo de 10px deja de leerse (razón
+   de contraste 2,3 : 1). `#1E90FF` es el mismo azul subido de luz hasta
+   5,5 : 1, que es lo que hace falta para un mono de 10px. El ácido daba
+   15 : 1, así que este cambio SÍ come contraste: si algún día el rótulo
+   baja de 10px, hay que volver a subir la luz del azul.                    */
 
 .instrumento{
-  --void:#08090c; --acid:#D4FF00; --glass:rgba(255,255,255,.078);
+  --void:#08090c; --acid:#1E90FF; --glass:rgba(255,255,255,.078);
   --rim:rgba(255,255,255,.13); --lip:rgba(255,255,255,.20);
   background:var(--void);color:#E7E9EC;border-radius:3px;
   padding:38px 30px 32px;margin:0;
@@ -509,21 +518,21 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
    ninguna de las 25 páginas: donde exista ese enlace, se convierte en botón.
    Se cubren las dos rutas (es y ca) para no depender del idioma.
 
-   ⚠️ El `:not(.lang)` NO es defensivo, arregla un fallo que se vio en pantalla:
+   ⚠️ El `:not(.lang):not(.op)` NO es defensivo, arregla un fallo que se vio en pantalla:
    dentro de `/trabajar-conmigo/`, el conmutador de idioma apunta justamente a
    `/ca/treballar-amb-mi/`, así que el selector lo cazaba y «CAT» salía también
    como botón azul. Dos botones en la barra y ninguno de los dos se entiende. */
-.nav ul a[href="/trabajar-conmigo/"]:not(.lang),
-.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang){
+.nav ul a[href="/trabajar-conmigo/"]:not(.lang):not(.op),
+.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang):not(.op){
   color:var(--accent);border:1px solid var(--accent);border-bottom-color:var(--accent);
   border-radius:2px;padding:7px 14px;font-weight:600;line-height:1;
   transition:background .16s ease,color .16s ease}
-.nav ul a[href="/trabajar-conmigo/"]:not(.lang):hover,
-.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang):hover{
+.nav ul a[href="/trabajar-conmigo/"]:not(.lang):not(.op):hover,
+.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang):not(.op):hover{
   background:var(--accent);color:#fff}
 /* Ya estás dentro: el botón se rellena en vez de seguir invitando a entrar */
-.nav ul a[href="/trabajar-conmigo/"]:not(.lang)[aria-current="page"],
-.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang)[aria-current="page"]{
+.nav ul a[href="/trabajar-conmigo/"]:not(.lang):not(.op)[aria-current="page"],
+.nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang):not(.op)[aria-current="page"]{
   background:var(--accent);color:#fff}
 /* ── El botón en móvil, que es donde casi lo estropeo ─────────────────
    La barra no tiene hamburguesa a propósito: cinco enlaces en una fila que
@@ -546,10 +555,10 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
    un lector de pantalla la barra se sigue leyendo igual que siempre. */
 @media(max-width:640px){
   .nav ul{gap:16px}
-  .nav ul li:has(a[href="/trabajar-conmigo/"]:not(.lang)),
-  .nav ul li:has(a[href="/ca/treballar-amb-mi/"]:not(.lang)){order:-1}
-  .nav ul a[href="/trabajar-conmigo/"]:not(.lang),
-  .nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang){padding:6px 11px}
+  .nav ul li:has(a[href="/trabajar-conmigo/"]:not(.lang):not(.op)),
+  .nav ul li:has(a[href="/ca/treballar-amb-mi/"]:not(.lang):not(.op)){order:-1}
+  .nav ul a[href="/trabajar-conmigo/"]:not(.lang):not(.op),
+  .nav ul a[href="/ca/treballar-amb-mi/"]:not(.lang):not(.op){padding:6px 11px}
 }
 
 /* ── 2 · La barra de progreso de lectura ──────────────────────────────
@@ -616,8 +625,8 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
 .instrumento .inst-k.live::before{content:'';flex:0 0 6px;width:6px;height:6px;
   border-radius:50%;background:var(--acid);
   animation:latido 2.4s ease-in-out infinite}
-@keyframes latido{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(212,255,0,.45)}
-  50%{opacity:.42;box-shadow:0 0 0 5px rgba(212,255,0,0)}}
+@keyframes latido{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(30,144,255,.55)}
+  50%{opacity:.42;box-shadow:0 0 0 5px rgba(30,144,255,0)}}
 .panel .p-val{font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){
   .instrumento .inst-k.live::before{animation:none}
@@ -648,4 +657,313 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
 @media(max-width:520px){
   .dg-avance{flex-wrap:wrap}
   .dg-avance .barra{order:3;flex-basis:100%}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   LO QUE SE TRAE DE PALLADAIM — 17-ago-2026
+   ══════════════════════════════════════════════════════════════════════
+   Oriol trajo `palladaim.com` como referencia. Se leyó su bundle entero y
+   el inventario está en `4_Biblioteca/Palladaim — inventario de animaciones`.
+   De todo aquello, aquí entra lo que tenía dónde caer en esta web.
+
+   Lo que NO entra, porque no hay dónde ponerlo: el shader WebGL del hero,
+   el libro 3D, las carpetas que se abren, la tarjeta que se inclina con el
+   ratón, la cinta de logos, los menús desplegables y el modal. Esta web no
+   tiene ninguno de esos objetos.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1 · EL REMATE ────────────────────────────────────────────────────
+   Su gesto de marca: el titular se parte en dos voces. La primera afirma
+   en Archivo; la segunda REMATA en serif y en cursiva. Lo repiten ocho
+   veces en su home, y repetido deja de ser un adorno y pasa a ser regla.
+
+   ⚠️ Esto NO es una animación, es identidad visual, y la identidad la
+   posee el Brandbook. Entra porque lo pidió Oriol el 17-ago.
+
+   Se aplica con la clase `.remate` en el HTML, nunca automáticamente. */
+:root{--f-serif:"DM Serif Display",Georgia,serif}
+.remate{font-family:var(--f-serif);font-weight:400;font-style:italic;
+  letter-spacing:-.01em;font-size:1.04em}
+.hero h1 .accent.remate{color:var(--accent)}
+
+/* ── 2 · EL EQUILIBRIO DE LÍNEA ───────────────────────────────────────
+   Reparte las palabras para que ningún renglón quede cojo. En un titular
+   de 900 a 104px, una palabra huérfana se ve desde la calle. Y centrado
+   importa el doble: es lo único que sostiene un texto sin eje izquierdo. */
+.hero h1,.section-head h2,.solution p,.biz h3,.instrumento h3,
+.fecha .f-big,.card h3,.post-card h3,.resource-hero h1,
+.gate h2{text-wrap:balance}
+
+/* ── 3 · LA LÍNEA DE LA BARRA, LIGADA AL SCROLL ───────────────────────
+   Su cabecera arriba no pesa y al bajar se posa. Aquí con lo que ya se usa
+   en este fichero: `animation-timeline`, nativo y sin JS. Va en `scroll()`
+   y no en `view()` porque lo que manda es cuánto has bajado.
+
+   Descartado hacerla transparente como ellos: su hero es azul oscuro y la
+   barra blanca canta encima; aquí hero y barra son hueso y se ven igual. */
+@supports (animation-timeline: scroll()){
+  .nav{border-bottom-color:transparent;
+    animation:nav-posada linear both;
+    animation-timeline:scroll();
+    animation-range:0 120px}
+  @keyframes nav-posada{to{border-bottom-color:var(--line)}}
+}
+
+/* ── 4 · LA FLECHA QUE SE ADELANTA ────────────────────────────────────
+   NO se coge su versión, que hace oscilar la flecha en bucle infinito
+   mientras tienes el ratón encima: «nada rebota» está escrito arriba. */
+.card .arrow{transition:color .18s ease,transform .18s cubic-bezier(.2,.7,.3,1)}
+a.card:hover .arrow{transform:translateX(4px)}
+
+/* ── 5 · LA CASCADA, POR ÍNDICE Y NO POR TANDA ────────────────────────
+   Aquí había un fallo de verdad. El escalonado se calculaba con un
+   contador que se reiniciaba en CADA aviso del observador, así que
+   dependía de cuántos elementos entraran juntos en pantalla: bajando
+   despacio entraban de uno en uno, el contador valía siempre 0 y no había
+   cascada. Solo se veía saltando de golpe a media página.
+   Ahora el retardo sale del índice dentro del grupo, que no depende de la
+   velocidad. El JS escribe `--i` una vez y el retardo sale de aquí. */
+.reveal.in{transition-delay:calc(var(--i,0) * 70ms)}
+@media(prefers-reduced-motion:reduce){.reveal.in{transition-delay:0s}}
+
+/* ══════════════════════════════════════════════════════════════════════
+   EJE CENTRAL — 17-ago-2026. Decisión de Oriol.
+   ══════════════════════════════════════════════════════════════════════
+   El eje de la página deja de ser el borde izquierdo y pasa a ser la línea
+   central. Va en TODO el sitio, no solo en la home.
+
+   Qué NO cambia, y es lo que hace que siga siendo legible:
+   la medida de lectura. El texto sigue a 56-64 caracteres; lo que cambia
+   es que esos caracteres se anclan al medio en vez de a un lado. Un
+   párrafo centrado y ancho es ilegible; centrado y estrecho, no.
+
+   Lo que obliga a tocar más de un `text-align`:
+     · La barra de marca del hero deja de cruzar la página y pasa a ser
+       una regla corta centrada. Una línea a todo lo ancho debajo de un
+       titular centrado señala un borde que ya no existe.
+     · Los rótulos de sección dejan de ir a la derecha del titular y bajan
+       debajo. Centrado, un elemento anclado a la derecha rompe el eje.
+     · Las cajas con relleno asimétrico (pensado para texto pegado al
+       margen) se igualan, o los dos lados se descuadran.
+
+   ⚠️ Lo único que se queda alineado a la izquierda es el CUERPO de los
+   artículos del blog y de las páginas de recurso (`.recurso p`, `.recurso
+   li`, `.recurso pre`). Doce párrafos seguidos centrados no se leen: el
+   ojo pierde el punto de arranque en cada renglón. Los titulares de esas
+   páginas SÍ se centran. Si Oriol quiere también el cuerpo, es quitar el
+   bloque marcado «EXCEPCIÓN» del final.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── El eje ──────────────────────────────────────────────────────────
+   `margin-inline:auto` es la mitad del trabajo: sin él el bloque sigue
+   pegado a la izquierda aunque su texto esté centrado. */
+.hero,.section-head,.solution,.fecha,.biz,.instrumento,.fine,
+.resource-hero,.gate,.teaser,.despues .lado,.limite,.pain,.step,.card,
+.recurso,.post-meta{text-align:center}
+
+.hero h1,.hero p,.solution p,.solution .accent,.biz p,.biz .sin-riesgo,
+.instrumento>p,.instrumento .inst-foot,.fecha .f-txt,.fine,.card p,
+.resource-hero h1,.resource-hero .sub,.gate>p,.teaser p,
+.recurso .lede,.recurso p,.recurso li{margin-inline:auto}
+
+/* ── El hero ─────────────────────────────────────────────────────────
+   Titular a 13ch: centrado, 15ch se parte en líneas muy desiguales. */
+.hero{padding:120px 0 68px}
+.hero .brandbar{width:64px;margin-inline:auto;margin-bottom:32px;transform-origin:center}
+.hero h1{max-width:13ch}
+.hero p{max-width:56ch}
+.hero-ctas{justify-content:center}
+body.ancho .hero h1{max-width:13ch}
+.resource-hero h1{max-width:15ch}
+.resource-hero .sub,.teaser p{max-width:56ch}
+
+/* ── Cabeceras de sección ────────────────────────────────────────────
+   Eran un flex con el titular a un extremo y el rótulo al otro. Se apilan. */
+.section-head{flex-direction:column;align-items:center;gap:10px;
+  padding-bottom:20px;margin-bottom:44px}
+.section-head h2{max-width:20ch}
+.section-head .hint{text-align:center}
+body.ancho .section-head{padding-bottom:22px;margin-bottom:46px}
+
+/* ── Las tres columnas del enemigo ───────────────────────────────────
+   Las líneas verticales se quedan: sin ellas, tres textos centrados y
+   sueltos se leen como un poema. */
+.pain,.step{padding:34px 26px 38px}
+.pain h3,.step h3{margin-inline:auto;max-width:18ch}
+.pain p,.step p{margin-inline:auto;max-width:32ch}
+body.ancho .pain{padding:36px 30px 40px}
+
+/* ── El bloque de color ──────────────────────────────────────────────
+   22ch para que las líneas caigan parejas, que es lo único que sostiene
+   un centrado. */
+.solution p{max-width:22ch}
+.solution .accent{max-width:52ch}
+body.ancho .solution p{max-width:24ch}
+
+/* ── Hoy / Después ───────────────────────────────────────────────────
+   El relleno era asimétrico (0 por la derecha en el lado izquierdo)
+   porque estaba pensado para texto pegado al margen. Se iguala. */
+.despues .lado{padding:30px 28px}
+.despues .lado+.lado{padding-left:28px}
+.despues .lado p{margin-inline:auto;max-width:34ch}
+
+/* ── Los límites ─────────────────────────────────────────────────────
+   ⚠️ El punto que hay que mirar con la página delante: una lista centrada
+   se ve bien y se escanea peor. Se centra porque es lo pedido; se vuelve
+   atrás cambiando estas dos líneas a `left`. */
+.limite li{text-align:center}
+.limite ul{padding:0}
+
+/* ── La fecha ────────────────────────────────────────────────────────
+   En la retícula ancha iba a dos columnas. Centrado se apila. */
+.fecha{display:block}
+.fecha .f-txt{max-width:52ch;margin-top:28px}
+body.ancho .fecha{display:block}
+body.ancho .fecha .f-txt{max-width:52ch}
+
+/* ── El instrumento ──────────────────────────────────────────────────
+   El número grande centrado pasa a ser un marcador, que es lo que es. */
+.instrumento>p{max-width:56ch}
+.instrumento .panel{text-align:center}
+.instrumento .panel .p-sub{margin-inline:auto;max-width:26ch}
+.instrumento .inst-foot{max-width:56ch}
+
+/* ── La caja tinta ───────────────────────────────────────────────────
+   64ch y no 48: el bloque va en mono, que ocupa mucho más por carácter,
+   y a 48 partía las tres frases por la mitad. */
+.biz p{max-width:52ch}
+.biz .cta-row{justify-content:center}
+.biz .sin-riesgo{max-width:64ch}
+
+/* ── Tarjetas y formularios ──────────────────────────────────────────
+   `.card-top` separaba el titular de la flecha a los dos extremos.
+   Centrado, la flecha se quedaba sola en el borde: se pega al titular.
+   Y el desplazamiento lateral del hover se cambia por el de la casa. */
+.card .card-top{justify-content:center;gap:10px}
+.card p{max-width:52ch}
+a.card:hover{padding-left:0;transform:translateY(-2px)}
+.gate form,.gate-form{justify-content:center}
+.gate>p{max-width:52ch}
+.gate-legal,.res>p.gate-legal{margin-inline:auto}
+
+/* ── El pie ──────────────────────────────────────────────────────────*/
+footer .wrap{flex-direction:column;align-items:center;gap:14px;text-align:center}
+.foot-links{justify-content:center}
+
+/* ── EXCEPCIÓN · el cuerpo de los artículos ──────────────────────────
+   Titulares centrados, cuerpo a la izquierda. Doce párrafos seguidos
+   centrados no se leen, y menos con bloques de código en medio.
+
+   ⚠️ 17-ago, visto en pantalla: al principio esto colgaba de `.recurso`, y
+   `.recurso` lo llevan TAMBIÉN «Sobre mí», «Recursos» y las preguntas
+   frecuentes, que no son artículos. Resultado: entradilla centrada y el
+   párrafo de debajo a la izquierda, o sea media página a cada lado. Ahora
+   depende de `body.articulo`, que llevan solo los posts del blog y las
+   páginas de recurso. Todo lo demás se centra entero. */
+body.articulo .recurso p,body.articulo .recurso li,
+body.articulo .recurso ol,body.articulo .recurso ul,
+body.articulo .recurso pre,body.articulo .recurso h2,
+.post-card,.post-card p{text-align:left}
+body.articulo .recurso p,body.articulo .recurso ol,
+body.articulo .recurso ul{margin-inline:0}
+.recurso .lede{text-align:center;max-width:60ch}
+/* Centrado, el cuerpo necesita medida propia: sin esto salen renglones de
+   90 caracteres colgando del medio, que es lo peor de los dos mundos. */
+.recurso p,.recurso li{max-width:62ch}
+body.articulo .recurso p,body.articulo .recurso li{max-width:62ch;margin-inline:0}
+body.articulo .recurso .lede{text-align:left;margin-inline:0}
+
+@media(max-width:640px){
+  .despues .lado{padding:22px 0 6px}
+  .despues .lado+.lado{padding-left:0;padding-bottom:22px}
+  .hero .brandbar{margin-bottom:26px}
+}
+
+/* ⚠️ La excepción de arriba (`.recurso p` a la izquierda) se comía las
+   cajas de venta que viven DENTRO de una página de recurso: en
+   `/trabajar-conmigo/` el titular de la caja tinta salía centrado y sus
+   párrafos a la izquierda, o sea la caja partida por la mitad. Se ve en
+   pantalla, no leyendo el selector: `.recurso p` gana por especificidad a
+   lo que `.biz` centra por herencia. La excepción es para el CUERPO del
+   artículo, no para los bloques que venden. */
+.recurso .biz p,.recurso .biz .sin-riesgo,.recurso .biz li,
+.recurso .gate p,.recurso .gate li,
+.recurso .instrumento p,.recurso .solution p,
+.biz p,.biz .sin-riesgo,.gate>p{text-align:center}
+
+/* ── AJUSTES SOBRE EL EJE CENTRAL — 17-ago-2026, vistos en pantalla ───
+
+   1 · EL DESPUÉS NO PESABA. Los dos lados iban al mismo cuerpo (16px) y
+   solo los separaba el color, así que la columna que trae la promesa se
+   leía igual de floja que la que describe el problema. Es justo al revés:
+   el «hoy» es el contexto y el «después» es lo que se compra. Sube de
+   cuerpo y de peso hasta que se lea primero.
+
+   2 · LA PALABRA HUÉRFANA. Centrado, un párrafo que acaba con una sola
+   palabra en el último renglón canta el doble que alineado a la izquierda,
+   porque la línea corta queda flotando en el medio. `text-wrap: balance`
+   reparte las palabras entre TODOS los renglones y la deja pareja. Es una
+   línea por bloque y no cambia ni una palabra del texto.
+   ── */
+
+.despues .lado p{font-size:17px}
+.despues .lado.post p{font-size:20px;font-weight:700;color:var(--ink);
+  letter-spacing:-.012em;line-height:1.4;max-width:34ch}
+.despues .lado .k{margin-bottom:12px}
+
+/* Todo lo que es texto corrido y va centrado, equilibrado. */
+.hero p,.biz p,.despues .lado p,.instrumento>p,.solution .accent,
+.resource-hero .sub,.gate>p,.pain p,.step p,.card p,.fecha .f-txt,
+.instrumento .inst-foot,.fine,.teaser p,.panel .p-sub,
+.recurso .lede,.biz .sin-riesgo{text-wrap:balance}
+
+/* El bloque mono del diagnóstico partía «sin / llamada.» a mitad de frase.
+   No era el ancho de la caja: `ch` cuenta caracteres, pero este bloque
+   lleva `letter-spacing:.06em`, o sea que cada carácter ocupa un 6% más
+   del que `ch` promete. 64ch se quedaban cortos por tres letras. */
+.biz .sin-riesgo{max-width:76ch}
+
+/* ══════════════════════════════════════════════════════════════════════
+   SELECTOR DE IDIOMA — 17-ago-2026
+   ══════════════════════════════════════════════════════════════════════
+   Antes era un enlace suelto que ponía «CAT». Tres cosas fallaban:
+
+     1. No decía en qué idioma ESTÁS, solo a cuál puedes ir. Quien entra
+        desde Google en catalán no sabe si ya está donde quiere.
+     2. Parecía una sección más de la barra, del mismo gris que «Recursos».
+     3. Desde media web te mandaba a la home catalana en vez de a la misma
+        página, así que cambiar de idioma te costaba tu sitio.
+
+   Ahora son los DOS idiomas a la vista, el actual marcado, y el otro
+   apuntando a la página equivalente.
+
+   ⚠️ Sin banderas, y es decisión con motivo: una bandera es un país, no
+   un idioma, y poner la rojigualda al lado de la senyera en una web que
+   va a captar en Lleida es meter una lectura política donde solo hacía
+   falta decir en qué idioma se lee. El globo dice «idioma» sin decir
+   «país». Si Oriol prefiere banderas, es cambiar el SVG y ya.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.idioma{display:flex;align-items:center;gap:7px;padding-left:16px;
+  border-left:1px solid var(--line);margin-left:4px}
+.idioma svg{width:13px;height:13px;stroke:var(--dim);stroke-width:1.6;fill:none;
+  flex-shrink:0}
+.idioma .op{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;
+  text-transform:uppercase;text-decoration:none;color:var(--dim);
+  padding:3px 5px;border-radius:2px;transition:color .16s ease,background .16s ease}
+.idioma a.op:hover{color:var(--accent);background:var(--surface)}
+/* El idioma en el que estás: no es un enlace, es un estado. `aria-current`
+   lo dice también para quien no ve el color. */
+.idioma .op[aria-current="true"]{color:var(--ink);font-weight:500;
+  background:var(--surface);cursor:default}
+.idioma .sep{color:var(--line);font-size:11px;line-height:1}
+
+@media(max-width:640px){
+  /* En la barra de móvil, que hace scroll lateral, el selector va el
+     ÚLTIMO del DOM pero se pinta pegado al botón de compra, que es lo
+     primero que se ve. Sin `order` se quedaba fuera de pantalla. */
+  .idioma{order:-1;padding-left:0;border-left:0;margin-left:0;
+    padding-right:12px;border-right:1px solid var(--line);margin-right:4px}
+  .idioma svg{display:none}
+  .idioma .op{padding:3px 4px;font-size:10.5px}
 }

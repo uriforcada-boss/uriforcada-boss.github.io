@@ -51,13 +51,24 @@
         form.parentNode.insertBefore(p, form.nextSibling);
       };
 
+      /* Suelo de 700 ms, copiado de palladaim.com (17-ago-2026). Parecía
+         un adorno suyo y no lo es: MailerLite a veces contesta en 120 ms y
+         entonces «Enviando…» aparece y desaparece en el mismo parpadeo, así
+         que quien lo mira no llega a leerlo y le queda la duda de si ha
+         pulsado bien, en la única puerta del embudo. Es un SUELO, no un
+         retraso: si tarda 2 s no se le suma nada. */
+      var t0 = Date.now();
+      var conSuelo = function (fn) {
+        return function () { setTimeout(fn, Math.max(0, 700 - (Date.now() - t0))); };
+      };
+
       fetch(ENDPOINT, { method: "POST", body: datos })
         .then(function (r) { return r.json(); })
         .then(function (r) {
-          if (r && r.success) window.location.href = destino;
-          else fallo();
+          if (r && r.success) conSuelo(function () { window.location.href = destino; })();
+          else conSuelo(fallo)();
         })
-        .catch(fallo);
+        .catch(conSuelo(fallo));
     });
   });
 })();

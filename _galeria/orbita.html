@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Órbita — el mapa del sistema</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+
+<style>
+/* ══════════════════════════════════════════════════════════════════════
+   ÓRBITA — el mapa del sistema. Borrador del 17-ago-2026.
+
+   De dónde sale: una referencia que trajo Oriol (bloque oscuro con un
+   núcleo y las capacidades girando alrededor, en anillos concéntricos).
+   Lo que se ha traducido y lo que NO:
+
+   · SÍ se coge la ESTRUCTURA: núcleo al centro, piezas en órbita, anillos
+     de 1px, fichas de cristal con la etiqueta en mono debajo.
+   · NO se coge su paleta (azul marino) ni su tipografía (serif en cursiva).
+     Va con el void #08090c y el ácido de `.instrumento`, que ya existen.
+   · NO gira. La referencia invita a rotar la órbita y esa es justo la
+     regla que el sitio tiene escrita dos veces: «nada gira, nada escala,
+     nada rebota». Las piezas ENTRAN (opacidad + 26px, como `.reveal`) y
+     el núcleo LATE (como el punto vivo del instrumento). Nada más.
+   · Un solo color fuerte: el ácido, y solo en el núcleo y en la línea de
+     la pieza sobre la que estás. Todo lo demás es cristal y gris.
+
+   Vive DENTRO de `.instrumento`, no al lado: hereda --void, --glass, --rim
+   y --acid de ahí. Fuera de ese bloque no se pinta bien, y es a propósito.
+   ══════════════════════════════════════════════════════════════════════ */
+
+.orbita{position:relative;width:100%;max-width:680px;aspect-ratio:1;margin:40px auto 8px}
+
+/* ── EL BARRIDO ───────────────────────────────────────────────────────
+   La aguja de radar que gira sola. Es lo único de la referencia que gira,
+   y entra porque Oriol la pidió expresamente el 17-ago. Queda dicho una
+   vez y no se vuelve a discutir: choca con la regla «nada gira» del
+   fichero de estilos, así que si algún día se aplica el rasero a todo,
+   este bloque es el primero que cae.
+
+   Cómo está hecha: el contenedor gira entero y la aguja va anclada por
+   su base al centro exacto (`bottom:50%`), así que barre la órbita sin
+   moverse del núcleo. 10 s por vuelta, lineal, como la referencia.
+   Empieza en 20° para que en la primera pantalla no salga clavada en
+   vertical encima de la pieza de arriba. */
+.barrido{position:absolute;inset:0;animation:barre 10s linear infinite;pointer-events:none}
+.barrido i{position:absolute;left:50%;bottom:50%;width:2px;height:44%;
+  transform:translateX(-50%);border-radius:1px;filter:blur(.5px);
+  /* brilla en el núcleo y se apaga hacia fuera, no al revés: la aguja SALE
+     del centro. Con el degradado invertido el punto fuerte quedaba en la
+     punta y parecía una raya suelta cruzando la órbita. */
+  background:linear-gradient(to top,rgba(30,144,255,.45),rgba(30,144,255,0))}
+@keyframes barre{from{transform:rotate(20deg)}to{transform:rotate(380deg)}}
+
+/* Los anillos. viewBox de 100×100 = el mismo sistema de coordenadas que
+   las fichas (que se colocan en %), así que un nodo a --x:81.5% cae justo
+   encima del punto 81.5 del SVG. Un solo número por pieza, no dos. */
+.orbita-anillos{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+/* `non-scaling-stroke`: sin esto, la línea de 1px engorda al escalar el
+   SVG y los anillos dejan de ser retícula para ser tubos. */
+.orbita-anillos circle,.orbita-anillos line{fill:none;vector-effect:non-scaling-stroke}
+.orbita-anillos circle{stroke:rgba(255,255,255,.075);stroke-width:1}
+.orbita-anillos line{stroke:rgba(255,255,255,.055);stroke-width:1;
+  transition:stroke .18s ease}
+/* La línea de la pieza sobre la que estás. Es lo único que se enciende. */
+.orbita-anillos line.on{stroke:var(--acid)}
+
+/* El núcleo. No lleva icono a propósito: es el sitio al que apuntan las
+   piezas, no una pieza más. */
+.nucleo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;align-items:center;gap:7px;text-align:center;z-index:3}
+.nucleo .k{font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:#6D7683}
+.nucleo .punto{width:9px;height:9px;border-radius:50%;background:var(--acid);
+  animation:latido 2.4s ease-in-out infinite}
+.nucleo .nom{font-family:var(--f-display);font-weight:800;font-size:19px;
+  letter-spacing:-.02em;color:#fff;white-space:nowrap}
+
+/* Las piezas. La ficha reutiliza el cristal de `.panel` (mismo fondo, mismo
+   filo, mismo radio): es la misma familia de objeto, no una caja nueva. */
+.nodo{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;align-items:center;gap:9px;z-index:2}
+.nodo .caja{width:46px;height:46px;border-radius:10px;background:var(--glass);
+  border:1px solid var(--rim);display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;transition:background .18s ease,border-color .18s ease}
+/* la luz del filo superior, igual que en `.panel` */
+.nodo .caja::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--lip)}
+.nodo svg{width:20px;height:20px;stroke:#C9CFD8;stroke-width:1.5;fill:none;
+  stroke-linecap:round;stroke-linejoin:round;transition:stroke .18s ease}
+.nodo .et{font-family:var(--f-mono);font-size:9.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#7A828E;white-space:nowrap;
+  border:1px solid rgba(255,255,255,.08);border-radius:4px;padding:3px 7px;
+  transition:color .18s ease,border-color .18s ease}
+
+.nodo:hover .caja{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.28)}
+.nodo:hover svg{stroke:#fff}
+.nodo:hover .et{color:#E7E9EC;border-color:rgba(255,255,255,.22)}
+
+/* La explicación de cada pieza. En la órbita está oculta a la vista pero
+   NO al lector de pantalla: quien navega con teclado se la lee entera sin
+   tener que pasar el ratón por nada. En móvil se destapa y se lee normal. */
+.nodo .def{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
+/* El pie: cambia con la pieza que tocas. Sin JS se queda en la frase de
+   partida y no falta nada. */
+.orbita-pie{font-family:var(--f-body);font-size:14.5px;line-height:1.5;color:#8A929E;
+  text-align:center;max-width:52ch;margin:0 auto;min-height:44px}
+.orbita-pie b{color:#fff;font-weight:600}
+
+/* La entrada: las piezas aparecen escalonadas, de dentro hacia fuera.
+   Opacidad y 18px, que es lo que ya hace el hero. Ni escala ni giro. */
+@keyframes entra-nodo{from{opacity:0;transform:translate(-50%,-50%) translateY(18px)}
+  to{opacity:1;transform:translate(-50%,-50%)}}
+@keyframes entra-suave{from{opacity:0}to{opacity:1}}
+.orbita .nodo{animation:entra-nodo .6s cubic-bezier(.2,.7,.3,1) both;
+  animation-delay:calc(var(--i,0) * 55ms + 120ms)}
+.orbita-anillos circle{animation:entra-suave .9s ease both;
+  animation-delay:calc(var(--i,0) * 60ms)}
+.nucleo{animation:entra-suave .7s ease both}
+
+/* El candado de siempre: si el sistema pide menos movimiento, no hay
+   movimiento. Incluido el latido del núcleo. */
+@media(prefers-reduced-motion:reduce){
+  .orbita .nodo,.orbita-anillos circle,.nucleo{animation:none}
+  .nucleo .punto{animation:none}
+  .nodo .caja,.nodo svg,.nodo .et,.orbita-anillos line{transition:none}
+  .barrido{animation:none;transform:rotate(20deg)}
+}
+
+/* ── MÓVIL ────────────────────────────────────────────────────────────
+   Una órbita de 10 piezas en 375px no se lee: las etiquetas se pisan y
+   los iconos quedan a 20px de distancia unos de otros. Así que por debajo
+   de 760px deja de ser órbita y pasa a ser lista, con el MISMO HTML: las
+   fichas sueltan el posicionamiento absoluto, los anillos desaparecen y
+   la explicación que estaba oculta se destapa. Nadie ve media órbita. */
+@media(max-width:760px){
+  .orbita{aspect-ratio:auto;max-width:none;margin:28px 0 0;display:grid;gap:0;
+    border-top:1px solid var(--rim)}
+  .orbita-anillos{display:none}
+  .nucleo{position:static;transform:none;flex-direction:row;align-items:center;
+    gap:11px;text-align:left;padding:18px 0;border-bottom:1px solid var(--rim)}
+  .nucleo .k{order:3;margin-left:auto}
+  .nodo{position:static;transform:none;flex-direction:row;align-items:flex-start;
+    gap:14px;padding:16px 0;border-bottom:1px solid var(--rim);animation:none;text-align:left}
+  .nodo .caja{width:38px;height:38px;flex:0 0 38px;border-radius:8px}
+  .nodo svg{width:17px;height:17px}
+  .nodo .et{border:0;padding:0;font-size:10px;color:#E7E9EC}
+  .nodo .def{position:static;width:auto;height:auto;clip-path:none;white-space:normal;
+    display:block;font-family:var(--f-body);font-size:13.5px;letter-spacing:0;
+    text-transform:none;color:#8A929E;line-height:1.45;margin-top:6px}
+  .nodo>.col{display:flex;flex-direction:column}
+  .orbita-pie{display:none}
+}
+
+/* ── MONTADO CON ──────────────────────────────────────────────────────
+   La referencia remata con una fila de logos y el rótulo «trabajamos con
+   las mejores tecnologías». Eso aquí sería posicionarse por herramienta,
+   que es justo lo que la marca tiene prohibido. Cambia el rótulo y cambia
+   el papel: no es un sello de calidad, es la lista de materiales de algo
+   que ya está montado. Y va en texto, no en logos ajenos. */
+.montado{margin-top:34px;padding-top:22px;border-top:1px solid var(--rim);text-align:center}
+.montado .k{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;
+  text-transform:uppercase;color:#6D7683;margin-bottom:14px}
+.montado ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;
+  gap:10px 26px;padding:0}
+.montado li{font-family:var(--f-mono);font-size:12.5px;letter-spacing:.04em;color:#8A929E}
+
+/* ── Solo para esta página de galería, no forma parte del componente ── */
+.g-nota{background:#FFF4D6;border:1px solid #E8C766;border-radius:4px;
+  padding:16px 20px;margin:0 0 8px;font-size:15px;line-height:1.55}
+/* Solo el titular del aviso es un bloque. Antes lo eran TODOS los <strong>,
+   y al meterle más texto la nota se partía en escalera a media frase. */
+.g-nota>strong:first-child{display:block;margin-bottom:5px}
+.g-nota code,.g-nota kbd{font-family:"JetBrains Mono",monospace;font-size:.85em;
+  background:rgba(0,0,0,.06);border-radius:3px;padding:1px 5px}
+.g-sep{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;
+  text-transform:uppercase;color:#5A6473;border-top:1px solid #D8D5CC;
+  padding-top:14px;margin-top:56px}
+</style>
+</head>
+
+<body class="ancho">
+
+<section>
+  <div class="wrap">
+    <div class="g-nota">
+      <strong>Borrador. Nada de esto está en la web.</strong>
+      Dos versiones de la misma pieza. Cambia el núcleo y cambian las etiquetas; el componente es el mismo.
+      En móvil se convierte sola en lista: prueba a estrechar la ventana. Lleva el barrido de radar que pediste.
+    </div>
+    <p class="g-sep">Versión A · el mapa de JARVIS · va dentro del bloque que ya existe en la home</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     VERSIÓN A — el núcleo es JARVIS. Entra en `#sistema`, encima de los
+     tres paneles: la órbita es el mapa y los paneles son los contadores.
+     La página pasa de decir «tengo 53 agentes» a enseñar cómo encajan.
+     ══════════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="instrumento">
+    <span class="inst-k live">JARVIS · el sistema con el que trabajo</span>
+    <h3>El mapa de lo que hay montado</h3>
+    <p>Cada pieza hace una cosa y le habla a las demás. Ninguna se sostiene sola: lo que vale no es la lista, es cómo están conectadas.</p>
+
+    <div class="orbita" id="orbA">
+      <svg class="orbita-anillos" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="6"  style="--i:0"/>
+        <circle cx="50" cy="50" r="12" style="--i:1"/>
+        <circle cx="50" cy="50" r="19" style="--i:2"/>
+        <circle cx="50" cy="50" r="26" style="--i:3"/>
+        <circle cx="50" cy="50" r="33" style="--i:4"/>
+        <circle cx="50" cy="50" r="40" style="--i:5"/>
+        <circle cx="50" cy="50" r="47" style="--i:6"/>
+        <line data-k="agentes"       x1="50" y1="50" x2="50"   y2="14"/>
+        <line data-k="contenido"     x1="50" y1="50" x2="18.5" y2="25.4"/>
+        <line data-k="captacion"     x1="50" y1="50" x2="18.5" y2="74.6"/>
+        <line data-k="integraciones" x1="50" y1="50" x2="12.1" y2="52"/>
+        <line data-k="datos"         x1="50" y1="50" x2="87.9" y2="52"/>
+        <line data-k="medicion"      x1="50" y1="50" x2="81.5" y2="74.6"/>
+        <line data-k="automatizacion" x1="50" y1="50" x2="81.5" y2="25.4"/>
+        <line data-k="documentacion" x1="50" y1="50" x2="50"   y2="83"/>
+        <line data-k="criterio"      x1="50" y1="50" x2="33.6" y2="38.5"/>
+        <line data-k="control"       x1="50" y1="50" x2="65.9" y2="58.4"/>
+      </svg>
+
+      <div class="barrido" aria-hidden="true"><i></i></div>
+
+      <div class="nucleo">
+        <span class="k">Núcleo</span>
+        <span class="punto" aria-hidden="true"></span>
+        <span class="nom">JARVIS</span>
+      </div>
+
+      <!-- Anillo exterior: las ocho piezas. El orden de --i es de arriba a
+           la izquierda en el sentido del reloj, para que la entrada se lea
+           como un barrido y no como palomitas. -->
+      <div class="nodo" data-k="agentes" style="--x:50%;--y:14%;--i:1">
+        <div class="caja"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2.5"/><path d="M12 4v4M2 14h2M20 14h2"/><circle cx="9.2" cy="14" r=".9"/><circle cx="14.8" cy="14" r=".9"/></svg></div>
+        <div class="col"><span class="et">Agentes</span>
+        <span class="def">Cada tarea que se repite, con su horario y su encargo por escrito.</span></div>
+      </div>
+
+      <div class="nodo" data-k="automatizacion" style="--x:81.5%;--y:25.4%;--i:2">
+        <div class="caja"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h3.5a4 4 0 0 1 4 4V14"/></svg></div>
+        <div class="col"><span class="et">Automatización</span>
+        <span class="def">Lo que hoy alguien hace a mano, hecho solo y a su hora.</span></div>
+      </div>
+
+      <div class="nodo" data-k="datos" style="--x:87.9%;--y:52%;--i:3">
+        <div class="caja"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg></div>
+        <div class="col"><span class="et">Datos</span>
+        <span class="def">Todo lo que pasa queda registrado en un sitio, no en cinco.</span></div>
+      </div>
+
+      <div class="nodo" data-k="medicion" style="--x:81.5%;--y:74.6%;--i:4">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M4 3v17h17"/><path d="M7.5 15l3.5-4 3 2.6 5-6.1"/></svg></div>
+        <div class="col"><span class="et">Medición</span>
+        <span class="def">Un número por línea. Lo que no se mide no se decide.</span></div>
+      </div>
+
+      <div class="nodo" data-k="documentacion" style="--x:50%;--y:83%;--i:5">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
+        <div class="col"><span class="et">Documentación</span>
+        <span class="def">Escrito para que otro pueda cogerlo sin llamarte.</span></div>
+      </div>
+
+      <div class="nodo" data-k="captacion" style="--x:18.5%;--y:74.6%;--i:6">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M3.5 4.5h17l-6.5 7.5V20l-4 1.5v-9.5z"/></svg></div>
+        <div class="col"><span class="et">Captación</span>
+        <span class="def">De dónde salen los que preguntan, sin depender de la suerte.</span></div>
+      </div>
+
+      <div class="nodo" data-k="integraciones" style="--x:12.1%;--y:52%;--i:7">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M9 2.5v6M15 2.5v6"/><path d="M6 8.5h12v3a6 6 0 0 1-12 0z"/><path d="M12 17.5v4"/></svg></div>
+        <div class="col"><span class="et">Integraciones</span>
+        <span class="def">Las herramientas de siempre, hablándose entre ellas.</span></div>
+      </div>
+
+      <div class="nodo" data-k="contenido" style="--x:18.5%;--y:25.4%;--i:8">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M16.8 3.2a2.1 2.1 0 0 1 3 3L7.5 18.5 3 20l1.5-4.5z"/><path d="M14.5 5.5l4 4"/></svg></div>
+        <div class="col"><span class="et">Contenido</span>
+        <span class="def">Lo que sale cada semana, escrito por el sistema y revisado por ti.</span></div>
+      </div>
+
+      <!-- Anillo interior: las dos que mandan sobre todas las demás. Van
+           cerca del núcleo porque no son una capacidad más, son la que
+           decide qué hacen el resto. -->
+      <div class="nodo" data-k="criterio" style="--x:33.6%;--y:38.5%;--i:9">
+        <div class="caja"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2l-2.2 5.4-5.4 2.2 2.2-5.4z"/></svg></div>
+        <div class="col"><span class="et">Criterio</span>
+        <span class="def">Qué se automatiza y qué no se toca. Es la mitad del trabajo.</span></div>
+      </div>
+
+      <div class="nodo" data-k="control" style="--x:65.9%;--y:58.4%;--i:10">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2.1"/><circle cx="15" cy="12" r="2.1"/><circle cx="8" cy="17" r="2.1"/></svg></div>
+        <div class="col"><span class="et">Control</span>
+        <span class="def">Nada sale sin que alguien lo apruebe. El sistema no publica a tus espaldas.</span></div>
+      </div>
+    </div>
+
+    <p class="orbita-pie" data-pie>Pasa por encima de una pieza y te digo qué hace.</p>
+
+    <div class="montado">
+      <span class="k">Montado con</span>
+      <ul>
+        <li>Claude Code</li>
+        <li>Python</li>
+        <li>n8n</li>
+        <li>GitHub</li>
+        <li>Obsidian</li>
+        <li>Ollama</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="g-sep">Versión B · tu sistema · va en «Trabajar conmigo», es la que vende</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════════════
+     VERSIÓN B — el núcleo es el negocio del que lee, no JARVIS. Mismo
+     componente, otras etiquetas: aquí las piezas son lo que se instala.
+
+     El párrafo NO copia el de la referencia («si tu equipo trabaja más que
+     nunca pero el margen no mejora»): esas frases son de ellos. Estas ya
+     estaban aprobadas en la home y en `/trabajar-conmigo/`.
+     ══════════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="instrumento">
+    <span class="inst-k">Qué se instala</span>
+    <h3>Primero el proceso. La tecnología va detrás.</h3>
+    <p>El trabajo que se repite no se quita poniendo una herramienta encima. Se quita montando las piezas en el orden correcto, en tus cuentas, y dejándolas documentadas para que otro pueda cogerlo.</p>
+
+    <div class="orbita" id="orbB">
+      <svg class="orbita-anillos" viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="6"  style="--i:0"/>
+        <circle cx="50" cy="50" r="12" style="--i:1"/>
+        <circle cx="50" cy="50" r="19" style="--i:2"/>
+        <circle cx="50" cy="50" r="26" style="--i:3"/>
+        <circle cx="50" cy="50" r="33" style="--i:4"/>
+        <circle cx="50" cy="50" r="40" style="--i:5"/>
+        <circle cx="50" cy="50" r="47" style="--i:6"/>
+        <line data-k="agentes"        x1="50" y1="50" x2="50"   y2="14"/>
+        <line data-k="automatizacion" x1="50" y1="50" x2="81.5" y2="25.4"/>
+        <line data-k="datos"          x1="50" y1="50" x2="87.9" y2="52"/>
+        <line data-k="medicion"       x1="50" y1="50" x2="81.5" y2="74.6"/>
+        <line data-k="documentacion"  x1="50" y1="50" x2="50"   y2="83"/>
+        <line data-k="captacion"      x1="50" y1="50" x2="18.5" y2="74.6"/>
+        <line data-k="integraciones"  x1="50" y1="50" x2="12.1" y2="52"/>
+        <line data-k="contenido"      x1="50" y1="50" x2="18.5" y2="25.4"/>
+        <line data-k="criterio"       x1="50" y1="50" x2="33.6" y2="38.5"/>
+        <line data-k="control"        x1="50" y1="50" x2="65.9" y2="58.4"/>
+      </svg>
+
+      <div class="barrido" aria-hidden="true"><i></i></div>
+
+      <div class="nucleo">
+        <span class="k">Núcleo</span>
+        <span class="punto" aria-hidden="true"></span>
+        <span class="nom">Tu operación</span>
+      </div>
+
+      <div class="nodo" data-k="agentes" style="--x:50%;--y:14%;--i:1">
+        <div class="caja"><svg viewBox="0 0 24 24"><rect x="4" y="8" width="16" height="12" rx="2.5"/><path d="M12 4v4M2 14h2M20 14h2"/><circle cx="9.2" cy="14" r=".9"/><circle cx="14.8" cy="14" r=".9"/></svg></div>
+        <div class="col"><span class="et">Agentes</span>
+        <span class="def">Las tareas que se repiten dejan de necesitar que alguien se acuerde.</span></div>
+      </div>
+
+      <div class="nodo" data-k="automatizacion" style="--x:81.5%;--y:25.4%;--i:2">
+        <div class="caja"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M10 6.5h3.5a4 4 0 0 1 4 4V14"/></svg></div>
+        <div class="col"><span class="et">Automatización</span>
+        <span class="def">Asumir más trabajo deja de significar meter más manos.</span></div>
+      </div>
+
+      <div class="nodo" data-k="datos" style="--x:87.9%;--y:52%;--i:3">
+        <div class="caja"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7.5" ry="3"/><path d="M4.5 6v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3V6"/><path d="M4.5 12v6c0 1.66 3.36 3 7.5 3s7.5-1.34 7.5-3v-6"/></svg></div>
+        <div class="col"><span class="et">Datos</span>
+        <span class="def">Lo que hoy vive en la cabeza de alguien pasa a estar en un sitio.</span></div>
+      </div>
+
+      <div class="nodo" data-k="medicion" style="--x:81.5%;--y:74.6%;--i:4">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M4 3v17h17"/><path d="M7.5 15l3.5-4 3 2.6 5-6.1"/></svg></div>
+        <div class="col"><span class="et">Medición</span>
+        <span class="def">Sabes qué está funcionando sin pedirle el dato a nadie.</span></div>
+      </div>
+
+      <div class="nodo" data-k="documentacion" style="--x:50%;--y:83%;--i:5">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg></div>
+        <div class="col"><span class="et">Documentación</span>
+        <span class="def">Queda escrito para que otro pueda cogerlo. Si dependes de mí, está mal hecho.</span></div>
+      </div>
+
+      <div class="nodo" data-k="captacion" style="--x:18.5%;--y:74.6%;--i:6">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M3.5 4.5h17l-6.5 7.5V20l-4 1.5v-9.5z"/></svg></div>
+        <div class="col"><span class="et">Captación</span>
+        <span class="def">Los que preguntan dejan de llegar por suerte y empiezan a llegar por un sistema.</span></div>
+      </div>
+
+      <div class="nodo" data-k="integraciones" style="--x:12.1%;--y:52%;--i:7">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M9 2.5v6M15 2.5v6"/><path d="M6 8.5h12v3a6 6 0 0 1-12 0z"/><path d="M12 17.5v4"/></svg></div>
+        <div class="col"><span class="et">Integraciones</span>
+        <span class="def">Se monta sobre lo que ya usas. No hay que cambiar de herramientas.</span></div>
+      </div>
+
+      <div class="nodo" data-k="contenido" style="--x:18.5%;--y:25.4%;--i:8">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M16.8 3.2a2.1 2.1 0 0 1 3 3L7.5 18.5 3 20l1.5-4.5z"/><path d="M14.5 5.5l4 4"/></svg></div>
+        <div class="col"><span class="et">Contenido</span>
+        <span class="def">Lo que se publica cada semana deja de depender de que haya un hueco.</span></div>
+      </div>
+
+      <div class="nodo" data-k="criterio" style="--x:33.6%;--y:38.5%;--i:9">
+        <div class="caja"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.8 8.2l-2.2 5.4-5.4 2.2 2.2-5.4z"/></svg></div>
+        <div class="col"><span class="et">Criterio</span>
+        <span class="def">Qué se automatiza y qué no se toca. Traigo la parte de empresa, no solo la de IA.</span></div>
+      </div>
+
+      <div class="nodo" data-k="control" style="--x:65.9%;--y:58.4%;--i:10">
+        <div class="caja"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2.1"/><circle cx="15" cy="12" r="2.1"/><circle cx="8" cy="17" r="2.1"/></svg></div>
+        <div class="col"><span class="et">Control</span>
+        <span class="def">Sigue mandando tu gente. El sistema propone y alguien aprueba.</span></div>
+      </div>
+    </div>
+
+    <p class="orbita-pie" data-pie>Pasa por encima de una pieza y te digo qué cambia.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="g-sep">Fin</p>
+  </div>
+</section>
+
+<script>
+/* Nueve líneas: al tocar una pieza, se enciende su línea al núcleo y el pie
+   dice qué hace. Si el JS no carga, el pie se queda en su frase y la
+   explicación de cada pieza sigue estando en el HTML para quien la lee con
+   un lector de pantalla. No se pierde ni una palabra. */
+/* Al tocar una pieza se enciende su línea al núcleo y el pie dice qué hace.
+   Si el JS no carga, el pie se queda en su frase y la explicación de cada
+   pieza sigue en el HTML para quien la lea con un lector de pantalla. */
+document.querySelectorAll('.orbita').forEach(function(orb){
+  var pie  = orb.parentNode.querySelector('[data-pie]');
+  var base = pie ? pie.textContent : '';
+  orb.querySelectorAll('.nodo').forEach(function(n){
+    var linea = orb.querySelector('line[data-k="' + n.dataset.k + '"]');
+    var et  = n.querySelector('.et').textContent;
+    var def = n.querySelector('.def').textContent;
+    n.addEventListener('mouseenter', function(){
+      if (linea) linea.classList.add('on');
+      if (pie) pie.innerHTML = '<b>' + et + '.</b> ' + def;
+    });
+    n.addEventListener('mouseleave', function(){
+      if (linea) linea.classList.remove('on');
+      if (pie) pie.textContent = base;
+    });
+  });
+});
+</script>
+
+</body>
+</html>

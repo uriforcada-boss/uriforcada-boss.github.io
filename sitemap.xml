@@ -129,4 +129,22 @@
     <priority>0.1</priority>
   </url>
 
+  <url>
+    <loc>https://uriforcada.com/ca/sobre-mi/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://uriforcada.com/ca/recursos/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://uriforcada.com/ca/preguntes-frequents/</loc>
+    <lastmod>2026-08-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>
