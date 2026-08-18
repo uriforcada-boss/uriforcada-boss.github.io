@@ -24,8 +24,8 @@
 <meta name="theme-color" content="#F7F6F2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=20260818c">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=DM+Serif+Display:ital@1&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=20260818d">
 
 <!-- Fecha en formato máquina. Sin dateModified, un modelo trata la
      página como vieja y prefiere citar a otro que sí la declara. -->
@@ -66,6 +66,7 @@
 <header class="resource-hero">
   <div class="wrap">
     <span class="label">Qué hago</span>
+    <div class="brandbar"></div>
     <h1 class="display">Automatizaciones</h1>
     <p class="sub">El trabajo que se repite cada semana no necesita a nadie delante. Eso es lo que quito.</p>
   </div>
@@ -89,7 +90,7 @@
   <p>El error más caro que veo es al revés: automatizar un proceso que todavía no está claro. Si el proceso es un lío, un sistema te da el mismo lío pero más rápido y con menos gente entendiéndolo. <strong>Primero se ordena, después se automatiza.</strong></p>
 
   <h2>Por dónde se suele empezar</h2>
-  <div class="limites">
+  <div class="limites reveal">
     <div class="limite si">
       <h4>Captación y seguimiento</h4>
       <ul>
@@ -117,23 +118,23 @@
 <section id="sistema">
   <div class="wrap">
     <div class="section-head">
-      <h2>No te lo cuento: te lo enseño</h2>
+      <h2>No te lo cuento: <span class="remate">te lo enseño</span></h2>
       <span class="hint">el sistema, por dentro</span>
     </div>
   </div>
 
-  <div class="instrumento">
+  <div class="instrumento reveal">
     <!-- 18-ago: `live` como en la home — el punto que late. La frase de abajo
          dice «corriendo ahora mismo» también aquí, así que rige la misma regla:
          o se quita la frase o se cumple. -->
     <span class="inst-k live">JARVIS · el sistema con el que trabajo</span>
-    <h3>Corriendo ahora mismo, mientras lees esto</h3>
+    <h3>Corriendo ahora mismo, <span class="remate">mientras lees esto</span></h3>
     <p>No es una demo grabada ni una plantilla comprada. Es lo que uso todos los días para captar, escribir, medir y decidir. Montado por mí, pieza a pieza.</p>
 
     <div class="inst-grid">
       <div class="panel">
         <span class="p-lbl">Agentes</span>
-        <span class="p-val on" data-jarvis="agentes">51</span>
+        <span class="p-val on" data-jarvis="agentes">52</span>
         <span class="p-sub">corriendo por su cuenta, cada uno con su horario y su contrato</span>
       </div>
       <div class="panel">
@@ -158,8 +159,11 @@
          OpenClaw, pero ese guion solo toca nodos `data-jarvis`: un número
          escrito aquí a mano se queda viejo a la primera (pasó dos veces:
          «53» y «56» mientras corrían 51). La frase señala el panel y listo. -->
-    <p class="inst-foot"><strong>Qué son esos agentes, para que el número de arriba signifique algo:</strong> cada uno es un programa pequeño con una sola tarea y una hora fija. Uno busca empresas a las que tenga sentido escribir. Otro redacta los correos y los deja en borradores, sin enviarlos. Otro mira quién ha contestado. Otro avisa si alguno de los demás se ha roto o se ha quedado callado. Están repartidos en cinco departamentos, cada uno con un responsable que reúne lo que dicen los suyos en un solo aviso, para no recibir un mensaje por agente cada mañana.</p>
-    <p class="inst-foot">Ese es exactamente el tipo de sistema que instalo en otras empresas, con sus tareas y no con las mías. Enseñar no es entregar: se ve funcionando, y el montaje fino te lo haces tú.</p>
+    <!-- 18-ago: estas dos eran `.inst-foot` y salían como una pared de
+         JetBrains Mono de 11,5px. El mono es para rótulos y datos, no
+         para prosa: pasan a `.inst-txt`, cuerpo legible. -->
+    <p class="inst-txt primera"><strong>Qué son esos agentes, para que el número de arriba signifique algo:</strong> cada uno es un programa pequeño con una sola tarea y una hora fija. Uno busca empresas a las que tenga sentido escribir. Otro redacta los correos y los deja en borradores, sin enviarlos. Otro mira quién ha contestado. Otro avisa si alguno de los demás se ha roto o se ha quedado callado. Están repartidos en cinco departamentos, cada uno con un responsable que reúne lo que dicen los suyos en un solo aviso, para no recibir un mensaje por agente cada mañana.</p>
+    <p class="inst-txt">Ese es exactamente el tipo de sistema que instalo en otras empresas, con sus tareas y no con las mías. Enseñar no es entregar: se ve funcionando, y el montaje fino te lo haces tú.</p>
   </div>
 </section>
 
@@ -196,6 +200,7 @@
 </footer>
 
 
+<script src="/assets/reveal.js" defer></script>
 <script src="/assets/lenis.min.js" defer></script>
 <script src="/assets/scroll.js" defer></script>
 </body>

@@ -21,8 +21,8 @@
 <meta name="theme-color" content="#F7F6F2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=20260818c">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=DM+Serif+Display:ital@1&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=20260818d">
 
 <script type="application/ld+json">
 {
@@ -39,7 +39,11 @@
 }
 </script>
 </head>
-<body>
+<!-- 18-ago: `articulo` — es la regla que el propio sistema escribió el 17
+     para texto largo (titulares centrados, cuerpo a la izquierda) y esta
+     página ES texto largo: cuarenta párrafos centrados no se leían. La
+     gemela catalana va igual. -->
+<body class="articulo">
 
 <nav class="nav">
   <div class="wrap">
@@ -57,7 +61,8 @@
 <header class="resource-hero post">
   <div class="wrap">
     <span class="label">Sobre mí</span>
-    <h1 class="display">Nunca me valió el «esto siempre se ha hecho así»</h1>
+    <div class="brandbar"></div>
+    <h1 class="display">Nunca me valió el <span class="remate">«esto siempre se ha hecho así»</span></h1>
     <p class="sub">Nueve proyectos, un curso que me endeudó y una sociedad de la que me fui a tiempo.</p>
   </div>
 </header>
@@ -122,7 +127,7 @@
 
   <p>Todo lo que he conseguido ha salido de lo mismo: <strong>ponerme un objetivo con una fecha que no se mueve</strong>, y trabajar hacia ella en público. No es cuestión de disciplina. Es que una fecha no admite excusas.</p>
 
-  <div class="fecha">
+  <div class="fecha reveal">
     <span class="f-k">El próximo objetivo</span>
     <div class="f-big display">Febrero<br>de 2027</div>
     <p class="f-txt">El siguiente es mío y es en febrero. <strong>Es el mes, no el día.</strong> Lo voy enseñando por el camino, con el sistema con el que lo hago.</p>
@@ -135,8 +140,8 @@
 
   <p>Y monto sistemas para quien prefiere que se lo monte yo. No veo la contradicción por ningún lado.</p>
 
-  <div class="biz">
-    <h3>Si quieres que mire tu caso</h3>
+  <div class="biz reveal">
+    <h3>Si quieres que mire <span class="remate">tu caso</span></h3>
     <p>Cuéntame qué sostiene tu negocio cada mes y te digo qué parte puede sostenerla un sistema. Sin presentación y sin compromiso.</p>
     <div class="cta-row">
       <a class="btn solid" href="/trabajar-conmigo/">Trabajar conmigo</a>
@@ -160,6 +165,7 @@
   </div>
 </footer>
 
+<script src="/assets/reveal.js" defer></script>
 <script src="/assets/lenis.min.js" defer></script>
 <script src="/assets/scroll.js" defer></script>
 </body>

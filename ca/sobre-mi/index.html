@@ -25,9 +25,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=DM+Serif+Display:ital@1&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/style.css?v=20260818c">
+<link rel="stylesheet" href="/assets/style.css?v=20260818d">
 </head>
-<body>
+<!-- 18-ago: `articulo` com la castellana — text llarg, cos a l'esquerra -->
+<body class="articulo">
 
 <nav class="nav">
   <div class="wrap">
@@ -45,6 +46,7 @@
 <header class="resource-hero post">
   <div class="wrap">
     <span class="label">Sobre mi</span>
+    <div class="brandbar"></div>
     <h1 class="display">Mai em va servir <span class="remate">l'«això sempre s'ha fet així»</span></h1>
     <p class="sub">Nou projectes, un curs que em va endeutar i una societat de la qual vaig marxar a temps.</p>
   </div>
@@ -110,7 +112,7 @@
 
   <p>Tot el que he aconseguit ha sortit del mateix: <strong>posar-me un objectiu amb una data que no es mou</strong>, i treballar cap a ella en públic. No és qüestió de disciplina. És que una data no admet excuses.</p>
 
-  <div class="fecha">
+  <div class="fecha reveal">
     <span class="f-k">El pròxim objectiu</span>
     <div class="f-big display">Febrer<br>de 2027</div>
     <p class="f-txt">El següent és meu i és al febrer. <strong>És el mes, no el dia.</strong> El vaig ensenyant pel camí, amb el sistema amb què ho faig.</p>
@@ -123,7 +125,7 @@
 
   <p>I munto sistemes per a qui prefereix que l'hi munti jo. No hi veig la contradicció per enlloc.</p>
 
-  <div class="biz">
+  <div class="biz reveal">
     <h3>Si vols que miri <span class="remate">el teu cas</span></h3>
     <p>Explica'm què sosté el teu negoci cada mes i et dic quina part la pot sostenir un sistema. Sense presentació i sense compromís.</p>
     <div class="cta-row">
@@ -147,6 +149,7 @@
   </div>
 </footer>
 
+<script src="/assets/reveal.js" defer></script>
 <script src="/assets/lenis.min.js" defer></script>
 <script src="/assets/scroll.js" defer></script>
 </body>

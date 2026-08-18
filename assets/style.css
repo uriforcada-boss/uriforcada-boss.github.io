@@ -1069,3 +1069,46 @@ html[lang="ca"] .instrumento{
   --rim:rgba(227,197,103,.16);
   --halo:rgba(227,197,103,.5);
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   REPASO DE COHERENCIA — 18-ago-2026. Pedido por Oriol, visto en pantalla.
+   ══════════════════════════════════════════════════════════════════════
+   Lo que se vio al poner las tres páginas una al lado de otra:
+
+   1. AUTOMATIZACIONES llevaba dos párrafos LARGOS en JetBrains Mono de
+      11,5px dentro del instrumento: una pared de texto máquina. El mono
+      es para rótulos y datos, no para prosa. Entra `.inst-txt`: cuerpo
+      legible para la prosa del instrumento; `.inst-foot` queda para
+      líneas cortas de cierre.
+   2. Los heros de página interior iban sin la regla corta de marca que
+      el hero de la home lleva bajo el rótulo. Se comparte.
+   3. Los h2 de artículo eran cuarenta titulares idénticos sin retícula.
+      Cada uno lleva ahora una regla corta encima, dibujada por CSS: la
+      textura vuelve sin escribir ni un rótulo nuevo.
+   4. La home era una banda continua de hueso. El Hoy/Después pasa a
+      banda de superficie a sangre y las tarjetas quedan en hueso: hay
+      ritmo de fondo sin una sombra ni un color nuevo.               */
+
+/* ── 1 · La prosa del instrumento, legible ── */
+.instrumento .inst-txt{font-family:var(--f-body);font-size:14.5px;line-height:1.65;
+  color:#9BA3AE;max-width:64ch;margin:16px auto 0;letter-spacing:0;
+  text-align:center;text-wrap:balance}
+.instrumento .inst-txt strong{color:#E7E9EC;font-weight:600}
+.instrumento .inst-txt.primera{margin-top:28px;padding-top:24px;
+  border-top:1px solid var(--rim)}
+
+/* ── 2 · La regla corta también en los heros interiores ── */
+.resource-hero .brandbar{height:1px;width:64px;background:var(--line);
+  border:0;box-shadow:none;margin:18px auto 26px}
+
+/* ── 3 · La retícula vuelve a los h2 de artículo ── */
+.recurso h2{position:relative;padding-top:18px}
+.recurso h2::before{content:'';position:absolute;top:0;left:50%;
+  transform:translateX(-50%);width:28px;height:1px;background:var(--line)}
+body.articulo .recurso h2::before{left:0;transform:none}
+/* la primera h2 tras el lede no necesita la regla pegada al hero */
+.recurso .lede+h2::before{display:none}
+
+/* ── 4 · La banda del Hoy/Después ── */
+#despues{background:var(--surface)}
+.despues .fila{background:var(--bg)}
