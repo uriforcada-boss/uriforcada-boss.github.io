@@ -22,6 +22,7 @@
   --accent:#1E38DE;    /* EL color. Acción y acento */
   --accent-deep:#0B1A6B;
   --accent-pale:#C3CBF7;
+  --accent-tint:rgba(30,56,222,.05);  /* el baño del hover. Casi nada */
   --f-display:"Archivo",sans-serif;
   --f-body:"Inter",sans-serif;
   --f-mono:"JetBrains Mono",monospace;
@@ -174,6 +175,7 @@ footer a:hover{color:var(--accent);border-color:var(--accent)}
 .instrumento{
   --void:#08090c; --acid:#1E90FF; --glass:rgba(255,255,255,.078);
   --rim:rgba(255,255,255,.13); --lip:rgba(255,255,255,.20);
+  --halo:rgba(30,144,255,.55);  /* la onda del punto que late */
   background:var(--void);color:#E7E9EC;border-radius:3px;
   padding:38px 30px 32px;margin:0;
   /* sangra a ancho completo: la cita ocupa la página, no una columna */
@@ -577,10 +579,15 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
    pregunta el que llega es el precio, porque no tiene otra cosa que medir.
 
    Cada línea de la derecha es una promesa que YA estaba escrita en
-   `/trabajar-conmigo/`. Aquí solo se le pone enfrente el estado de hoy. */
-.despues{border-top:1px solid var(--line);margin-top:0}
+   `/trabajar-conmigo/`. Aquí solo se le pone enfrente el estado de hoy.
+
+   18-ago: de retícula continua a TARJETAS separadas, elegido por Oriol.
+   Cada fila respira con 14px de aire y lleva su propio borde de 1px.
+   Sigue sin haber sombras: la casa separa con líneas, y una tarjeta
+   así es una línea cerrada, no una caja que flota. */
+.despues{margin-top:0;display:grid;gap:14px}
 .despues .fila{display:grid;grid-template-columns:1fr 1fr;gap:0;
-  border-bottom:1px solid var(--line)}
+  border:1px solid var(--line);border-radius:2px}
 .despues .lado{padding:26px 28px 26px 0}
 .despues .lado+.lado{padding-left:28px;border-left:1px solid var(--line)}
 .despues .k{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;
@@ -590,8 +597,9 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
 .despues .lado.post p{color:var(--ink);font-weight:600}
 @media(max-width:640px){
   .despues .fila{grid-template-columns:1fr}
-  .despues .lado{padding:22px 0 6px}
-  .despues .lado+.lado{padding-left:0;border-left:0;padding-bottom:22px}
+  /* con tarjeta, el texto necesita aire lateral: a 0 tocaba el borde */
+  .despues .lado{padding:22px 18px 6px}
+  .despues .lado+.lado{padding-left:18px;border-left:0;padding-bottom:22px}
 }
 /* La línea que desactiva la pregunta del precio antes de que se haga.
    No dice cuánto cuesta: dice cuánto cuesta EQUIVOCARSE, que es cero.
@@ -625,8 +633,10 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
 .instrumento .inst-k.live::before{content:'';flex:0 0 6px;width:6px;height:6px;
   border-radius:50%;background:var(--acid);
   animation:latido 2.4s ease-in-out infinite}
-@keyframes latido{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(30,144,255,.55)}
-  50%{opacity:.42;box-shadow:0 0 0 5px rgba(30,144,255,0)}}
+/* la onda sale de `--halo` para que la variante catalana pueda latir en
+   dorado sin duplicar el keyframe; la var se resuelve en el elemento */
+@keyframes latido{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--halo)}
+  50%{opacity:.42;box-shadow:0 0 0 5px transparent}}
 .panel .p-val{font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){
   .instrumento .inst-k.live::before{animation:none}
@@ -966,4 +976,96 @@ body.articulo .recurso .lede{text-align:left;margin-inline:0}
     padding-right:12px;border-right:1px solid var(--line);margin-right:4px}
   .idioma svg{display:none}
   .idioma .op{padding:3px 4px;font-size:10.5px}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   EL HOVER DEL HOY/DESPUÉS — 18-ago-2026. La opción 6 de la galería.
+   ══════════════════════════════════════════════════════════════════════
+   Elegida por Oriol en `_galeria/hover/` entre siete tratamientos: la
+   «mezcla serena» (2+3). Nada gira, nada rebota, nada se desplaza:
+     · el «hoy» SE RETIRA (baja al 40% de opacidad),
+     · la divisoria central se REPINTA de acento de arriba abajo,
+     · bajo la promesa se TRAZA un subrayado corto, de centro afuera,
+     · y la promesa pasa de tinta a acento.
+   Ritmo: retirada y divisoria a la vez; el subrayado remata .1s después.
+
+   Va tras `@media(hover:hover)` a propósito: en el móvil no hay ratón y
+   un hover pegajoso tras el toque ensucia más de lo que aporta.
+
+   ⚠️ HISTORIA, para que no se repita el viaje: este hover nació EN VERDE
+   esmeralda como «segundo color de marca» y Oriol lo paró en horas — su
+   verde era una dirección entera, no un acento (hoy vive en /ca/, ver
+   «LA MARCA EN DOS LENGUAS»). La primera versión azul iba con baños de
+   fondo y tampoco le convenció: lo retirado ya no se reconstruye; la
+   galería con las siete opciones sigue en `_galeria/hover/`.           */
+@media(hover:hover){
+  .despues .lado{transition:opacity .3s ease}
+  .despues .fila:hover .lado:not(.post){opacity:.4}
+  .despues .lado+.lado{position:relative}
+  .despues .lado+.lado::before{content:'';position:absolute;left:-1px;top:0;bottom:0;
+    width:1px;background:var(--accent);transform:scaleY(0);transform-origin:top;
+    transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+  .despues .fila:hover .lado+.lado::before{transform:scaleY(1)}
+  .despues .lado.post p{position:relative;display:inline-block;transition:color .3s ease}
+  .despues .lado.post p::after{content:'';position:absolute;left:20%;right:20%;bottom:-8px;
+    height:1px;background:var(--accent);transform:scaleX(0);transform-origin:center;
+    transition:transform .35s .1s cubic-bezier(.2,.7,.3,1)}
+  .despues .fila:hover .lado.post p::after{transform:scaleX(1)}
+  .despues .fila:hover .lado.post p{color:var(--accent)}
+}
+@media(prefers-reduced-motion:reduce){
+  .despues .lado,.despues .lado.post p,
+  .despues .lado+.lado::before,.despues .lado.post p::after{transition:none}
+}
+
+/* El botón del final de las páginas de recurso salía pegado a la
+   izquierda: `.cta-row` solo se centraba dentro de `.biz`, y en
+   /automatizaciones/ vive suelto dentro de `.recurso`. En una página
+   donde TODO cuelga del eje central, la única fila alineada al margen
+   cantaba. Visto por Oriol el 18-ago. */
+.recurso .cta-row{justify-content:center}
+
+/* ══════════════════════════════════════════════════════════════════════
+   LA MARCA EN DOS LENGUAS — 18-ago-2026. Decisión de Oriol.
+   ══════════════════════════════════════════════════════════════════════
+   De la galería `_galeria/rumbo/` salieron dos ganadores, A y B, y el
+   reparto es por idioma: el CASTELLANO se queda el rumbo A (el azul de
+   siempre, afinado) y el CATALÁN entero pasa al rumbo B, esmeralda y
+   dorado. Un solo dueño de color por página, como manda la cabecera de
+   este fichero: en /ca/ el índigo no existe, y en /es/ no existe el
+   verde.
+
+   Cómo funciona: TODA la variante cuelga de `html[lang="ca"]`, que las
+   ocho páginas catalanas ya declaran. Ni una clase nueva, ni un HTML
+   tocado: página nueva en /ca/ = verde solo con declarar bien su lang.
+   Para invertir el reparto (o deshacerlo) se cambia este selector y el
+   theme-color de las páginas, nada más.
+
+   ⚠️ Riesgo dicho una vez, asumido por Oriol: quien cambie de idioma con
+   el conmutador ve cambiar la marca de color. Las dos mitades dejan de
+   ser gemelas visuales a propósito.
+
+   Contraste: #0E5C41 sobre marfil #F7F5EF da 7,3:1 (aguanta el mono de
+   10px); el dorado #E3C567 vive SOLO sobre el void oscuro (11:1) y no
+   pisa el modo día jamás — en claro sería ilegible.                    */
+html[lang="ca"]{
+  --bg:#F7F5EF;        /* marfil: el hueso, un punto más cálido */
+  --surface:#EFEBE1;
+  --ink:#101713;       /* tinta con un fondo de verde */
+  --dim:#59655E;
+  --line:#D9D5C8;
+  --accent:#0E5C41;    /* EL color en catalán: esmeralda Rolex */
+  --accent-deep:#073D2B;
+  --accent-pale:#CFE3D8;
+  --accent-tint:rgba(14,92,65,.05);
+}
+/* El instrumento catalán: void verde-negro y el dato en DORADO — la
+   joyería donde el castellano lleva el azul eléctrico. El filo de los
+   paneles se tiñe de oro muy bajo para que el cristal sea de la misma
+   familia que el dato. */
+html[lang="ca"] .instrumento{
+  --void:#060B08;
+  --acid:#E3C567;
+  --rim:rgba(227,197,103,.16);
+  --halo:rgba(227,197,103,.5);
 }

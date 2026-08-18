@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Rumbo A · El azul, afinado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=DM+Serif+Display:ital@1&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── RUMBO A · «El azul, afinado» ─────────────────────────────────────
+   El control de la galería: lo que hay HOY (índigo + hueso + retícula),
+   con el hover nuevo y los remates en serif. Si gana, no se cambia de
+   color: se sigue puliendo lo que ya se decidió. «Si en su momento
+   decidí el azul, es por algo.»                                       */
+:root{
+  --bg:#F7F6F2; --surface:#EFEDE7; --ink:#0D1520; --dim:#5A6473;
+  --line:#D8D5CC;
+  --accent:#1E38DE; --accent-deep:#0B1A6B; --tint:rgba(30,56,222,.05);
+  --void:#08090c; --hud:#1E90FF;
+  --glass:rgba(255,255,255,.078); --rim:rgba(255,255,255,.13);
+  --f-display:"Archivo",sans-serif; --f-body:"Inter",sans-serif;
+  --f-mono:"JetBrains Mono",monospace; --f-serif:"DM Serif Display",Georgia,serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1100px;margin:0 auto;padding:0 32px;text-align:center}
+.remate{font-family:var(--f-serif);font-weight:400;font-style:italic;letter-spacing:-.01em;font-size:1.04em}
+
+.nav{border-bottom:1px solid var(--line);padding:16px 0;text-align:center;
+  font-family:var(--f-display);font-weight:800;letter-spacing:-.02em;font-size:17px}
+
+.hero{padding:88px 0 60px}
+.label{display:inline-block;font-family:var(--f-mono);font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--dim);margin-bottom:20px}
+.brandbar{height:1px;width:64px;background:var(--line);margin:0 auto 30px}
+h1{font-family:var(--f-display);font-weight:900;line-height:.94;letter-spacing:-.04em;font-size:clamp(46px,7.5vw,92px);margin-bottom:24px;text-wrap:balance}
+h1 .accent{color:var(--accent)}
+.hero p{font-size:19px;max-width:52ch;color:var(--dim);margin:0 auto;text-wrap:balance}
+.hero-ctas{margin-top:34px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.btn{display:inline-block;font-weight:600;font-size:15px;text-decoration:none;padding:15px 26px;border:1px solid var(--ink);color:var(--ink);border-radius:2px;transition:transform .18s cubic-bezier(.2,.7,.3,1),background .18s ease,color .18s ease}
+.btn:hover{transform:translateY(-2px);background:var(--ink);color:var(--bg)}
+.btn.solid{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.solid:hover{background:var(--accent-deep);border-color:var(--accent-deep)}
+
+section{padding:52px 0}
+.section-head{display:flex;flex-direction:column;align-items:center;gap:10px;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:0}
+.section-head h2{font-family:var(--f-display);font-weight:800;font-size:clamp(26px,3.6vw,40px);letter-spacing:-.032em;line-height:1.02;text-wrap:balance}
+.hint{font-family:var(--f-mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+
+.fila{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.lado{padding:30px 28px}
+.lado+.lado{border-left:1px solid var(--line)}
+.k{display:block;font-family:var(--f-mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px;color:var(--dim)}
+.lado.post .k{color:var(--accent)}
+.lado p{font-size:17px;line-height:1.5;color:var(--dim);max-width:34ch;margin:0 auto;text-wrap:balance}
+.lado.post p{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.012em;line-height:1.4}
+@media(hover:hover){
+  .lado{transition:background .25s ease,border-color .25s ease}
+  .lado.post p{transition:color .25s ease}
+  .fila:hover .lado{background:var(--surface)}
+  .fila:hover .lado.post{background:var(--tint)}
+  .fila:hover .lado+.lado{border-left-color:var(--accent)}
+  .fila:hover .lado.post p{color:var(--accent-deep)}
+}
+
+.instrumento{background:var(--void);color:#E7E9EC;padding:48px 32px;text-align:center}
+.inst-k{display:flex;align-items:center;justify-content:center;gap:9px;font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--hud);margin-bottom:20px}
+.inst-k::before{content:'';flex:0 0 6px;width:6px;height:6px;border-radius:50%;background:var(--hud);animation:latido 2.4s ease-in-out infinite}
+@keyframes latido{0%,100%{opacity:1}50%{opacity:.42}}
+.instrumento h3{font-family:var(--f-display);font-weight:900;font-size:clamp(26px,4vw,42px);line-height:1;letter-spacing:-.035em;color:#fff;margin-bottom:14px;text-wrap:balance}
+.instrumento h3 .remate{color:var(--hud)}
+.instrumento>p{font-size:16px;color:#9BA3AE;max-width:56ch;margin:0 auto;text-wrap:balance}
+.inst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:28px auto 0;max-width:860px}
+.panel{background:var(--glass);border:1px solid var(--rim);border-radius:8px;padding:24px 20px;transition:background .2s ease}
+.panel:hover{background:rgba(255,255,255,.04)}
+.p-lbl{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#6D7683;display:block;margin-bottom:9px}
+.p-val{display:block;font-family:var(--f-mono);font-size:30px;font-weight:500;line-height:1;color:#fff;font-variant-numeric:tabular-nums}
+.p-val.on{color:var(--hud)}
+.p-sub{display:block;font-size:12.5px;color:#8A929E;margin-top:10px;line-height:1.45}
+@media(max-width:700px){.fila,.inst-grid{grid-template-columns:1fr}.lado+.lado{border-left:0}}
+
+.biz{background:var(--ink);color:#fff;padding:52px 36px;border-radius:2px;margin:0 32px 72px;text-align:center}
+.biz h3{font-family:var(--f-display);font-weight:900;font-size:clamp(28px,4vw,42px);line-height:.99;letter-spacing:-.035em;margin-bottom:14px;text-wrap:balance}
+.biz p{font-size:16.5px;max-width:52ch;color:#A8B0BA;margin:0 auto;text-wrap:balance}
+.biz .btn{margin-top:28px;background:#fff;color:var(--ink);border-color:#fff}
+.biz .btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav class="nav">Oriol Forcada</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="label">Rumbo A · el azul, afinado</span>
+    <div class="brandbar"></div>
+    <h1>Deja de preocuparte.<br><span class="accent remate">Ocúpate.</span></h1>
+    <p>En el momento en que te ocupas, el miedo empieza a desaparecer. Construyo sistemas de IA que hacen el trabajo que hoy te come el día, y <strong>los enseño funcionando</strong>, no contados.</p>
+    <div class="hero-ctas">
+      <a class="btn solid" href="#">Pide tu diagnóstico</a>
+      <a class="btn" href="#">Cómo trabajamos juntos</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Cómo se trabaja <span class="remate">cuando ya está montado</span></h2>
+      <span class="hint">el día después</span>
+    </div>
+    <div class="fila">
+      <div class="lado"><span class="k">Hoy</span>
+        <p>El trabajo que se repite depende de que alguien se acuerde de hacerlo.</p></div>
+      <div class="lado post"><span class="k">Después</span>
+        <p>El trabajo que se repite deja de necesitarte.</p></div>
+    </div>
+    <div class="fila">
+      <div class="lado"><span class="k">Hoy</span>
+        <p>Para asumir más trabajo hay que meter más manos.</p></div>
+      <div class="lado post"><span class="k">Después</span>
+        <p>El negocio crece sin que crezca la plantilla.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="instrumento">
+  <span class="inst-k">JARVIS · el sistema con el que trabajo</span>
+  <h3>Corriendo ahora mismo, <span class="remate">mientras lees esto</span></h3>
+  <p>No es una demo grabada ni una plantilla comprada. Es lo que uso todos los días para captar, escribir, medir y decidir.</p>
+  <div class="inst-grid">
+    <div class="panel"><span class="p-lbl">Agentes</span><span class="p-val on">56</span><span class="p-sub">corriendo por su cuenta, cada uno con su horario y su contrato</span></div>
+    <div class="panel"><span class="p-lbl">Departamentos</span><span class="p-val">5</span><span class="p-sub">cada uno con su director y su control de calidad, como una empresa</span></div>
+    <div class="panel"><span class="p-lbl">Desarrollo</span><span class="p-val">309 h</span><span class="p-sub">registradas sesión a sesión, con lo que se hizo en cada una</span></div>
+  </div>
+</section>
+
+<section class="biz">
+  <h3>Y si lo que quieres es <span class="remate">que lo monte yo</span></h3>
+  <p>Instalo sistemas de captación y operaciones para negocios que quieren crecer sin ampliar plantilla, con el alcance cerrado por escrito antes de empezar.</p>
+  <a class="btn" href="#">Pide tu diagnóstico</a>
+</section>
+
+</body>
+</html>

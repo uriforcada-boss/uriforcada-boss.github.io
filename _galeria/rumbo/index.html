@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Galería — el rumbo de color</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#15161a;color:#f2f3f5;font-family:Inter,sans-serif;padding:36px 28px 80px}
+  h1{font-size:26px;font-weight:800;letter-spacing:-.02em;margin-bottom:8px}
+  .sub{color:#9aa0ac;font-size:15px;max-width:80ch;margin-bottom:28px;line-height:1.6}
+  .sub b{color:#f2f3f5}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:26px}
+
+  .item{background:#1d1f25;border:1px solid #2c2f38;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .bar{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid #2c2f38}
+  .num{font-family:"JetBrains Mono",monospace;font-size:18px;font-weight:500;
+       background:#f2f3f5;color:#15161a;width:36px;height:36px;border-radius:8px;
+       display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .name{font-weight:600;font-size:17px;letter-spacing:-.01em}
+  .desc{color:#9aa0ac;font-size:13px;margin-top:2px;line-height:1.45}
+  .open{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:12px;text-decoration:none;
+        color:#15161a;background:#8ee6a0;padding:9px 14px;border-radius:7px;white-space:nowrap;font-weight:500}
+  .open:hover{background:#fff}
+
+  /* el iframe se renderiza a 1100px y se escala: se ve la página REAL, no un mockup */
+  .frame{position:relative;height:520px;overflow:hidden;background:#000}
+  .frame iframe{width:1100px;height:1500px;border:0;transform-origin:top left;
+                position:absolute;top:0;left:0}
+  .veil{position:absolute;inset:0;cursor:pointer}
+</style>
+</head>
+<body>
+
+<h1>El rumbo de color de la marca</h1>
+<p class="sub">Salió de tu idea del verde premium: no era un acento conviviendo con el azul, era la pregunta de <b>qué color manda en la marca</b>. Aquí están los tres rumbos posibles, con la misma página real debajo: hero, Hoy/Después con su hover, el instrumento y la caja de venta. <b>El hover y el punto que late solo se aprecian abriéndolas a pantalla completa.</b> Dime una letra y ese rumbo se aplica a todo el sitio — y con él le doy el repaso a Automatizaciones y Sobre mí.</p>
+
+<div class="grid">
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">A</div>
+      <div>
+        <div class="name">El azul, afinado</div>
+        <div class="desc">Lo que hay hoy, pulido: índigo + hueso + retícula, con el hover nuevo. «Si decidí el azul, es por algo.» Elegir esto también es decidir.</div>
+      </div>
+      <a class="open" href="a.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="a.html" scrolling="no"></iframe><a class="veil" href="a.html" target="_blank"></a></div>
+  </div>
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">B</div>
+      <div>
+        <div class="name">Esmeralda y dorado</div>
+        <div class="desc">El verde Rolex como dueño único: fuera el azul. Marfil cálido, esmeralda profundo y el instrumento en verde-negro con dorado donde estaba el lima.</div>
+      </div>
+      <a class="open" href="b.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="b.html" scrolling="no"></iframe><a class="veil" href="b.html" target="_blank"></a></div>
+  </div>
+
+  <div class="item">
+    <div class="bar">
+      <div class="num">C</div>
+      <div>
+        <div class="name">Índigo y dorado</div>
+        <div class="desc">El azul se queda con la acción y el wow entra por su complementario: dorado en los rótulos y en el instrumento. Premium sin cambiar de bandera.</div>
+      </div>
+      <a class="open" href="c.html" target="_blank">Abrir ↗</a>
+    </div>
+    <div class="frame"><iframe src="c.html" scrolling="no"></iframe><a class="veil" href="c.html" target="_blank"></a></div>
+  </div>
+
+</div>
+
+<script>
+  // ajusta cada previsualización para que llene su marco sin banda vacía
+  function fit(){
+    document.querySelectorAll('.frame').forEach(function(f){
+      var el = f.querySelector('iframe');
+      el.style.transform = 'scale(' + (f.clientWidth / 1100) + ')';
+    });
+  }
+  window.addEventListener('resize', fit);
+  fit();
+</script>
+
+</body>
+</html>
