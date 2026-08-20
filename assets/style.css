@@ -27,6 +27,12 @@
   --f-body:"Inter",sans-serif;
   --f-mono:"JetBrains Mono",monospace;
   --max:860px;
+  /* Las curvas del movimiento — 20-ago-2026. No son nuevas: son las MISMAS
+     que ya estaban escritas a mano catorce veces por este fichero. Pasan a
+     token para que no se abran variantes que casi coinciden. Ni un valor
+     cambia, así que el sitio se mueve exactamente igual que ayer. */
+  --ease-out:cubic-bezier(.2,.7,.3,1);    /* entrar, salir, hover */
+  --ease-line:cubic-bezier(.2,.8,.2,1);   /* el trazo de la regla de marca */
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
@@ -107,10 +113,16 @@ section{padding:56px 0}
   padding:13px 16px;font-size:14px;line-height:1.5}
 .form-msg a{color:var(--accent-pale)}
 
+/* ⚠️ 20-ago: aquí se transicionaba `padding-left`, y el hover de la tarjeta
+   dejó de mover el padding el 17-ago (lo lleva el bloque del EJE CENTRAL, que
+   sube 2px con `transform`). O sea que se animaba una propiedad muerta —y de
+   las que obligan al navegador a recalcular la maqueta— mientras el movimiento
+   que SÍ ocurre saltaba de golpe, sin transición. Se transiciona el transform,
+   que es lo que se mueve, y encima va en la GPU. */
 .card{display:block;background:none;border:0;border-bottom:1px solid var(--line);box-shadow:none;
   padding:22px 0;margin-bottom:0;text-decoration:none;color:var(--ink);
-  transition:padding-left .18s cubic-bezier(.2,.7,.3,1)}
-a.card:hover{transform:none;box-shadow:none;background:none;color:var(--ink);padding-left:10px}
+  transition:transform .18s var(--ease-out)}
+a.card:hover{box-shadow:none;background:none;color:var(--ink)}
 a.card:hover p{color:var(--dim)}
 a.card:hover .arrow{color:var(--accent)}
 a.card:hover h3{color:var(--accent)}
@@ -134,8 +146,19 @@ a.card:hover h3{color:var(--accent)}
 .btn{display:inline-block;font-family:var(--f-body);font-weight:600;font-size:15px;letter-spacing:0;
   text-transform:none;text-decoration:none;padding:15px 26px;border:1px solid var(--ink);color:var(--ink);
   background:none;box-shadow:none;border-radius:2px;
-  transition:transform .18s cubic-bezier(.2,.7,.3,1),background .18s ease,color .18s ease}
-.btn:hover{transform:translateY(-2px);box-shadow:none;background:var(--ink);color:var(--bg)}
+  transition:transform .18s var(--ease-out),background .18s ease,color .18s ease}
+.btn:hover{box-shadow:none;background:var(--ink);color:var(--bg)}
+/* El desplazamiento va tras `hover:hover` — 20-ago. En un móvil, tocar dispara
+   un hover falso que se QUEDA pegado hasta que tocas otra cosa: el botón se
+   quedaba subido 2px después del toque. El cambio de color sí se queda fuera:
+   ese confirma el toque y no ensucia. Es la misma regla que ya gobierna el
+   hover del Hoy/Después al final de este fichero. */
+@media(hover:hover){
+  .btn:hover{transform:translateY(-2px)}
+  /* Y al pulsar, aterriza. No escala —«nada escala» sigue siendo la regla—:
+     baja los 2px que había subido, rápido, y eso es el acuse de recibo. */
+  .btn:active{transform:translateY(0);transition-duration:.1s}
+}
 .btn.solid{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn.solid:hover{background:var(--accent-deep);border-color:var(--accent-deep);color:#fff}
 
@@ -270,7 +293,7 @@ pre code{background:none;padding:0;color:inherit}
 
 /* Movimiento: sube 26px y aparece. 700ms. El contenido NUNCA depende de esto */
 .reveal{opacity:0;transform:translateY(26px);
-  transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+  transition:opacity .7s var(--ease-out),transform .7s var(--ease-out)}
 .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
@@ -303,7 +326,11 @@ pre code{background:none;padding:0;color:inherit}
   scrollbar-width:none;-ms-overflow-style:none}
 .nav ul::-webkit-scrollbar{display:none}
 .nav ul a{font-size:15px;color:var(--dim);text-decoration:none;white-space:nowrap;
-  padding:4px 0;border-bottom:2px solid transparent;transition:color .15s,border-color .15s}
+  padding:4px 0;border-bottom:2px solid transparent;
+  /* una sola declaración: más abajo había otra `.nav ul a{transition:color}`
+     que ganaba por ser posterior y se comía el `border-color` de aquí, así que
+     el subrayado de la página activa aparecía de golpe. 20-ago. */
+  transition:color .16s ease,border-color .16s ease}
 .nav ul a:hover{color:var(--ink)}
 .nav ul a[aria-current="page"]{color:var(--accent);border-bottom-color:var(--accent)}
 .nav .lang{font-family:var(--f-mono);font-size:12px;letter-spacing:.06em;
@@ -369,11 +396,11 @@ html:not(.lenis){scroll-behavior:smooth}
 @keyframes entra{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes linea{from{transform:scaleX(0)}to{transform:scaleX(1)}}
 
-.hero .label{animation:entra .5s cubic-bezier(.2,.7,.3,1) both}
-.hero .brandbar{transform-origin:left;animation:linea .8s .1s cubic-bezier(.2,.8,.2,1) both}
-.hero h1{animation:entra .6s .16s cubic-bezier(.2,.7,.3,1) both}
-.hero p{animation:entra .6s .26s cubic-bezier(.2,.7,.3,1) both}
-.hero-ctas{animation:entra .6s .36s cubic-bezier(.2,.7,.3,1) both}
+.hero .label{animation:entra .5s var(--ease-out) both}
+.hero .brandbar{transform-origin:left;animation:linea .8s .1s var(--ease-line) both}
+.hero h1{animation:entra .6s .16s var(--ease-out) both}
+.hero p{animation:entra .6s .26s var(--ease-out) both}
+.hero-ctas{animation:entra .6s .36s var(--ease-out) both}
 
 /* ── Progresión ligada al scroll, nativa. `animation-timeline: view()` ata
       la animación a la posición del elemento en pantalla, sin observador y
@@ -396,9 +423,11 @@ html:not(.lenis){scroll-behavior:smooth}
 /* ── Micro-interacciones. Nada gira, nada rebota: es la regla del sitio. ── */
 .panel{transition:background .2s ease}
 .panel:hover{background:rgba(255,255,255,.04)}
-.limite li{transition:padding-left .16s cubic-bezier(.2,.7,.3,1)}
-.limite li:hover{padding-left:6px}
-.nav ul a{transition:color .16s ease}
+/* 20-ago: era `padding-left`, que es maqueta y no capa. Con la lista centrada
+   (eje central, 17-ago) 6px de padding izquierdo desplazaban el texto 3px, así
+   que el `translateX(3px)` deja EXACTAMENTE el mismo píxel, en la GPU. */
+.limite li{transition:transform .16s var(--ease-out)}
+@media(hover:hover){.limite li:hover{transform:translateX(3px)}}
 .res{transition:opacity .2s ease}
 
 /* ── Y el candado. Si el sistema operativo pide menos movimiento, se apaga
@@ -407,7 +436,14 @@ html:not(.lenis){scroll-behavior:smooth}
   html{scroll-behavior:auto}
   .hero .label,.hero .brandbar,.hero h1,.hero p,.hero-ctas{animation:none}
   .section-head::after{animation:none;display:none}
-  .panel,.limite li,.nav ul a,.res{transition:none}
+  /* 20-ago: antes esta línea apagaba las cuatro transiciones enteras, y tres
+     de ellas no mueven nada —son color y opacidad—. «Menos movimiento» no es
+     «ningún cambio»: lo que se quita es lo que se DESPLAZA por la pantalla.
+     El color se queda, porque es lo que dice que un enlace responde.
+     El hover de la tarjeta se apaga al FINAL del fichero: se declara más
+     abajo que esto y desde aquí no se le puede ganar. */
+  .limite li{transition:none}
+  .limite li:hover{transform:none}
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -630,16 +666,39 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
    bien desde el primer frame. */
 .instrumento .inst-k.live{display:flex;align-items:center;gap:9px}
 /* flex:0 0 6px, o el punto se aplasta a una raya al competir con el texto */
+.instrumento .inst-k.live{position:relative}
 .instrumento .inst-k.live::before{content:'';flex:0 0 6px;width:6px;height:6px;
   border-radius:50%;background:var(--acid);
+  /* posicionado y por encima: la onda de abajo es `position:absolute`, y un
+     pseudo-elemento posicionado se pinta SOBRE uno que no lo está. Sin esto la
+     onda pasaba por delante del punto y lo teñía en cada latido. */
+  position:relative;z-index:1;
   animation:latido 2.4s ease-in-out infinite}
-/* la onda sale de `--halo` para que la variante catalana pueda latir en
-   dorado sin duplicar el keyframe; la var se resuelve en el elemento */
-@keyframes latido{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--halo)}
-  50%{opacity:.42;box-shadow:0 0 0 5px transparent}}
+/* ⚠️ 20-ago · POR QUÉ LA ONDA YA NO ES UNA SOMBRA.
+   Antes el halo salía de animar el `spread` de un `box-shadow`, y una sombra
+   no vive en la capa: cada fotograma obliga al navegador a REPINTAR. Esto late
+   sin parar mientras la página esté abierta, así que era el único repintado
+   perpetuo del sitio. Ahora la onda es un círculo aparte que solo escala y se
+   desvanece —`transform` y `opacity`, las dos únicas cosas que el navegador
+   mueve sin repintar—, y el punto se limita a atenuarse.
+
+   Va en `::after` colocado ENCIMA del punto y no en el propio `::before`,
+   porque escalar el `::before` escalaría también el punto. Fuera del flujo:
+   no empuja al texto ni ocupa sitio en la fila.
+
+   La onda sale de `--halo` para que la variante catalana lata en dorado sin
+   duplicar el keyframe; la var se resuelve en el elemento. */
+.instrumento .inst-k.live::after{content:'';position:absolute;left:-2px;top:50%;
+  width:10px;height:10px;margin-top:-5px;border-radius:50%;
+  background:var(--halo);pointer-events:none;
+  animation:onda 2.4s ease-in-out infinite}
+@keyframes latido{0%,100%{opacity:1}50%{opacity:.42}}
+@keyframes onda{0%,100%{transform:scale(.2);opacity:.9}
+  50%{transform:scale(1);opacity:0}}
 .panel .p-val{font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){
   .instrumento .inst-k.live::before{animation:none}
+  .instrumento .inst-k.live::after{display:none}
 }
 
 /* ── 5 · El formulario del diagnóstico ────────────────────────────────
@@ -658,7 +717,7 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
 .dg-avance .txt b{color:var(--accent);font-weight:500}
 .dg-avance .barra{flex:1;height:2px;background:var(--line);position:relative;overflow:hidden}
 .dg-avance .barra i{position:absolute;inset:0;background:var(--accent);
-  transform:scaleX(0);transform-origin:0 50%;transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+  transform:scaleX(0);transform-origin:0 50%;transition:transform .35s var(--ease-out)}
 .dg-guardado{font-family:var(--f-mono);font-size:10.5px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--dim);opacity:0;transition:opacity .3s ease;
   white-space:nowrap}
@@ -722,8 +781,8 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
 /* ── 4 · LA FLECHA QUE SE ADELANTA ────────────────────────────────────
    NO se coge su versión, que hace oscilar la flecha en bucle infinito
    mientras tienes el ratón encima: «nada rebota» está escrito arriba. */
-.card .arrow{transition:color .18s ease,transform .18s cubic-bezier(.2,.7,.3,1)}
-a.card:hover .arrow{transform:translateX(4px)}
+.card .arrow{transition:color .18s ease,transform .18s var(--ease-out)}
+@media(hover:hover){a.card:hover .arrow{transform:translateX(4px)}}
 
 /* ── 5 · LA CASCADA, POR ÍNDICE Y NO POR TANDA ────────────────────────
    Aquí había un fallo de verdad. El escalonado se calculaba con un
@@ -851,7 +910,7 @@ body.ancho .fecha .f-txt{max-width:52ch}
    Y el desplazamiento lateral del hover se cambia por el de la casa. */
 .card .card-top{justify-content:center;gap:10px}
 .card p{max-width:52ch}
-a.card:hover{padding-left:0;transform:translateY(-2px)}
+@media(hover:hover){a.card:hover{transform:translateY(-2px)}}
 .gate form,.gate-form{justify-content:center}
 .gate>p{max-width:52ch}
 .gate-legal,.res>p.gate-legal{margin-inline:auto}
@@ -1004,12 +1063,12 @@ body.articulo .recurso .lede{text-align:left;margin-inline:0}
   .despues .lado+.lado{position:relative}
   .despues .lado+.lado::before{content:'';position:absolute;left:-1px;top:0;bottom:0;
     width:1px;background:var(--accent);transform:scaleY(0);transform-origin:top;
-    transition:transform .35s cubic-bezier(.2,.7,.3,1)}
+    transition:transform .35s var(--ease-out)}
   .despues .fila:hover .lado+.lado::before{transform:scaleY(1)}
   .despues .lado.post p{position:relative;display:inline-block;transition:color .3s ease}
   .despues .lado.post p::after{content:'';position:absolute;left:20%;right:20%;bottom:-8px;
     height:1px;background:var(--accent);transform:scaleX(0);transform-origin:center;
-    transition:transform .35s .1s cubic-bezier(.2,.7,.3,1)}
+    transition:transform .35s .1s var(--ease-out)}
   .despues .fila:hover .lado.post p::after{transform:scaleX(1)}
   .despues .fila:hover .lado.post p{color:var(--accent)}
 }
@@ -1112,3 +1171,25 @@ body.articulo .recurso h2::before{left:0;transform:none}
 /* ── 4 · La banda del Hoy/Después ── */
 #despues{background:var(--surface)}
 .despues .fila{background:var(--bg)}
+
+/* ══════════════════════════════════════════════════════════════════════
+   EL CANDADO DEL MOVIMIENTO, AL FINAL — 20-ago-2026
+   ══════════════════════════════════════════════════════════════════════
+   El candado de `prefers-reduced-motion` vive arriba, junto a las micro-
+   interacciones que apaga. Pero en CSS gana la última declaración, y desde
+   aquel bloque se han escrito DOS desplazamientos más —el de la tarjeta y
+   el de su flecha, que llegaron con el eje central y con Palladaim—, así
+   que aquel candado no los alcanzaba: quien pide menos movimiento seguía
+   viéndolos moverse.
+
+   Este bloque cierra por detrás de todo. Regla para lo que venga: un
+   `transform` de hover que se escriba por debajo de esta línea hay que
+   añadirlo aquí, o queda fuera del candado.
+   ══════════════════════════════════════════════════════════════════════ */
+@media(prefers-reduced-motion:reduce){
+  .card{transition:none}
+  a.card:hover,a.card:hover .arrow{transform:none}
+  /* La onda del instrumento y el aterrizaje del botón también se desplazan */
+  .btn{transition:background .18s ease,color .18s ease}
+  .btn:hover,.btn:active{transform:none}
+}
