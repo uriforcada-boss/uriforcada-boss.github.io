@@ -441,33 +441,7 @@
   </div>
 </footer>
 
-<script>
-  // las secciones entran al entrar en pantalla, en cascada
-  (function(){
-    var els = document.querySelectorAll('.reveal');
-    // 17-ago: el escalonado usaba un contador que se reiniciaba en cada
-    // aviso del observador, así que dependía de cuántos elementos entraran
-    // JUNTOS. Bajando despacio valía siempre 0 y no había cascada. Ahora
-    // sale del índice dentro del grupo y es la misma bajes como bajes.
-    els.forEach(function(e){
-      var hermanos = e.parentNode.querySelectorAll(':scope > .reveal');
-      e.style.setProperty('--i', Array.prototype.indexOf.call(hermanos, e));
-    });
-    if (!('IntersectionObserver' in window) || matchMedia('(prefers-reduced-motion: reduce)').matches){
-      els.forEach(function(e){ e.classList.add('in'); });
-      return;
-    }
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(en){
-          if (en.isIntersecting){
-            en.target.classList.add('in');
-          io.unobserve(en.target);
-        }
-      });
-    }, { threshold: 0.01, rootMargin: '0px 0px 120px 0px' });
-    els.forEach(function(e){ io.observe(e); });
-  })();
-</script>
+<script src="/assets/reveal.js" defer></script>
 
 <script src="assets/progreso.js" defer></script>
 
