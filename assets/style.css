@@ -688,13 +688,34 @@ body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
 
    La onda sale de `--halo` para que la variante catalana lata en dorado sin
    duplicar el keyframe; la var se resuelve en el elemento. */
-.instrumento .inst-k.live::after{content:'';position:absolute;left:-2px;top:50%;
-  width:10px;height:10px;margin-top:-5px;border-radius:50%;
+/* ⚠️ 21-ago · LA ONDA NO SE VEÍA, Y ERA ARITMÉTICA, NO COLOR.
+   Oriol, mirándolo en pantalla: «no se ve, es un punto azul». Medido en
+   producción antes de tocar nada, el ciclo viejo (10px, scale .2→1) daba esto:
+   cuando la onda era opaca (.9) medía 2px y el punto de 6px la tapaba entera;
+   cuando por fin superaba los 6px del punto ya iba por .07 de opacidad, y al
+   llegar a su tamaño máximo estaba a CERO. Máximo asomo real: 1,5px de anillo
+   a un 7% de un color que ya está al 55%. O sea: invisible siempre.
+
+   Se perdió al cambiar la sombra por el círculo el 20-ago. Un `box-shadow`
+   crecía con su `spread` MUCHO más allá del punto; heredar ese gesto en un
+   círculo de 10px contra un punto de 6 no da para nada.
+
+   Ahora arranca EXACTAMENTE del tamaño del punto (6px, escondida detrás) y
+   crece a 3,4× — 20px, siete de anillo alrededor. Medido igual que el roto:
+   ventana visible del 16% al 40% del ciclo, asomando de 2,4 a 5,2px con la
+   opacidad entre .44 y .18. `ease-out` y la parada en 0 desde el 75% le dan
+   la física de una onda: sale rápido, se abre despacio y deja respirar antes
+   de la siguiente.
+   ⛔ Sigue siendo `transform` + `opacity` y nada más, que es el motivo entero
+   del cambio del 20-ago: esto late mientras la página esté abierta y no puede
+   repintar en cada fotograma. */
+.instrumento .inst-k.live::after{content:'';position:absolute;left:0;top:50%;
+  width:6px;height:6px;margin-top:-3px;border-radius:50%;
   background:var(--halo);pointer-events:none;
-  animation:onda 2.4s ease-in-out infinite}
+  animation:onda 2.4s ease-out infinite}
 @keyframes latido{0%,100%{opacity:1}50%{opacity:.42}}
-@keyframes onda{0%,100%{transform:scale(.2);opacity:.9}
-  50%{transform:scale(1);opacity:0}}
+@keyframes onda{0%{transform:scale(1);opacity:.65}
+  75%,100%{transform:scale(3.4);opacity:0}}
 .panel .p-val{font-variant-numeric:tabular-nums}
 @media(prefers-reduced-motion:reduce){
   .instrumento .inst-k.live::before{animation:none}
@@ -1105,8 +1126,9 @@ body.articulo .recurso .lede{text-align:left;margin-inline:0}
    ser gemelas visuales a propósito.
 
    Contraste: #0E5C41 sobre marfil #F7F5EF da 7,3:1 (aguanta el mono de
-   10px); el dorado #E3C567 vive SOLO sobre el void oscuro (11:1) y no
-   pisa el modo día jamás — en claro sería ilegible.                    */
+   10px); el ácido lima #d4ff00 vive SOLO sobre el void oscuro (17,1:1, medido
+   el 21-ago al sustituir al dorado, que daba 11,8:1) y no pisa el modo día
+   jamás — sobre el marfil sería ilegible.                              */
 html[lang="ca"]{
   --bg:#F7F5EF;        /* marfil: el hueso, un punto más cálido */
   --surface:#EFEBE1;
@@ -1118,15 +1140,23 @@ html[lang="ca"]{
   --accent-pale:#CFE3D8;
   --accent-tint:rgba(14,92,65,.05);
 }
-/* El instrumento catalán: void verde-negro y el dato en DORADO — la
-   joyería donde el castellano lleva el azul eléctrico. El filo de los
-   paneles se tiñe de oro muy bajo para que el cristal sea de la misma
-   familia que el dato. */
+/* El instrumento catalán: void verde-negro y el dato en ÁCIDO LIMA, donde el
+   castellano lleva el azul eléctrico.
+   ⚠️ 21-ago · FUERA EL DORADO, decisión de Oriol mirándolo en pantalla. Estuvo
+   en oro desde el 18-ago. Su frase fue «el ácido que teníamos antes», y eso
+   tenía trampa: antes del 18-ago esta página no tenía bloque propio, así que
+   el ácido que heredaba era el AZUL del castellano — ponerlo habría derogado
+   su propia regla de ese día («índigo jamás en /ca/») y dejado las dos lenguas
+   con el mismo instrumento. Preguntado antes de tocar: el lima de JARVIS, que
+   es su ácido de verdad. Así la separación de lenguas sigue en pie y el
+   esmeralda #0E5C41 sigue siendo EL color de la página.
+   El filo de los paneles va del mismo lima muy bajo, para que el cristal sea
+   de la familia del dato. */
 html[lang="ca"] .instrumento{
   --void:#060B08;
-  --acid:#E3C567;
-  --rim:rgba(227,197,103,.16);
-  --halo:rgba(227,197,103,.5);
+  --acid:#d4ff00;
+  --rim:rgba(212,255,0,.16);
+  --halo:rgba(212,255,0,.5);
 }
 
 /* ══════════════════════════════════════════════════════════════════════
