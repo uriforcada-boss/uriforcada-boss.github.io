@@ -1243,3 +1243,32 @@ body.blog-indice .resource-hero .sub{margin-left:auto;margin-right:auto}
 /* El aclarado bajo los botones del hero (27-ago): qué es el diagnóstico,
    dicho donde se decide. Hereda de .fine; solo ajusta el respiro. */
 .hero-fine{margin-top:18px;max-width:52ch}
+
+
+/* ══════════ LA PASADA DEL 27-ago (tarde) — sus tres quejas en pantalla ═════
+   1 «No me gusta el espacio que hay»: los 56px de sección + los colchones
+     internos sumaban pantallas de aire. Se recorta el respiro un tercio.
+   2 «No se distinguen las partes»: todas las secciones iban sobre el mismo
+     crema. Ahora alternan crema y blanco con su línea, y cada bloque se ve
+     empezar y acabar.
+   3 El retrato de Sobre mí, que hasta hoy no existía. */
+
+/* ── 1 · Menos aire ── */
+section{padding:40px 0}
+.hero{padding:88px 0 48px}
+body.ancho .hero{padding:96px 0 52px}
+.section-head{margin-bottom:32px;padding-bottom:16px}
+body.ancho .section-head{margin-bottom:34px;padding-bottom:18px}
+.fecha{padding:36px 0}
+.resource-hero{padding:64px 0 24px}
+
+/* ── 2 · Las partes se distinguen ──
+   nth-of-type y no clases: así vale para todas las páginas sin tocarlas.
+   El blanco alterna con el crema del body y la línea remata el borde. */
+section:nth-of-type(even){background:#fff;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+
+/* ── 3 · El retrato ── */
+.retrato{margin:0 auto 40px;max-width:400px}
+.retrato img{width:100%;height:auto;display:block;border-radius:4px;
+  box-shadow:0 10px 34px rgba(20,20,30,.13)}
