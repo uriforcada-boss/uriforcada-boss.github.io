@@ -234,13 +234,18 @@ footer a:hover{color:var(--accent);border-color:var(--accent)}
   font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;color:#6D7683}
 
 /* La FECHA. Bloque propio: es la prueba con la que se juega la marca */
+/* CENTRADA por orden de Oriol (27-ago-2026, y ya lo había pedido el 26):
+   «la galería del eje tiene que estar todo centrado. Ya te dije ayer que no
+   quiero que esté en la izquierda». El max-width del texto pasa a centrarse
+   con margin:auto para que el bloque entero cuelgue del mismo eje. */
 .fecha{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  padding:44px 0;margin:0}
+  padding:44px 0;margin:0;text-align:center}
 .fecha .f-k{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;
   text-transform:uppercase;color:var(--accent);display:block;margin-bottom:16px}
 .fecha .f-big{font-family:var(--f-display);font-weight:900;
   font-size:clamp(44px,9vw,110px);line-height:.9;letter-spacing:-.045em}
-.fecha .f-txt{margin-top:24px;font-size:16.5px;color:var(--dim);max-width:58ch}
+.fecha .f-txt{margin-top:24px;font-size:16.5px;color:var(--dim);max-width:58ch;
+  margin-left:auto;margin-right:auto}
 .fecha .f-txt strong{color:var(--ink);font-weight:600}
 
 /* Dos columnas: lo que sí y lo que no. Líneas, nunca tarjetas */
@@ -509,14 +514,12 @@ body.ancho .solution .accent{max-width:56ch}
 
 body.ancho .panel{padding:28px 26px}
 
-/* La fecha estaba apilada y se leía como un párrafo más. A dos columnas,
-   el número grande vuelve a ser el protagonista. */
-body.ancho .fecha{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
-  column-gap:64px;align-items:start}
-body.ancho .fecha .f-k{grid-column:1/-1;margin-bottom:20px}
-body.ancho .fecha .f-big{grid-column:1;grid-row:2/span 2}
-body.ancho .fecha .f-txt{grid-column:2;max-width:52ch}
-@media(max-width:900px){body.ancho .fecha{display:block}}
+/* Las dos columnas de la fecha (18-ago) MURIERON el 27-ago: Oriol pidió el
+   bloque centrado, y una rejilla con el número a un lado y el texto al otro
+   es exactamente «estar en la izquierda». Se apila y se centra como en el
+   resto de páginas. */
+body.ancho .fecha{display:block}
+body.ancho .fecha .f-txt{max-width:52ch}
 
 /* Por debajo de 1100 vuelve exactamente a la página de antes. Móvil intacto. */
 @media(max-width:1100px){body.ancho{--max:860px}}
@@ -1223,3 +1226,20 @@ body.articulo .recurso h2::before{left:0;transform:none}
   .btn{transition:background .18s ease,color .18s ease}
   .btn:hover,.btn:active{transform:none}
 }
+
+
+/* ── El hero de los artículos y del índice del blog, CENTRADO (27-ago-2026).
+   Queja literal de Oriol el 26: «toda la letra en el centro y el título pegado
+   ahí a la izquierda». El cuerpo se lee centrado en la página y el titular
+   quedaba en otro eje. Solo blog: el resto de heros (recursos, trabajar
+   conmigo) mantienen su composición. */
+.resource-hero.post{text-align:center}
+.resource-hero.post h1{margin-left:auto;margin-right:auto}
+.resource-hero.post .sub{margin-left:auto;margin-right:auto}
+body.blog-indice .resource-hero{text-align:center}
+body.blog-indice .resource-hero h1{margin-left:auto;margin-right:auto}
+body.blog-indice .resource-hero .sub{margin-left:auto;margin-right:auto}
+
+/* El aclarado bajo los botones del hero (27-ago): qué es el diagnóstico,
+   dicho donde se decide. Hereda de .fine; solo ajusta el respiro. */
+.hero-fine{margin-top:18px;max-width:52ch}
