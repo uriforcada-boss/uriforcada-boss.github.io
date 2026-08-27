@@ -196,10 +196,12 @@ footer a:hover{color:var(--accent);border-color:var(--accent)}
    baja de 10px, hay que volver a subir la luz del azul.                    */
 
 .instrumento{
-  --void:#08090c; --acid:#1E90FF; --glass:rgba(255,255,255,.078);
-  --rim:rgba(255,255,255,.13); --lip:rgba(255,255,255,.20);
-  --halo:rgba(30,144,255,.55);  /* la onda del punto que late */
-  background:var(--void);color:#E7E9EC;border-radius:3px;
+  --acid:var(--accent); --glass:#fff;
+  --rim:var(--line); --lip:var(--accent);
+  --halo:rgba(30,56,222,.35);  /* la onda del punto que late */
+  background:var(--paper-2,#EFEDE7);color:var(--ink);
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  border-radius:3px;
   padding:38px 30px 32px;margin:0;
   /* sangra a ancho completo: la cita ocupa la página, no una columna */
   margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);
@@ -211,8 +213,8 @@ footer a:hover{color:var(--accent);border-color:var(--accent)}
   letter-spacing:.18em;text-transform:uppercase;color:var(--acid);margin-bottom:20px}
 .instrumento h3{font-family:var(--f-display);font-weight:900;
   font-size:clamp(26px,4.2vw,44px);line-height:1;letter-spacing:-.035em;
-  color:#fff;margin-bottom:14px;text-transform:none}
-.instrumento>p{font-size:16px;color:#9BA3AE;max-width:56ch}
+  color:var(--ink);margin-bottom:14px;text-transform:none}
+.instrumento>p{font-size:16px;color:var(--dim);max-width:56ch}
 
 /* la rejilla de paneles: cristal con luz en el filo, como el HUD */
 .inst-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
@@ -223,15 +225,15 @@ footer a:hover{color:var(--accent);border-color:var(--accent)}
 .panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;
   background:var(--lip)}
 .panel .p-lbl{font-family:var(--f-mono);font-size:10px;letter-spacing:.16em;
-  text-transform:uppercase;color:#6D7683;display:block;margin-bottom:9px}
+  text-transform:uppercase;color:var(--dim);display:block;margin-bottom:9px}
 /* block, no inline: como <span> el número y su explicación caían en la misma
    línea y «43 corriendo por su cuenta» se leía como una frase rota. */
 .panel .p-val{display:block;font-family:var(--f-mono);font-size:30px;font-weight:500;
-  line-height:1;color:#fff}
+  line-height:1;color:var(--ink)}
 .panel .p-val.on{color:var(--acid)}
-.panel .p-sub{display:block;font-size:12.5px;color:#8A929E;margin-top:10px;line-height:1.45}
+.panel .p-sub{display:block;font-size:12.5px;color:var(--dim);margin-top:10px;line-height:1.45}
 .inst-foot{margin-top:24px;padding-top:18px;border-top:1px solid var(--rim);
-  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;color:#6D7683}
+  font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;color:var(--dim)}
 
 /* La FECHA. Bloque propio: es la prueba con la que se juega la marca */
 /* CENTRADA por orden de Oriol (27-ago-2026, y ya lo había pedido el 26):
@@ -1162,11 +1164,11 @@ html[lang="ca"]{
    esmeralda #0E5C41 sigue siendo EL color de la página.
    El filo de los paneles va del mismo lima muy bajo, para que el cristal sea
    de la familia del dato. */
+/* 28-ago: la variante oscura catalana murió con el negro. El acento de
+   /ca/ (esmeralda) entra solo por var(--accent); el lima era del cristal
+   oscuro y se va con él. */
 html[lang="ca"] .instrumento{
-  --void:#060B08;
-  --acid:#d4ff00;
-  --rim:rgba(212,255,0,.16);
-  --halo:rgba(212,255,0,.5);
+  --halo:rgba(14,92,65,.35);
 }
 
 /* ══════════════════════════════════════════════════════════════════════
@@ -1312,9 +1314,12 @@ section:nth-of-type(even){background:#fff;
   color:var(--accent);font-weight:800;font-size:16px;margin-bottom:14px}
 #metodo .pain-num{border-color:rgba(255,255,255,.7)}
 
-/* El «Después» gana el verde de lo resuelto: la comparación se VE, no se lee. */
-.despues .lado.post{background:rgba(46,125,80,.07);border-left:3px solid #2E7D50}
-.despues .lado.post .k{color:#2E7D50}
+/* El «Después» se marca con EL color de la página (28-ago). La primera
+   versión iba en verde y duró un día: a Oriol no le gustó, y además el verde
+   en /es/ rompe su regla del 18-ago (un solo dueño de color por página; el
+   verde es del catalán). Con var(--accent) cada lengua usa el suyo solo. */
+.despues .lado.post{background:#fff;border-left:3px solid var(--accent)}
+.despues .lado.post .k{color:var(--accent)}
 
 /* ── GRÁFICA · el hilo E→D→O ── */
 .edo-hilo{display:block;margin:0 auto 26px;max-width:420px;width:100%}
