@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.web3forms.com https://assets.mailerlite.com https://*.mailerlite.com; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://assets.mailerlite.com https://*.mailerlite.com; base-uri 'self'; object-src 'none'">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo automatizar procesos con IA</title>
+<meta name="description" content="Los pasos prácticos para automatizar tareas repetitivas que te comen horas cada semana y poner un sistema simple a funcionar en cuestión de días.">
+<link rel="canonical" href="https://uriforcada.com/blog/como-automatizar-procesos-con-ia/">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://uriforcada.com/blog/como-automatizar-procesos-con-ia/">
+<meta property="og:site_name" content="Oriol Forcada">
+<meta property="og:locale" content="es_ES">
+<meta property="og:title" content="Cómo automatizar procesos con IA en tu empresa sin romper lo que funciona">
+<meta property="og:description" content="Los pasos prácticos para automatizar tareas repetitivas que te comen horas cada semana y poner un sistema simple a funcionar en cuestión de días.">
+<meta property="og:image" content="https://uriforcada.com/assets/og.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#F7F6F2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/style.css?v=20260809a">
+
+<!-- Sin hreflang: el blog se queda en castellano (decisión de Oriol, 8-ago). -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://uriforcada.com/blog/como-automatizar-procesos-con-ia/#articulo",
+  "headline": "Cómo automatizar procesos con IA en tu empresa sin romper lo que funciona",
+  "description": "Los pasos prácticos para automatizar tareas repetitivas que te comen horas cada semana y poner un sistema simple a funcionar en cuestión de días.",
+  "url": "https://uriforcada.com/blog/como-automatizar-procesos-con-ia/",
+  "inLanguage": "es-ES",
+  "datePublished": "2026-08-27",
+  "dateModified": "2026-08-27",
+  "author": {
+    "@id": "https://uriforcada.com/#oriol"
+  },
+  "publisher": {
+    "@id": "https://uriforcada.com/#oriol"
+  },
+  "isPartOf": {
+    "@id": "https://uriforcada.com/blog/#pagina"
+  },
+  "mainEntityOfPage": "https://uriforcada.com/blog/como-automatizar-procesos-con-ia/"
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si el proceso tiene excepciones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si es una o dos excepciones al mes, el flujo te genera un aviso y alguien lo resuelve a mano. Si son muchas y diferentes, necesitas un agente. Empieza siempre por flujo. Si la máquina falla más de lo que gana, escalas a agente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tiempo tarda automatizar una tarea?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Un flujo simple, en días; uno complejo, lo que pida. Si está bien documentado y no tiene sorpresas, incluso uno. Un agente tarda más porque necesita entrenamiento y pruebas. Mejor contar con una semana si es la primera vez y la tarea es nueva."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo sé si tengo que usar mi actual sistema o cambiar a otro?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mira qué sistemas tienes y qué pueden conectarse entre sí. Si tu herramienta A puede hablar con B directamente, no cambies. Los hoyos de integración son los que más cuestan. Antes de elegir herramienta nueva, usa la que tienes si te sirve."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si automatizo algo y después descubro que estaba mal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apágala. Un flujo se puede apagar en un segundo y volver a lo manual igual de rápido. Por eso el piloto en paralelo es importante: no te casas con la automatización, pruebas si funciona primero."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Necesito saber programar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No para un flujo básico. Hay herramientas visuales sin código. Para un agente más sofisticado, sí. O alguien que sepa lo hace por ti."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="/">Oriol Forcada</a>
+    <ul>
+      <li><a href="/sobre-mi/">Sobre mí</a></li>
+      <li><a href="/automatizaciones/">Automatizaciones</a></li>
+      <li><a href="/recursos/">Recursos</a></li>
+      <li><a href="/trabajar-conmigo/">Trabajar conmigo</a></li>
+      <li><a class="lang" href="/ca/" hreflang="ca">CAT</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="resource-hero post">
+  <div class="wrap">
+    <a class="label" href="/blog/">← Blog</a>
+    <h1 class="display">Cómo automatizar procesos con IA</h1>
+    <p class="sub">Desde identificar qué automatizar hasta decidir entre flujos y agentes de IA.</p>
+    <p class="post-meta"><time datetime="2026-08-27">27 de agosto de 2026</time> · 7 min de lectura</p>
+  </div>
+</header>
+
+<div class="wrap recurso">
+
+  <p class="lede">Un proceso automatizable es uno que se repite igual cada vez: pasar datos de un sitio a otro, generar reportes, procesar órdenes. Primero identifica cuál de tus tareas se hace más de tres veces por semana exactamente igual, después elige si quieres un <strong>flujo automatizado</strong>, un <strong>agente que entienda variación</strong>, o ambos. Configúralo con herramientas que se conecten a tus sistemas actuales sin romper lo que funciona.</p>
+
+  <p>Hay una diferencia entre las tareas que simplemente duelen y las que se pueden delegar a una máquina. Las primeras son las que te despiertas a las 3 de la mañana pensando que algo se quedó sin hacer. Las segundas son las que, una vez las describes, la máquina las hace igual cada vez. Muchas empresas conviven años con las primeras sin saber lo rápido que se resuelven las segundas.</p>
+
+  <h2>Qué es un proceso automatizable</h2>
+
+  <p>No todo merece automación. Antes de empezar, tienes que saber si lo que te duele es realmente un proceso o solo un acto aislado. La diferencia es que un proceso se repite. Y se repite igual cada vez.</p>
+
+  <p>Hay cuatro señales de que algo está listo para automatizar.</p>
+
+  <ul>
+    <li>Se hace más de tres veces por semana exactamente igual. Si varía cada vez, todavía necesita criterio humano. Si solo pasa una vez cada dos meses, no vale la pena.</li>
+    <li>Se rehace porque llegó mal. Alguien revisa la salida, ve un error y lo corrige a mano. Eso es candidato directo.</li>
+    <li>Alguien espera a que otro termine para empezar. Los datos se pasan de una persona a otra, se teclea de un sistema a otro, se espera a que alguien apruebe. Esos encadenamientos son los que más tiempo regalan cuando se automatizan.</li>
+    <li>Se teclea de un sitio a otro sin que cambie ni una decisión. El caso más claro: coger datos de un Excel, leerlos, y pegarlos en otro sistema sin criterio. La máquina lo hace en un segundo.</li>
+  </ul>
+
+  <p>Si tu tarea tiene una de esas cuatro señales, la máquina puede tomarla. Si tiene dos o más, es incluso mejor candidata.</p>
+
+  <h2>Dos caminos: flujos vs. agentes</h2>
+
+  <p>Una vez sabes qué automatizar, tienes que elegir cómo. Y aquí está el error que comete la mayoría: piensan que hay una única forma. La hay dos, y son opuestas.</p>
+
+  <p>Un flujo es una secuencia fija. Recibes un dato, lo transformas de forma A, lo pasas al sistema B, y ya está. Si siempre es así, funciona perfecto. Es predecible, barato y fácil de cambiar cuando necesitas arreglarlo. Ejemplo: cada vez que llega un pedido de un cliente, extraes el email, generas una factura automática y la envías. Mismo proceso, cada vez.</p>
+
+  <p>Un agente es algo que entiende contexto. Mira la información que llega, decide qué hacer según lo que ve, y se adapta si algo no es lo esperado. Es más poderoso pero también más lento de hacer. Se usa cuando el proceso varía: no todos los pedidos son iguales, algunos necesitan validación extra, otros tienen descuentos. El agente ve eso y actúa en consecuencia.</p>
+
+  <p>La gente suele empezar queriendo un agente. Acaban necesitando un flujo. Empieza por lo simple. Si tu proceso tiene excepciones que cambian, después montas un agente. Si siempre es igual, el flujo te soluciona la vida.</p>
+
+  <h2>Cómo empezar sin romper lo que funciona</h2>
+
+  <p>Aquí está lo que genera miedo. Cambiar algo que funciona y que de repente deje de funcionar. No tienes que hacerlo. Hay un camino que baja el riesgo a casi cero.</p>
+
+  <ol>
+    <li>Elige una tarea que puedas parar sin que colapse nada. No automatices el proceso de facturación de los clientes como primer paso. Elige algo más pequeño. En un cliente que conozco, el primer movimiento fue los mensajes automáticos en Instagram. Alguien estaba dedicando dos o tres horas al día a contestar lo mismo una y otra vez. Se automatizó, quedó en cero, y eso fue el cambio para confiar en todo lo demás.</li>
+    <li>Documenta exactamente qué hace esa tarea hoy. No lo que debería hacer, lo que hace. Qué datos entra, qué transformación ocurre, qué sale. Si hay excepciones, apúntalas todas.</li>
+    <li>Construye la automatización en paralelo. La máquina y la persona hacen lo mismo a la vez. Mientras la máquina comprueba, tú sigues haciéndolo a mano.</li>
+    <li>Compara resultados durante una semana. Si coinciden, listo. Si no, tienes la mano de obra de siempre como red de seguridad.</li>
+    <li>Una vez esté confirmado, la persona deja de hacer eso y pasa a otra cosa. No despides a nadie. Los liberas de una tarea que los tenía atrapados.</li>
+  </ol>
+
+  <h2>Errores que no cometer</h2>
+
+  <p>Las empresas que fracasan al automatizar suelen caer por las mismas razones. Siempre por las mismas razones.</p>
+
+  <ul>
+    <li>Buscar lo que usa todo el mundo en vez de pensar qué necesitas tú. Hay herramientas que son populares porque funcionan bien. Pero popular no es sinónimo de apto para tu caso. Si tu flujo es raro y especial, quizá necesitas algo que nadie comenta, pero que te resuelve exacto lo que tienes.</li>
+    <li>Automatizar algo que la máquina aún no entiende. Si el proceso tiene un paso donde alguien necesita juzgar, conocer contexto o decidir algo que no tiene criterio claro, la máquina va a fallar. Necesitas que sea lógico antes de que sea automático.</li>
+    <li>Dejar decisiones empresariales a la máquina. El flujo puede generar un reporte cada mañana. Tú decides si actuamos sobre él o no. El agente puede avisar si detecta algo raro. Tú decides si es grave o es ruido. La máquina no vota, avisa.</li>
+  </ul>
+
+  <h2>De aquí a implementación</h2>
+
+  <p>Tienes clara la tarea, sabes si es flujo o agente, y tienes miedo de que se rompa todo. El siguiente paso es elegir dónde construir esto. Hay opciones para todos los budgets y para todos los niveles de comodidad técnica.</p>
+
+  <p>Si quieres hacerlo tú sin código, hay plataformas que conectan tus herramientas favoritas sin que toques código. Son visuales y relativamente rápidas de montar. El tradeoff es que están limitadas a lo que la plataforma te permite.</p>
+
+  <p>Si necesitas algo más a medida, hay quién lo monta por ti. En flujos simples y bien documentados, tener algo funcionando es cuestión de días, no de meses. La ventaja es que el resultado es exacto para tu caso. La desventaja es que cuesta dinero.</p>
+
+  <p>Lo que no tienes que hacer es armarte de valor e intentarlo solo si nunca lo habías visto. Alguien que ya lo ha hecho es capaz de ver el camino rápido y evitar los hoyos. Vale la pena.</p>
+
+  <h2>Preguntas frecuentes</h2>
+
+  <p><strong>¿Qué pasa si el proceso tiene excepciones?</strong><br>
+  Si es una o dos excepciones al mes, el flujo te genera un aviso y alguien lo resuelve a mano. Si son muchas y diferentes, necesitas un agente. Empieza siempre por flujo. Si la máquina falla más de lo que gana, escalas a agente.</p>
+  <p><strong>¿Cuánto tiempo tarda automatizar una tarea?</strong><br>
+  Un flujo simple, en días; uno complejo, lo que pida. Si está bien documentado y no tiene sorpresas, incluso uno. Un agente tarda más porque necesita entrenamiento y pruebas. Mejor contar con una semana si es la primera vez y la tarea es nueva.</p>
+  <p><strong>¿Cómo sé si tengo que usar mi actual sistema o cambiar a otro?</strong><br>
+  Mira qué sistemas tienes y qué pueden conectarse entre sí. Si tu herramienta A puede hablar con B directamente, no cambies. Los hoyos de integración son los que más cuestan. Antes de elegir herramienta nueva, usa la que tienes si te sirve.</p>
+  <p><strong>¿Qué pasa si automatizo algo y después descubro que estaba mal?</strong><br>
+  Apágala. Un flujo se puede apagar en un segundo y volver a lo manual igual de rápido. Por eso el piloto en paralelo es importante: no te casas con la automatización, pruebas si funciona primero.</p>
+  <p><strong>¿Necesito saber programar?</strong><br>
+  No para un flujo básico. Hay herramientas visuales sin código. Para un agente más sofisticado, sí. O alguien que sepa lo hace por ti.</p>
+
+  <div class="biz">
+    <h3>Si quieres que mire tu caso</h3>
+    <p>Cuéntame qué sostiene tu negocio cada mes y te digo qué parte puede sostenerla un sistema. Sin presentación y sin compromiso.</p>
+    <div class="cta-row">
+      <a class="btn solid" href="/trabajar-conmigo/">Trabajar conmigo</a>
+      <a class="btn" href="/automatizaciones/">Ver qué se puede automatizar</a>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Oriol Forcada · <time datetime="2026-08-27">Publicado el 27 de agosto de 2026</time></span>
+    <span class="foot-links">
+      <a href="/preguntas-frecuentes/">Preguntas frecuentes</a>
+      <a href="/blog/">Blog</a>
+      <a href="/aviso-legal.html">Aviso legal</a>
+      <a href="/privacidad.html">Privacidad</a>
+      <a href="/cookies.html">Cookies</a>
+      <a href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a>
+    </span>
+  </div>
+</footer>
+
+
+<script src="/assets/lenis.min.js" defer></script>
+<script src="/assets/scroll.js" defer></script>
+</body>
+</html>
