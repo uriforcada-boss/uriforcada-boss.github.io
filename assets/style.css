@@ -303,8 +303,10 @@ pre code{background:none;padding:0;color:inherit}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
 @media(max-width:520px){
-  .section-head{flex-direction:column;align-items:flex-start;gap:6px}
-  .section-head .hint{text-align:left}
+  /* 28-ago: esto decía flex-start/left, de antes del centrado global, y en
+     el teléfono descuadraba las cabeceras respecto a todo lo demás. */
+  .section-head{flex-direction:column;align-items:center;gap:6px}
+  .section-head .hint{text-align:center}
   .btn{text-align:center;width:100%}
   .recurso pre{font-size:11.5px}
   .biz{padding:34px 24px}
@@ -342,9 +344,14 @@ pre code{background:none;padding:0;color:inherit}
   text-transform:uppercase;color:var(--dim);text-decoration:none;white-space:nowrap}
 .nav .lang:hover{color:var(--accent)}
 @media(max-width:640px){
-  .nav .wrap{gap:16px;height:52px}
-  .nav ul{gap:18px}
-  .nav ul a{font-size:14px}
+  /* 28-ago: el scroll lateral con la barra escondida dejaba «Recursos»,
+     «Trabajar conmigo» y el idioma FUERA de la pantalla sin ninguna pista de
+     que existieran (medido: li en 401..671px con viewport de 375). En móvil
+     el nav pasa a dos filas y se ve entero. La decisión del 8-ago (nada de
+     hamburguesa) sigue en pie: esto no esconde nada, lo enseña todo. */
+  .nav .wrap{gap:4px 16px;height:auto;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+  .nav ul{gap:4px 16px;flex-wrap:wrap;overflow-x:visible;margin-left:0;width:100%}
+  .nav ul a{font-size:13.5px}
 }
 
 /* Aviso de borrador — solo para las páginas cuyo copy aún no ha aprobado
@@ -1272,3 +1279,42 @@ section:nth-of-type(even){background:#fff;
 .retrato{margin:0 auto 40px;max-width:400px}
 .retrato img{width:100%;height:auto;display:block;border-radius:4px;
   box-shadow:0 10px 34px rgba(20,20,30,.13)}
+
+
+/* ══════════ MÓVIL + COLOR + GRÁFICA — la pasada del 28-ago ═══════════════
+   El aviso vino de fuera (una persona a la que Oriol pasó la web): «faltan
+   animaciones, gráficas, imágenes y color; se siente como leer el manual de
+   algo». Y el móvil estaba medio roto. Las tres cosas, aquí. */
+
+@media(max-width:640px){
+  .despues .fila{grid-template-columns:1fr}
+  .retrato{max-width:300px}
+}
+
+/* ── COLOR · un momento fuerte por página, no un manual ──
+   El Método EDO se pinta de banda índigo llena (en /ca/ el token de acento
+   es el suyo y la banda sale esmeralda sola). Es LA sección de color: una,
+   con intención, y no confeti por todas partes. */
+#metodo{background:var(--accent);border:0}
+#metodo .section-head h2,#metodo .section-head .hint{color:#fff}
+#metodo .section-head{border-color:rgba(255,255,255,.25)}
+#metodo .pain{border-color:rgba(255,255,255,.22)}
+#metodo .pain h3{color:#fff}
+#metodo .pain p{color:rgba(255,255,255,.78)}
+#metodo .pain-num{color:#fff;opacity:.95}
+#metodo .remate{color:#fff}
+#metodo .btn{border-color:rgba(255,255,255,.5);color:#fff}
+#metodo .btn:hover{background:rgba(255,255,255,.12)}
+
+/* Los números de las tarjetas dejan de ser un rótulo gris: círculo de acento. */
+.pain-num{display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border:2px solid var(--accent);border-radius:50%;
+  color:var(--accent);font-weight:800;font-size:16px;margin-bottom:14px}
+#metodo .pain-num{border-color:rgba(255,255,255,.7)}
+
+/* El «Después» gana el verde de lo resuelto: la comparación se VE, no se lee. */
+.despues .lado.post{background:rgba(46,125,80,.07);border-left:3px solid #2E7D50}
+.despues .lado.post .k{color:#2E7D50}
+
+/* ── GRÁFICA · el hilo E→D→O ── */
+.edo-hilo{display:block;margin:0 auto 26px;max-width:420px;width:100%}
