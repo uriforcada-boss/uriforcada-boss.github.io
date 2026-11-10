@@ -1097,3 +1097,14 @@ body{background:transparent}
 .orbe::before{filter:blur(0);opacity:1}
 .orbe::after{display:none}
 @media(max-width:900px){.hero-4 .orbe{display:none}}
+
+/* Safari en iPhone (10-nov): los focos difuminados se salían de las esquinas
+   redondeadas y la sala parecía más ancha que la pantalla. overflow:hidden no
+   basta en Safari con filter:blur; clip-path sí recorta de verdad.            */
+.hero-4,.page-hero,.banda,.impacto,.futuro-sala,.proy-sala,#vista{clip-path:inset(0 round 28px);isolation:isolate}
+.card,.t-proj{clip-path:inset(0 round 12px);isolation:isolate}
+.bloque{clip-path:inset(0 round 22px);isolation:isolate}
+.aportes.vivo li:first-child,.post.destacado,.res .r.destacada,.parada-actual{clip-path:inset(0 round 18px);isolation:isolate}
+.goal{clip-path:inset(0 round 20px);isolation:isolate}
+@media(max-width:760px){.futuro-sala{clip-path:inset(0 round 20px)}}
+@media(max-width:640px){.hero-4,.page-hero,.banda,.impacto,#vista{clip-path:inset(0 round 20px)}}
