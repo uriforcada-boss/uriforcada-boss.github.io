@@ -1,24 +1,36 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; connect-src 'self' https://api.web3forms.com https://assets.mailerlite.com https://*.mailerlite.com; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; form-action 'self' https://assets.mailerlite.com https://*.mailerlite.com; base-uri 'self'; object-src 'none'">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Cierra la sesión sin perder el contexto: el handoff · Oriol Forcada</title>
 <meta name="description" content="El prompt que le pides a Claude antes de cerrar para retomar mañana en frío sin releer nada.">
 <meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cierra la sesión sin perder el contexto: el handoff · Oriol Forcada">
+<meta property="og:description" content="El prompt que le pides a Claude antes de cerrar para retomar mañana en frío sin releer nada.">
+<meta property="og:image" content="https://uriforcada.com/assets/og.png">
+<meta name="theme-color" content="#F7F5EF">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;700;800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../../assets/style.css?v=20260828c">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/aurora.css?v=20261110e">
+<link rel="stylesheet" href="/assets/viejo.css?v=20261110d">
 </head>
-<body class="articulo">
+<body>
 
-<header class="resource-hero">
+<nav class="nav" id="nav"><div class="wrap">
+  <a class="brand" href="/">Oriol Forcada</a>
+  <div class="menu" id="menu"><a href="/historia/">Historia</a><a href="/proyectos/">Proyectos</a><a href="/competencias/">Competencias</a><a href="/ahora/">Ahora</a><a href="/blog/">Blog</a><a href="/recursos/">Recursos</a></div>
+  <div style="display:flex;gap:8px;align-items:center"><button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menú</button><a class="pill small" href="mailto:contacto@uriforcada.com">Escríbeme</a></div>
+</div></nav>
+
+<main class="viejo">
+<header class="page-hero"><div class="aurora aurora-page"></div>
   <div class="wrap">
-    <a href="../../" class="label" style="text-decoration:none">← uriforcada</a>
-    <h1 class="display">Contexto</h1>
-    <p class="sub">El prompt que le pides a Claude antes de cerrar, para que mañana retomes en frío sin releer nada.</p>
+    <h1>Contexto</h1>
+    <p class="lead">El prompt que le pides a Claude antes de cerrar, para que mañana retomes en frío sin releer nada.</p>
   </div>
 </header>
 
@@ -36,21 +48,21 @@
 
     <form class="gate-form ml-form" data-recurso="contexto" data-next="https://uriforcada.com/r/contexto/gracias.html">
         <input type="email" name="email" placeholder="tu@email.com" required>
-        <button class="btn solid" type="submit">Acceder al recurso</button>
+        <button class="pill" type="submit">Acceder al recurso</button>
       </form>
 
     <p class="fine">Acceso inmediato · sin spam · baja cuando quieras</p>
   </div>
 </div>
+</main>
 
-<footer>
-  <div class="wrap">
-    <span>© 2026 Oriol Forcada</span>
-    <a href="../../">uriforcada-boss.github.io</a>
-  </div>
-</footer>
-
-<script src="../../assets/subscribe.js"></script>
-
+<footer id="contacto"><div class="wrap">
+  <div><b>Oriol Forcada</b>Barcelona. Si quieres hablar, escríbeme:<a class="mail" href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a></div>
+  <div><b>Dónde publico</b><a href="https://www.linkedin.com/in/oriol-forcada-edo-03b0192a1" rel="me">LinkedIn</a><a href="https://www.instagram.com/uriforcada/" rel="me">Instagram, @uriforcada</a><a href="https://x.com/uriforcada" rel="me">X, @uriforcada</a></div>
+  <div><b>Y si prefieres que te lo monte yo</b><a href="/trabajar-conmigo/">Trabajar conmigo</a><a href="/preguntas-frecuentes/">Preguntas frecuentes</a><a href="/diagnostico/">Pedir un diagnóstico</a></div>
+  <div class="legal"><span>© 2026 Oriol Forcada</span><a href="/aviso-legal.html">Aviso legal</a><a href="/privacidad.html">Privacidad</a><a href="/cookies.html">Cookies</a></div>
+</div></footer>
+<script src="/assets/aurora.js?v=20261110d" defer></script>
+<script src="/assets/subscribe.js" defer></script>
 </body>
 </html>

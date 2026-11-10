@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blog · Oriol Forcada</title>
+<meta name="description" content="El blog de Oriol Forcada: artículos y notas sobre montar sistemas que trabajan solos con inteligencia artificial, y lo que va aprendiendo por el camino. Cada entrada dice en qué estado está.">
+<link rel="canonical" href="https://uriforcada.com/blog/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Blog · Oriol Forcada">
+<meta property="og:description" content="Artículos y notas sobre montar sistemas que trabajan solos. Lo nuevo, arriba.">
+<meta property="og:url" content="https://uriforcada.com/blog/">
+<meta property="og:image" content="https://uriforcada.com/assets/og.png">
+<meta name="theme-color" content="#F7F5EF">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Blog de Oriol Forcada" href="/blog/feed.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/aurora.css?v=20261110e">
+<style>
+.filtros{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px}
+.filtros button{font:600 13px var(--fb);padding:8px 14px;border-radius:999px;border:1px dotted var(--dots);background:none;color:var(--ink);cursor:pointer}
+.filtros button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.filtros .sep{width:1px;background:var(--dots);margin:4px 6px}
+.post[hidden]{display:none}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav"><div class="wrap">
+  <a class="brand" href="/">Oriol Forcada</a>
+  <div class="menu" id="menu"><a href="/historia/">Historia</a><a href="/proyectos/">Proyectos</a><a href="/competencias/">Competencias</a><a href="/ahora/">Ahora</a><a href="/blog/" aria-current="page">Blog</a><a href="/recursos/">Recursos</a></div>
+  <div style="display:flex;gap:8px;align-items:center"><button class="nav-toggle" aria-expanded="false" aria-controls="menu">Menú</button><a class="pill small" href="mailto:contacto@uriforcada.com">Escríbeme</a></div>
+</div></nav>
+
+<header class="page-hero">
+  <div class="aurora aurora-page"></div>
+  <div class="wrap">
+    <h1>Lo que voy escribiendo</h1>
+    <p class="meta-line">{{N}} entradas. La última, el <time datetime="{{ULTIMA_ISO}}">{{ULTIMA}}</time>.</p>
+    <p class="lead">Aquí voy escribiendo lo que aprendo haciendo: liderar un equipo en un proyecto real, mejorar algo que ya existe, medir lo que de verdad pasa. <strong>Cada entrada dice en qué estado está</strong>, porque las publico antes de que estén acabadas: una semilla es una idea recién plantada, una entrada creciendo ya tiene forma y una madura la doy por hecha. También puedes seguirlo por <a href="/blog/feed.xml">RSS</a>.</p>
+  </div>
+</header>
+
+<section style="padding-top:16px"><div class="wrap">
+  <div class="filtros" role="group" aria-label="Filtrar entradas">
+    <button data-f="tipo" data-v="" aria-pressed="true">Todo</button>
+    <button data-f="tipo" data-v="articulo" aria-pressed="false">Artículos</button>
+    <button data-f="tipo" data-v="nota" aria-pressed="false">Notas</button>
+    <button data-f="tipo" data-v="ahora" aria-pressed="false">Ahora</button>
+    <span class="sep"></span>
+    <button data-f="estado" data-v="" aria-pressed="true">Cualquier estado</button>
+    <button data-f="estado" data-v="semilla" aria-pressed="false">Semilla</button>
+    <button data-f="estado" data-v="creciendo" aria-pressed="false">Creciendo</button>
+    <button data-f="estado" data-v="maduro" aria-pressed="false">Maduro</button>
+  </div>
+  <div class="posts" id="posts">
+    {{LISTA}}
+  </div>
+</div></section>
+
+<section id="archivo"><div class="wrap">
+  <div class="head"><h2>Archivo</h2><p>Lo que escribí en agosto de 2026, cuando esta web vendía automatización para empresas. Lo dejo aquí porque es útil y porque es de donde vengo, pero ya no es de lo que va la web.</p></div>
+  <div class="posts">
+    {{ARCHIVO}}
+  </div>
+</div></section>
+
+<footer id="contacto"><div class="wrap">
+  <div><b>Oriol Forcada</b>Barcelona. Si quieres hablar, escríbeme:<a class="mail" href="mailto:contacto@uriforcada.com">contacto@uriforcada.com</a></div>
+  <div><b>Dónde publico</b><a href="https://www.linkedin.com/in/oriol-forcada-edo-03b0192a1" rel="me">LinkedIn</a><a href="https://www.instagram.com/uriforcada/" rel="me">Instagram, @uriforcada</a><a href="https://x.com/uriforcada" rel="me">X, @uriforcada</a></div>
+  <div><b>Y si prefieres que te lo monte yo</b><a href="/trabajar-conmigo/">Trabajar conmigo</a><a href="/preguntas-frecuentes/">Preguntas frecuentes</a><a href="/diagnostico/">Pedir un diagnóstico</a></div>
+  <div class="legal"><span>© 2026 Oriol Forcada</span><a href="/aviso-legal.html">Aviso legal</a><a href="/privacidad.html">Privacidad</a><a href="/cookies.html">Cookies</a><a href="/blog/feed.xml">RSS</a></div>
+</div></footer>
+<script src="/assets/aurora.js?v=20261110d" defer></script>
+<script>
+(function(){
+  var f={tipo:"",estado:""},posts=document.querySelectorAll('#posts .post');
+  document.querySelectorAll('.filtros button').forEach(function(b){
+    b.addEventListener('click',function(){
+      f[b.dataset.f]=b.dataset.v;
+      document.querySelectorAll('.filtros button[data-f="'+b.dataset.f+'"]').forEach(function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});
+      posts.forEach(function(p){
+        var ok=(!f.tipo||p.dataset.tipo===f.tipo)&&(!f.estado||p.dataset.estado===f.estado);
+        if(ok){p.removeAttribute('hidden')}else{p.setAttribute('hidden','')}
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
