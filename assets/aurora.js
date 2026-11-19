@@ -62,7 +62,7 @@
 (function(){
   var nums=document.querySelectorAll('.cifras-g b[data-n]'); if(!nums.length||!('IntersectionObserver' in window)) return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  function fmt(n){return n.toLocaleString('es-ES');}
+  function fmt(n){return n.toLocaleString('de-DE');}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(!e.isIntersecting) return; io.unobserve(e.target);
     var el=e.target,end=parseInt(el.dataset.n,10),pre=el.dataset.pre||'',suf=el.dataset.suf||'',t0=null;
     function step(ts){if(!t0) t0=ts;var p=Math.min(1,(ts-t0)/1400),v=Math.round(end*(1-Math.pow(1-p,3)));el.textContent=pre+fmt(v)+suf;if(p<1) requestAnimationFrame(step);}

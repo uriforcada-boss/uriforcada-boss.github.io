@@ -1,13 +1,13 @@
 ---
 title: Quinientas horas montando mi propio sistema con inteligencia artificial
 date: 2026-11-10
-description: En julio de 2026 me puse por mi cuenta y lo primero que hice fue montar JARVIS, un sistema de agentes que trabaja por mí. Qué funciona, qué no, y la cagada que me costó semanas.
+description: En julio de 2026 me puse por mi cuenta y lo primero que hice fue montar mi Sistema Agéntico OS, un sistema de agentes que trabaja por mí. Qué funciona, qué no, y la cagada que me costó semanas.
 tipo: articulo
 estado: semilla
-etiquetas: inteligencia artificial, JARVIS, sistemas
+etiquetas: inteligencia artificial, sistemas agénticos, sistemas
 ---
 
-Cuando me puse por mi cuenta en julio no monté una web ni busqué clientes. Monté un sistema. Se llama JARVIS, y es un conjunto de agentes de inteligencia artificial que captan, escriben, miden y deciden por mí, cada uno con su horario y su contrato, organizados como departamentos de una empresa pequeña. Lleva 514 horas de trabajo registradas una a una.
+Cuando me puse por mi cuenta en julio no monté una web ni busqué clientes. Monté un sistema. Lo llamo Sistema Agéntico OS, y es un conjunto de agentes de inteligencia artificial que captan, escriben, miden y deciden por mí, cada uno con su horario y su contrato, organizados como departamentos de una empresa pequeña. Lleva 514 horas de trabajo registradas una a una.
 
 ## Por qué empecé por ahí
 

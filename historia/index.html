@@ -17,6 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/assets/aurora.css?v=20261110f">
+<link rel="stylesheet" href="/assets/panel.css?v=24">
 <script type="application/ld+json">
 { "@context": "https://schema.org", "@type": "ProfilePage", "@id": "https://uriforcada.com/historia/#pagina",
   "url": "https://uriforcada.com/historia/", "name": "Historia", "inLanguage": "es-ES",
@@ -35,7 +36,7 @@
   <div class="aurora aurora-page"></div>
   <div class="wrap">
     <h1>El recorrido</h1>
-    <p class="lead">Quién soy, por dónde he pasado y qué hice en cada sitio, contado como un mapa. <strong>Baja, y el mapa te sigue.</strong> También puedes pinchar en una parada y saltar directamente.</p>
+    <p class="lead">Doce paradas en cuatro años, contadas sobre un mapa. <strong>Baja, y el mapa te sigue:</strong> la ruta se dibuja, el panel cambia y cada parada deja un dato. Si quieres el detalle, cada una tiene su «Más».</p>
   </div>
 </header>
 
@@ -79,82 +80,102 @@
         <button data-pin="seul">Seúl</button>
         <button data-pin="india">India</button>
       </div>
-      <div class="parada-actual" id="parada-actual" aria-live="polite"><small>En esta parada</small><b>Oriol Forcada</b><span>2002 a hoy</span><div class="tags"></div></div>
+      <div class="parada-actual" id="parada-actual" aria-live="polite"><div class="pa-top"><small>En esta parada</small><em class="pa-n"><strong id="pa-n">01</strong>/12 · <u id="pa-cap">Quién soy</u></em></div><b>Oriol Forcada</b><span>2002 a hoy</span><div class="tags"></div><div class="pa-dato" id="pa-dato"></div><i class="pa-prog" id="pa-prog"></i></div>
       <div class="mapa-cifras"><span><b>5</b> países</span><span><b>3</b> continentes</span><span><b>4</b> años de LEINN</span></div>
     </div>
 
     <div class="tramos">
       <div class="grupo">Quién soy</div>
-      <article class="paso-v" id="quien-soy" data-pin="" data-zoom="1" data-lugar="" data-fecha="Oriol Forcada, 2002 a hoy">
+      <article class="paso-v" id="quien-soy" data-pin="" data-zoom="1" data-lugar="" data-fecha="Oriol Forcada, 2002 a hoy" data-dato="6" data-dato-l="sitios en cuatro años. Baja, y el mapa te sigue.">
         <time>hoy</time><h2>Oriol Forcada <small>Barcelona</small></h2>
-        <p>Soy estudiante de cuarto de LEINN, cofundador de INTRA y de Senior Labs, y project leader en un proyecto de innovación estratégica junto a Alcampo. <strong>Lo que más me tira es la I+D: coger algo que ya funciona y hacerlo funcionar mejor.</strong></p>
-        <p>Este mapa es por dónde he pasado para llegar hasta aquí. Son seis sitios en cuatro años, y en cada uno hice algo distinto. Baja y el mapa te sigue.</p>
+        
+        <p class="uno">Cuarto de LEINN, cofundador de INTRA y de Senior Labs, y project leader junto a Alcampo. <strong>Lo que más me tira es la I+D: coger algo que funciona y hacerlo funcionar mejor.</strong></p>
+        <div class="dato"><b>6</b><span>sitios en cuatro años. Baja, y el mapa te sigue.</span></div>
+        
       </article>
 
       <div class="grupo">De dónde vengo</div>
-      <article class="paso-v" id="barcelona" data-pin="bcn" data-zoom="2.1" data-lugar="Barcelona" data-fecha="de 2002 a 2021">
+      <article class="paso-v" id="barcelona" data-pin="bcn" data-zoom="2.1" data-lugar="Barcelona" data-fecha="de 2002 a 2021" data-dato="1.º" data-dato-l="de mi familia que se monta un negocio">
         <time>de 2002 a 2021</time><h2>Empiezo aquí <small>Barcelona</small></h2>
-        <p>Nací en Barcelona en 2002, con el catalán y el castellano en casa. De pequeño me pasaba el día imaginando cosas que no existían y preguntándome por qué las que existían eran como eran. <strong>Nunca me valió el «esto siempre se ha hecho así».</strong></p>
-        <p>Hice el bachillerato tecnológico en Natzaret, en Esplugues de Llobregat. En mi familia nadie ha tenido nunca un negocio: mis padres son currantes, y yo soy el primero que se lo monta.</p>
+        
+        <p class="uno">Nací en 2002, con el catalán y el castellano en casa. De pequeño imaginaba cosas que no existían y preguntaba por qué las que existían eran así. <strong>Nunca me valió el «esto siempre se ha hecho así».</strong></p>
+        <div class="dato"><b>1.º</b><span>de mi familia que se monta un negocio</span></div>
+        <details class="mas"><summary>Más</summary><p>Hice el bachillerato tecnológico en Natzaret, en Esplugues de Llobregat. En mi familia nadie ha tenido nunca un negocio: mis padres son currantes.</p></details>
       </article>
-      <article class="paso-v" id="hospitalet" data-pin="bcn" data-zoom="2.1" data-lugar="L’Hospitalet" data-fecha="de 2021 a 2023">
+      <article class="paso-v" id="hospitalet" data-pin="bcn" data-zoom="2.1" data-lugar="L’Hospitalet" data-fecha="de 2021 a 2023" data-dato="2" data-dato-l="años de grado superior">
         <time>de 2021 a 2023</time><h2>El grado de deportes <small>L’Hospitalet de Llobregat</small></h2>
-        <p>Al acabar el bachillerato no sabía qué quería hacer, así que me apunté a un grado superior en Enseñanza y Animación Sociodeportiva en Jesuïtes Joan XXIII. Mientras lo cursaba descubrí LEINN, la carrera de Liderazgo, Emprendimiento e Innovación. <strong>Ahí encajé.</strong></p>
+        
+        <p class="uno">Al acabar el bachillerato no sabía qué quería hacer. Me apunté a Enseñanza y Animación Sociodeportiva en Jesuïtes Joan XXIII y, mientras lo cursaba, descubrí LEINN. <strong>Ahí encajé.</strong></p>
+        <div class="dato"><b>2</b><span>años de grado superior</span></div>
+        
       </article>
-      <article class="paso-v" id="malta" data-pin="malta" data-zoom="2.1" data-seg="1" data-lugar="Malta" data-fecha="de junio a septiembre de 2022">
+      <article class="paso-v" id="malta" data-pin="malta" data-zoom="2.1" data-seg="1" data-lugar="Malta" data-fecha="de junio a septiembre de 2022" data-dato="3 meses" data-dato-l="trabajando fuera de casa por primera vez">
         <time>de junio a septiembre de 2022</time><h2>Malta <small>Erasmus+ en Reflex Fitness</small></h2>
         <div class="que"><span>Trabajar fuera</span></div>
-        <p>Fue la primera vez que trabajé fuera de casa: tres meses de Erasmus+ en Reflex Fitness, en el sector del que venía. Aprendí a buscarme la vida en otro idioma y en otro país.</p>
+        <p class="uno">Tres meses de Erasmus+ en Reflex Fitness, en el sector del que venía. Aprendí a buscarme la vida en otro idioma y en otro país.</p>
+        <div class="dato"><b>3 meses</b><span>trabajando fuera de casa por primera vez</span></div>
+        
       </article>
-      <article class="paso-v" id="leinn" data-pin="bcn" data-zoom="2.1" data-seg="1" data-lugar="Barcelona" data-fecha="2023">
+      <article class="paso-v" id="leinn" data-pin="bcn" data-zoom="2.1" data-seg="1" data-lugar="Barcelona" data-fecha="2023" data-dato="247.884 €" data-dato-l="facturados entre todos en tres años">
         <time>2023</time><h2>LEINN e INTRA <small>Mondragon Unibertsitatea, Barcelona</small></h2>
         <div class="que"><span>Emprender en equipo</span></div>
-        <p>Entré en LEINN y cofundamos INTRA Team Company, una empresa real desde primero de carrera con la que aprendemos haciendo proyectos para clientes. En tres años hemos facturado 247.884 € entre todos. Dentro de INTRA he hecho de estratega de crecimiento y de project manager: diseñar y validar modelos de negocio, abrir mercado con administraciones públicas y dirigir equipos.</p>
-        <p>Todos esos años compaginé la carrera con un trabajo para poder tirar adelante.</p>
+        <p class="uno">Entré en LEINN y cofundamos INTRA Team Company, una empresa real desde primero de carrera. Dentro he hecho de estratega de crecimiento y de project manager.</p>
+        <div class="dato"><b>247.884 €</b><span>facturados entre todos en tres años</span></div>
+        <details class="mas"><summary>Más</summary><p>Diseñar y validar modelos de negocio, abrir mercado con administraciones públicas y dirigir equipos. Todos esos años compaginé la carrera con un trabajo para poder tirar adelante.</p></details>
       </article>
-      <article class="paso-v" id="growth" data-pin="bcn" data-zoom="2.1" data-seg="1" data-lugar="Barcelona" data-fecha="2024">
+      <article class="paso-v" id="growth" data-pin="bcn" data-zoom="2.1" data-seg="1" data-lugar="Barcelona" data-fecha="2024" data-dato="+10.000" data-dato-l="seguidores a un cliente que llevaba un año clavado en 35.000">
         <time>2024</time><h2>El curso que rechacé <small>Barcelona</small></h2>
         <div class="que"><span>Growth</span><span>Aprender a mi manera</span></div>
-        <p>Me endeudé para pagarme un curso de growth partner. Gasté todo lo que tenía y salí con mucho conocimiento y con una certeza: que eso no era lo mío. <strong>Hoy hago justo eso, a mi manera.</strong> Lo que rechazas casi nunca es el trabajo, es la forma en que te lo enseñaron: el curso me daba un modelo cerrado para aplicar tal cual, y yo necesitaba entender el mecanismo por dentro.</p>
-        <p>Por el camino, a un cliente que llevaba un año clavado en 35.000 seguidores le monté un sistema de redes y lo puse en 45.000.</p>
+        <p class="uno">Me endeudé para pagarme un curso de growth partner: ocho meses, a la vez que la carrera y el trabajo. Salí con mucho conocimiento y una certeza: <strong>ese camino no era el mío.</strong></p>
+        <div class="dato"><b>+10.000</b><span>seguidores a un cliente que llevaba un año clavado en 35.000</span></div>
+        <details class="mas"><summary>Más</summary><p>Hoy hago justo eso, a mi manera. Lo que rechazas casi nunca es el trabajo, es la forma en que te lo enseñaron: el curso daba un modelo cerrado para aplicar tal cual, y yo necesitaba entender el mecanismo por dentro.</p></details>
       </article>
 
       <div class="grupo">Por dónde he pasado</div>
       <article class="paso-v" id="helsinki" data-pin="hel" data-zoom="2" data-seg="2" data-lugar="Helsinki" data-fecha="enero de 2024">
         <time>enero de 2024</time><h2>Helsinki <small>Finlandia</small></h2>
-        <div class="que"><span>Investigar mercado</span></div>
-        <p>Fuimos a investigar el mercado sobre el terreno: eventos del ecosistema de negocios nórdico con la universidad, buscando oportunidades de negocio internacionales para el equipo.</p>
+        <div class="que"><span>Investigar mercado</span><span>Pádel</span></div>
+        <p class="uno">Investigación de mercado sobre el terreno: eventos del ecosistema de negocios nórdico con la universidad, buscando oportunidades internacionales para el equipo. Allí intentamos también montar torneos de pádel.</p>
+        
+        
       </article>
       <article class="paso-v" id="costa-rica" data-pin="cr" data-zoom="2" data-seg="3" data-lugar="San José" data-fecha="noviembre de 2024">
         <time>noviembre de 2024</time><h2>Costa Rica <small>San José</small></h2>
-        <div class="que"><span>Intentar emprender</span><span>Automatizaciones</span><span>Sector inmobiliario</span></div>
-        <p>En Costa Rica intentamos emprender con automatizaciones para el sector inmobiliario y entramos en el ecosistema de las cooperativas. También participamos en eventos con la universidad Fundepos.</p>
+        <div class="que"><span>Intentar emprender</span><span>Automatizaciones</span></div>
+        <p class="uno">Intentamos emprender con automatizaciones para el sector inmobiliario, entramos en el ecosistema de las cooperativas y participamos en eventos con la Universidad Fundepos.</p>
+        
+        
       </article>
-      <article class="paso-v" id="senior-labs" data-pin="bcn" data-zoom="2.1" data-seg="3" data-lugar="Barcelona" data-fecha="octubre de 2025">
+      <article class="paso-v" id="senior-labs" data-pin="bcn" data-zoom="2.1" data-seg="3" data-lugar="Barcelona" data-fecha="octubre de 2025" data-dato="+200" data-dato-l="personas pasan por los talleres cada semana">
         <time>octubre de 2025</time><h2>Senior Labs <small>Barcelona</small></h2>
         <div class="que"><span>Inclusión digital</span><span>Personas mayores</span></div>
-        <p>Cofundamos Senior Labs, formación práctica en tecnología para personas mayores, con talleres en casales y centros cívicos del área metropolitana de Barcelona. Yo lideré el desarrollo de CONECTA2, el programa pedagógico de los talleres, con el que una persona mayor consigue hacer gestiones de salud y videollamadas sola en dos sesiones. Más de 200 personas pasan por los talleres cada semana.</p>
-        <p>Junto al equipo <strong>casi cuadruplicamos la facturación en ocho meses</strong>.</p>
+        <img class="paso-foto" src="/assets/fotos/seniorlabs/seniorlabs-ig-35.jpg" alt="Un taller de Senior Labs con personas mayores" loading="lazy">
+        <p class="uno">Cofundamos Senior Labs: tecnología práctica para personas mayores, en casales y centros cívicos del área metropolitana. Lideré CONECTA2, el programa pedagógico de los talleres.</p>
+        <div class="dato"><b>+200</b><span>personas pasan por los talleres cada semana</span></div>
+        <details class="mas"><summary>Más</summary><p>Con CONECTA2 una persona mayor consigue hacer gestiones de salud y videollamadas sola en dos sesiones. Junto al equipo <strong>casi cuadruplicamos la facturación en ocho meses</strong>. Hoy llevo el marketing y la I+D, de la mano del CTO.</p></details>
       </article>
-      <article class="paso-v" id="seul" data-pin="seul" data-zoom="2" data-seg="4" data-lugar="Seúl" data-fecha="enero y febrero de 2026">
+      <article class="paso-v" id="seul" data-pin="seul" data-zoom="2" data-seg="4" data-lugar="Seúl" data-fecha="enero y febrero de 2026" data-dato="Corea → Cataluña" data-dato-l="exportamos productos médicos para la tercera edad">
         <time>enero y febrero de 2026</time><h2>Seúl <small>Hongik University, Corea del Sur</small></h2>
-        <div class="que"><span>Silver Cities</span><span>Exportar</span><span>Pádel</span></div>
-        <p>Hice una residencia de estudios en Hongik University para investigar los modelos de Silver Cities y la Silver Economy asiática, con la idea de traerlos a casa. Intentamos montar torneos de pádel, trabajamos con <a href="https://www.born2global.com/about-gdin" rel="noopener" style="border-bottom:1px solid var(--line)">GDIN</a>, la Global Digital Innovation Network, y <strong>conseguimos exportar productos médicos para la tercera edad de Corea a Cataluña</strong>.</p>
+        <div class="que"><span>Silver Cities</span><span>Exportar</span></div>
+        <p class="uno">Residencia de estudios en Hongik University para investigar las Silver Cities y la Silver Economy asiática. Con <a href="https://www.born2global.com/about-gdin" rel="noopener">GDIN</a> hicimos un estudio de mercado.</p>
+        <div class="dato"><b>Corea → Cataluña</b><span>exportamos productos médicos para la tercera edad</span></div>
+        <details class="mas"><summary>Más</summary><p>La idea de fondo: traer a casa modelos que allí ya funcionan.</p></details>
       </article>
-      <article class="paso-v" id="india" data-pin="india" data-zoom="2" data-seg="6" data-lugar="India" data-fecha="marzo y abril de 2026">
+      <article class="paso-v" id="india" data-pin="india" data-zoom="2" data-seg="6" data-lugar="India" data-fecha="marzo y abril de 2026" data-dato="5" data-dato-l="ciudades en dos meses">
         <time>marzo y abril de 2026</time><h2>India <small>Mumbai, Pune, Delhi, Agra y Calcuta</small></h2>
-        <div class="que"><span>Desarrollo personal</span><span>Liderazgo</span><span>Voluntariado</span><span>Taj Mahal</span></div>
-        <p>Lo principal de la estancia fue un <strong>programa de desarrollo personal y liderazgo</strong> que duró todo el viaje y culminó en el Taj Mahal. En Calcuta hicimos un programa de voluntariado con las hermanas de Calcuta.</p>
-        <p>Y el resto del tiempo lo dediqué a buscar información: cómo se hace innovación social en mercados emergentes y cómo funcionan las cosas en sitios con una densidad que aquí no existe.</p>
+        <div class="que"><span>Liderazgo</span><span>Voluntariado</span></div>
+        <p class="uno">Un programa de desarrollo personal y liderazgo que duró todo el viaje y acabó en el Taj Mahal. En Calcuta, voluntariado con las hermanas de Calcuta.</p>
+        <div class="dato"><b>5</b><span>ciudades en dos meses</span></div>
+        <details class="mas"><summary>Más</summary><p>El resto del tiempo lo dediqué a mirar cómo se hace innovación social en mercados emergentes y cómo funcionan las cosas con una densidad que aquí no existe.</p></details>
       </article>
 
       <div class="grupo">Dónde estoy</div>
-      <article class="paso-v hoy" id="hoy" data-pin="bcn" data-zoom="1" data-seg="6" data-lugar="Barcelona" data-fecha="desde 2026">
+      <article class="paso-v hoy" id="hoy" data-pin="bcn" data-zoom="1" data-seg="6" data-lugar="Barcelona" data-fecha="desde 2026" data-dato="514 h" data-dato-l="registradas una a una desde julio">
         <time>desde julio de 2026</time><h2>El sistema <small>Barcelona</small></h2>
-        <div class="que"><span>JARVIS</span><span>HookJar</span><span>Consultoría de innovación</span><span>Senior Labs</span></div>
-        <p>Cuando me puse por mi cuenta, lo primero que hice fue montar algo que no dependiera de nadie, ni siquiera de mí: JARVIS, mi sistema de trabajo. Lleva 514 horas registradas una a una desde julio.</p>
-        <p>A la vez estoy en tres sitios más: HookJar, el radar de contenido para agencias que sacamos en beta pública en noviembre; el proyecto de innovación estratégica junto a Alcampo, dentro del programa COP, donde soy project leader; y Senior Labs, donde llevo el marketing y la I+D. Todo está contado en <a href="/proyectos/" style="border-bottom:1px solid var(--ink)">Proyectos</a>.</p>
-        <p>Por el camino me fié de la IA sin comprobar lo que hacía y perdí semanas. Desde entonces, <strong>nada de lo que monto vale si no se puede enseñar funcionando</strong>. Y lo enseño porque creo que cualquiera debería poder aprender antes de pagar a nadie.</p>
+        <div class="que"><span>Senior Labs</span><span>HookJar</span><span>Alcampo</span><span>Sistema Agéntico OS</span></div>
+        <p class="uno">Lo primero que hice por mi cuenta fue montar algo que no dependiera de nadie, ni siquiera de mí: mi Sistema Agéntico OS. A la vez, Senior Labs, HookJar y el proyecto con Alcampo.</p>
+        <div class="dato"><b>514 h</b><span>registradas una a una desde julio</span></div>
+        <details class="mas"><summary>Más</summary><p>Por el camino me fié de la IA sin comprobar lo que hacía y perdí semanas. Desde entonces, <strong>nada de lo que monto vale si no se puede enseñar funcionando</strong>. Todo está contado en <a href="/proyectos/">Proyectos</a>.</p></details>
       </article>
     </div>
   </div>
@@ -175,5 +196,6 @@
   <div class="legal"><span>© 2026 Oriol Forcada</span><a href="/aviso-legal.html">Aviso legal</a><a href="/privacidad.html">Privacidad</a><a href="/cookies.html">Cookies</a></div>
 </div></footer>
 <script src="/assets/aurora.js?v=20261110d" defer></script>
+<script src="/assets/panel.js?v=8" defer></script>
 </body>
 </html>
